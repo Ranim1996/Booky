@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class Testing
 
 {
-    //simple testing test
+    //simple testing
     @Test
     public void test()
     {
