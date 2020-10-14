@@ -11,6 +11,6 @@ public class Testing
     @Test
     public void test()
     {
-        assertEquals(1, 1);
+        assertEquals(2, 2);
     }
 }
