@@ -18,7 +18,6 @@ dependencies {
     implementation group: 'org.glassfish.jersey.bundles', name: 'jaxrs-ri', version: '2.+'
     implementation group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet', version: '2.+'
 
-
     // https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
     implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.+'
     // https://mvnrepository.com/artifact/org.glassfish.jaxb/jaxb-runtime
