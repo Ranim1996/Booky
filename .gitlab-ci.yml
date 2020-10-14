@@ -1,14 +1,18 @@
-build:
-  script:
-    - ./gradlew build
-  stage: build
 stages:
   - build
   - test
+
+build:
+  stage: build
+  script:
+    - ./gradlew build
+
 test:
-  dependencies:
-    - build
+  stage: test
   script:
     - ./gradlew test
-  stage: test
+  dependencies:
+    - build
+
+
 
