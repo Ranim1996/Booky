@@ -10,7 +10,7 @@ import service.model.Country;
 
 public class CountryTest {
 
-    @Test //check whether book info are correct
+    @Test //check whether country info are correct
     public void NewCountryTest()
     {
         Country c = new Country("SY", "Syria");
@@ -25,7 +25,7 @@ public class CountryTest {
     @Test // country name null
     public void getCountryNameWithNullValue() {
         thrown.expect(IllegalArgumentException.class);
-        thrown.expectMessage("country name must not be null");
+        thrown.expectMessage("Country name must not be null");
 
         Country c= new Country();
         c.setName(null);
