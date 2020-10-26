@@ -109,10 +109,10 @@ public class BookResources {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createBook(Book b) {
         if (!fakeDataStore.add(b)){
-            String entity =  "Book with this id is " + b.getBookID() + " already exists.";
+            String entity =  "Book with this id is " + b.getId() + " already exists.";
             return Response.status(Response.Status.CONFLICT).entity(entity).build();
         } else {
-            String url = uriInfo.getAbsolutePath() + "/" + b.getBookID(); // url of the posted book
+            String url = uriInfo.getAbsolutePath() + "/" + b.getId(); // url of the posted book
             URI uri = URI.create(url);
             return Response.created(uri).build();
         }

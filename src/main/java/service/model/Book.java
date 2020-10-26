@@ -30,51 +30,64 @@ public class Book {
     public Book() {
     }
 
-    //geteers and setters
-    public int getBookID() {
+    //geters and setters
+
+
+    public int getId() {
         return id;
     }
-    public void setBookID(int id) {
+
+    public void setId(int id) {
         this.id = id;
     }
 
     public String getBookName() {
         return bookName;
     }
-    public void setBookName(String name) {
-        this.bookName = name;
+
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
     }
 
     public String getAuthorName() {
         return authorName;
     }
-    public void setAuthorName(String name) {
-        this.authorName = name;
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 
-    public BookType getBookType() {
+    public BookType getType() {
         return type;
     }
-    public void setBookType(BookType type) {
+
+    public void setType(BookType type) {
         this.type = type;
+    }
+
+    public String getDescribtion() {
+        return describtion;
+    }
+
+    public void setDescribtion(String describtion) {
+        this.describtion = describtion;
     }
 
     public LocalDate getTime() {
         return time;
     }
-    public void setTime(LocalDate time) { this.time = time; }
 
-    public String getBookContent() {
-        return describtion;
-    }
-    public void setBookContent(String content) {
-        this.describtion = content;
+    public void setTime(LocalDate time) {
+        this.time = time;
     }
 
-    public Language getBookLanguage() {
+    public Language getLanguage() {
         return language;
     }
-    public void setBookLanguage(Language language) { this.language = language; }
+
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
 
     //methods
     @Override
