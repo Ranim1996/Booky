@@ -101,11 +101,12 @@ public class UsersFakeDataStore {
     }
 
     //find whether user is updated or not for updating user object
-    public boolean updatePersonalInfo(Users u) {
-        Users old = this.getUser(u.getId());
+    public boolean updatePersonalInfo(int id, Users u) {
+        Users old = this.getUser(id);
         if (old == null) {
             return false;
         }
+//        u.setId(id);
         old.setFirstName(u.getFirstName());
         old.setLastName(u.getLastName());
         old.setDateOfBirth(u.getDateOfBirth());
@@ -114,6 +115,7 @@ public class UsersFakeDataStore {
         old.setPassword(u.getPassword());
         old.setPhoneNumber(u.getPhoneNumber());
         old.setLanguage(u.getLanguage());
+//        usersList.add(u);
         return true;
     }
 
