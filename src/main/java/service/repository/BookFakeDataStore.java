@@ -97,8 +97,8 @@ public class BookFakeDataStore {
     }
 
     //find whether book is updated or not for updating book object
-    public boolean update(Book b) {
-        Book old = this.getBook(b.getId());
+    public boolean update(int id, Book b) {
+        Book old = this.getBook(id);
         if (old == null) {
             return false;
         }

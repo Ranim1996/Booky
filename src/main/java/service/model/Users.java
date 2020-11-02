@@ -20,10 +20,16 @@ public class Users {
     private Language language; // user's language
     private String dateOfBirth; // user's date of birth
 
+//    private String image;
+    private static int idSeeder = 1;
+
+
     //constractures
-    public Users(int id, String firstName, String lastName, String dateOfBirth, UserType type, String email, String password,
+    public Users(int id, String firstName, String lastName, String dateOfBirth, UserType type,
+                 String email, String password,
                  String phoneNumbar, Country country, Language language) {
-        this.id = id;
+        this.id = idSeeder;
+        idSeeder++;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
@@ -36,6 +42,8 @@ public class Users {
     }
 
     public Users() {
+        this.id = idSeeder;
+        idSeeder++;
     }
 
     // getters and setters

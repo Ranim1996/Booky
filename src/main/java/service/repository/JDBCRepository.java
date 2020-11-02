@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class JDBCRepository {
 
-    protected Connection getDataBaseConneection() throws BookyDataBaseException {
+    protected Connection getDataBaseConneection()  {
 
         String url = "jdbc:mysql://studmysql01.fhict.local:3306/dbi344446";
 
