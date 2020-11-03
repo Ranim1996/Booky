@@ -8,9 +8,9 @@ import service.repository.JDBCCountryRepository;
 
 import java.util.Collection;
 
-public class DataController {
+public class DataCountryController {
 
-    final Logger logger = LoggerFactory.getLogger(DataController.class);
+    final Logger logger = LoggerFactory.getLogger(DataCountryController.class);
 
     //show all countries
     void showAllCountries(){

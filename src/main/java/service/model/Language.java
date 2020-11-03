@@ -47,11 +47,11 @@ public class Language {
         return Objects.hash(code);
     }
 
-//    @Override
-//    public String toString() {
-//        return "Language{" +
-//                "language code='" + languageCode + '\'' +
-//                ", language name='" + languageName + '\'' +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "Language{" +
+                "language code='" + code + '\'' +
+                ", language name='" + name + '\'' +
+                '}';
+    }
 }
