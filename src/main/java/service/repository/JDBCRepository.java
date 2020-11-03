@@ -4,9 +4,9 @@ import com.mysql.jdbc.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class JDBCRepository {
+public class JDBCRepository{
 
-    protected Connection getDataBaseConneection()  {
+    protected Connection getDataBaseConneection () throws BookyDatabaseException   {
 
         String url = "jdbc:mysql://studmysql01.fhict.local:3306/dbi344446";
 

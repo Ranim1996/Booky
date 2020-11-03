@@ -77,7 +77,7 @@ public class UserResources {
     //update user personal infirmation using the user object
     @PUT //PUT at http://localhost:9090/booky/users/{id}
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("/{id}")
+    @Path("{id}")
     public Response updateUser(@PathParam("id") int id, Users u) {
         // Idempotent method. Always update (even if the resource has already been updated before).
         if (fakeDataStore.updatePersonalInfo(id, u)) {

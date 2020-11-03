@@ -122,9 +122,9 @@ public class BookResources {
     @PUT //PUT at http://localhost:9090/booky/books/{id}
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("{id}")
-    public Response updateBook(int id, Book b) {
+    public Response updateBook(@PathParam("id") int id,  Book b) {
         // Idempotent method. Always update (even if the resource has already been updated before).
-        if (fakeDataStore.update(id,b)) {
+        if (fakeDataStore.update(id, b)) {
             return Response.noContent().build();
         } else {
             return Response.status(Response.Status.NOT_FOUND).entity("Please provide a valid book ID.").build();

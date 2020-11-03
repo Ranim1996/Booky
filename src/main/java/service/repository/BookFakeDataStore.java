@@ -89,7 +89,7 @@ public class BookFakeDataStore {
 
     // find whether book is added or not for adding book object
     public boolean add(Book b) {
-        if (this.getBook(b.getId()) != null){
+        if (this.getBook(b.getId()) != null) {
             return false;
         }
         bookList.add(b);
@@ -97,7 +97,7 @@ public class BookFakeDataStore {
     }
 
     //find whether book is updated or not for updating book object
-    public boolean update(int id, Book b) {
+    public boolean update(int id,Book b) {
         Book old = this.getBook(id);
         if (old == null) {
             return false;

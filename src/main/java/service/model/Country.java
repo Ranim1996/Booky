@@ -51,11 +51,11 @@ public class Country {
         return Objects.hash(code);
     }
 
-//    @Override
-//    public String toString() {
-//        return "Country{" +
-//                "country code='" + countryCode + '\'' +
-//                ", country name='" + countryName + '\'' +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "Country{" +
+                "country code='" + code + '\'' +
+                ", country name='" + name + '\'' +
+                '}';
+    }
 }
