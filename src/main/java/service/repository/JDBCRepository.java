@@ -15,6 +15,7 @@ public class JDBCRepository{
 
         try {
             Connection connection = (Connection) DriverManager.getConnection(url, username, password);
+            connection.setAutoCommit(false);
             return connection;
         }
         catch (SQLException e){

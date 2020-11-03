@@ -37,7 +37,7 @@ public class JDBCLanguageRepository extends JDBCRepository{
 
     //get all languages from data base
     public Collection<Language> getLanguages() throws BookyDatabaseException {
-        List<Language> countries = new ArrayList<>();
+        List<Language> languages = new ArrayList<>();
 
         Connection connection = this.getDataBaseConneection();
         String sql = "SELECT * FROM language";
@@ -48,12 +48,12 @@ public class JDBCLanguageRepository extends JDBCRepository{
                 String code = resultSet.getString("code");
                 String name = resultSet.getString("name");
                 Language language = new Language(code, name);
-                countries.add(language);
+                languages.add(language);
             }
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read languages from the database.",throwable);
         }
-        return countries;
+        return languages;
     }
 }
