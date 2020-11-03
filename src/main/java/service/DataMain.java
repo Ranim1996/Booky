@@ -15,6 +15,9 @@ class DataMain {
         DataLanguageController languageController = new DataLanguageController();
 
         countryController.showAllCountries();
+        countryController.showCountryByCode("USA");
+
         languageController.showAllLanguages();
+        languageController.showLanguageByCode("AR");
     }
 }

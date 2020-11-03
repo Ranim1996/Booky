@@ -15,7 +15,7 @@ import java.util.List;
 public class JDBCLanguageRepository extends JDBCRepository{
 
     //get language from data base by code
-    public Language getLanguage(String languageCode) throws BookyDatabaseException {
+    public Language getLanguageByCode(String languageCode) throws BookyDatabaseException {
         Connection connection = this.getDataBaseConneection();
         String sql = "SELECT * FROM language WHERE code = ?";
         try {

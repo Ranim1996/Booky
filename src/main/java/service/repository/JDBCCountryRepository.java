@@ -15,7 +15,7 @@ import java.util.List;
 public class JDBCCountryRepository extends JDBCRepository{
 
     //get country from data base by code
-    public Country getCountry(String countryCode) throws BookyDatabaseException {
+    public Country getCountryByCode(String countryCode) throws BookyDatabaseException {
         Connection connection = this.getDataBaseConneection();
         String sql = "SELECT * FROM country WHERE code = ?";
         try {
