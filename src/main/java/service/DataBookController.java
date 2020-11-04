@@ -65,14 +65,16 @@ public class DataBookController {
 
     /**
      * Update a new book.
-     * @param book should be updated into the DB.
+     * @param id
+     * @param book
+     * should be updated into the DB.
      */
-    void updateBook(Book book){
+    void updateBook(int id, Book book){
 
         JDBCBookRepository bookRepository = new JDBCBookRepository();
 
         try {
-            bookRepository.UpdateBook(book);
+            bookRepository.UpdateBook(id, book);
         }
         catch (BookyDatabaseException e) {
             e.printStackTrace();

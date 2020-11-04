@@ -165,7 +165,7 @@ public class JDBCBookRepository  extends JDBCRepository{
 
     }
 
-    public void UpdateBook(Book book) throws BookyDatabaseException {
+    public void UpdateBook(int id, Book book) throws BookyDatabaseException {
 
         Connection connection = this.getDataBaseConneection();
 
@@ -181,7 +181,7 @@ public class JDBCBookRepository  extends JDBCRepository{
             preparedStatement.setDate(5, new java.sql.Date(System.currentTimeMillis()));
 
             preparedStatement.setString(6, book.getLanguage().getCode());
-            preparedStatement.setInt(7, 3);
+            preparedStatement.setInt(7, id);
 
             preparedStatement.executeUpdate();
             connection.commit();
