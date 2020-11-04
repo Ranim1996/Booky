@@ -131,19 +131,19 @@ public class Users {
         return Objects.hash(id);
     }
 
-//    @Override
-//    public String toString() {
-//        return "User{" +
-//                "User ID: " + id +
-//                ", First Name: '" + firstName + '\'' +
-//                ", Last Name: '" +  lastName + '\'' +
-//                ", Date of Birth: '" + dateOfBirth + '\'' +
-//                ", Email: '" + email + '\'' +
-//                ", Password: '" + password + '\'' +
-//                ", Phone Number: " + phoneNumber + '\'' +
-//                ", User Type: " + type + '\'' +
-//                ", Country: " + country + '\'' +
-//                ", Language: " + language + '\'' +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "User{" +
+                "User ID: " + id +
+                ", First Name: '" + firstName + '\'' +
+                ", Last Name: '" +  lastName + '\'' +
+                ", Date of Birth: '" + dateOfBirth + '\'' +
+                ", Email: '" + email + '\'' +
+                ", Password: '" + password + '\'' +
+                ", Phone Number: " + phoneNumber + '\'' +
+                ", User Type: " + type + '\'' +
+                ", Country: " + country + '\'' +
+                ", Language: " + language + '\'' +
+                '}';
+    }
 }

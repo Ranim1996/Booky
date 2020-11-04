@@ -11,7 +11,7 @@ import java.util.Collection;
 
 public class DataBookController {
 
-    final Logger logger = LoggerFactory.getLogger(DataCountryController.class);
+    final Logger logger = LoggerFactory.getLogger(DataBookController.class);
 
     //show all books
     void showAllBooks(){

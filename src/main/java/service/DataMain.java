@@ -19,6 +19,7 @@ class DataMain {
         DataCountryController countryController = new DataCountryController();
         DataLanguageController languageController = new DataLanguageController();
         DataBookController bookController = new DataBookController();
+        DataUserController userController = new DataUserController();
 
         Language language = new Language("EN", "English");
         Book book = new Book(0, "New Book", "New Author",
@@ -28,26 +29,32 @@ class DataMain {
                 BookType.Horror, "Updated Information here", LocalDate.now(), language);
 
 
+        /* for languages and countries*/
         //show all countries and by code
-        countryController.showAllCountries();
-        countryController.showCountryByCode("USA");
+//        countryController.showAllCountries();
+//        countryController.showCountryByCode("USA");
 
         //show all languages and by code
-        languageController.showAllLanguages();
-        languageController.showLanguageByCode("AR");
+//        languageController.showAllLanguages();
+//        languageController.showLanguageByCode("AR");
 
+        /* for books*/
         //show all books
-        bookController.showAllBooks();
+//        bookController.showAllBooks();
         //filter books by french language
-        bookController.showBookByLanguageCode("FR");
+//        bookController.showBookByLanguageCode("FR");
         //add book to the db
 //        bookController.addBook(book);
         //update book in db
-        bookController.updateBook(updatedBook);
+//        bookController.updateBook(updatedBook);
         //show book by its id
 //        bookController.ShowBookById(1);
         //delete book from db
 //        bookController.DeleteBook(1);
+
+        /* for users*/
+        //show all users
+        userController.showAllUsers();
 
 
 

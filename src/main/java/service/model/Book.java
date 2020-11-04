@@ -114,8 +114,9 @@ public class Book {
                 "Book ID: " + id +
                 ", Book Name: '" + bookName + '\'' +
                 ", Written by: " + authorName +
-                ", Book Type: " + type +
-                ", Published at: " + time +
+                ", Book Type: " + type + '\'' +
+                ", Published at: " + time + '\'' +
+                ", Language: " + language + '\'' +
                 '}';
     }
 }
