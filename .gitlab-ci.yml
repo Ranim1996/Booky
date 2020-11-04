@@ -8,6 +8,7 @@ build:
   script:
     - ./gradlew build
 
+
 test:
   stage: test
   script:
@@ -17,9 +18,9 @@ test:
 
 sonarqube:
   stage: sonarqube
-    script:
-      - ./gradlew sonarqube
-    dependencies:
-      - test
+  script:
+    - ./gradlew sonarqube
+  dependencies:
+    - test
 
 
