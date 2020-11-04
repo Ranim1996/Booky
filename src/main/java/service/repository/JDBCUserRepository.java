@@ -26,15 +26,15 @@ public class JDBCUserRepository extends JDBCRepository {
                 int id = resultSet.getInt("id");
                 String firstName = resultSet.getString("firstName");
                 String lastName = resultSet.getString("lastName");
-                UserType type = UserType.valueOf(resultSet.getString("type"));
+                UserType type = UserType.valueOf(resultSet.getString("userType"));
                 String email = resultSet.getString("email");
                 String password = resultSet.getString("password");
                 String phoneNumber = resultSet.getString("phoneNumber");
                 String dateOfBirth = resultSet.getString("dateOfBirth");
 
-                String languageCode = resultSet.getString("language");
+                String languageCode = resultSet.getString("language_code");
                 Language language = languages.get(languageCode);
-                String countryCode = resultSet.getString("country");
+                String countryCode = resultSet.getString("country_code");
                 Country country = countries.get(countryCode);
 
 
@@ -54,7 +54,7 @@ public class JDBCUserRepository extends JDBCRepository {
 
         Connection connection = this.getDataBaseConneection();
 
-        String sql = "SELECT * FROM country WHERE code in (select country from users)";
+        String sql = "SELECT * FROM country WHERE code in (select country_code from users)";
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
@@ -79,7 +79,7 @@ public class JDBCUserRepository extends JDBCRepository {
 
         Connection connection = this.getDataBaseConneection();
 
-        String sql = "SELECT * FROM language WHERE code in (select language from users)";
+        String sql = "SELECT * FROM language WHERE code in (select language_code from users)";
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
@@ -117,13 +117,13 @@ public class JDBCUserRepository extends JDBCRepository {
             } else {
                 String firstName = resultSet.getString("firstName");
                 String lastName = resultSet.getString("lastName");
-                UserType type = UserType.valueOf(resultSet.getString("type"));
+                UserType type = UserType.valueOf(resultSet.getString("userType"));
                 String email = resultSet.getString("email");
                 String password = resultSet.getString("password");
                 String phoneNumber = resultSet.getString("phoneNumber");
                 String dateOfBirth = resultSet.getString("dateOfBirth");
-                String languageCode = resultSet.getString("language");
-                String countryCode = resultSet.getString("country");
+                String languageCode = resultSet.getString("language_code");
+                String countryCode = resultSet.getString("country_code");
 
                 connection.close();
 
@@ -135,7 +135,37 @@ public class JDBCUserRepository extends JDBCRepository {
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read users from the database.",throwable);
         }
+    }
 
+    public void UpdateUser(int id, Users user) throws BookyDatabaseException {
+
+        Connection connection = this.getDataBaseConneection();
+
+        String sql = "UPDATE users SET firstName = ? ,lastName = ? , userType = ?," +
+                "email = ? ,password = ?, phoneNumber = ?, country_code = ?, language_code = ?, " +
+                "dateOfBirth = ? WHERE id = ?";
+        try {
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, user.getFirstName());
+            preparedStatement.setString(2, user.getLastName());
+            preparedStatement.setString(3, user.getType().name());
+            preparedStatement.setString(4, user.getEmail());
+            preparedStatement.setString(5, user.getPassword());
+            preparedStatement.setString(6, user.getPhoneNumber());
+            preparedStatement.setString(7, user.getCountry().getCode());
+            preparedStatement.setString(8, user.getLanguage().getCode());
+            preparedStatement.setString(9, user.getDateOfBirth());
+
+
+            preparedStatement.setInt(10, id);
+
+            preparedStatement.executeUpdate();
+            connection.commit();
+
+        } catch (SQLException throwable) {
+            throw  new BookyDatabaseException("Cannot update user information.", throwable);
+        }
     }
 
 }

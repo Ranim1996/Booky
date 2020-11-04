@@ -46,4 +46,22 @@ public class DataUserController {
         }
     }
 
+    /**
+     * Update a new user.
+     * @param id
+     * @param user
+     * should be updated into the DB.
+     */
+    void updateUser(int id, Users user){
+
+        JDBCUserRepository userRepository = new JDBCUserRepository();
+
+        try {
+            userRepository.UpdateUser(id, user);
+        }
+        catch (BookyDatabaseException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

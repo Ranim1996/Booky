@@ -1,8 +1,6 @@
 package service;
 
-import service.model.Book;
-import service.model.BookType;
-import service.model.Language;
+import service.model.*;
 
 import java.net.URI;
 import java.time.LocalDate;
@@ -22,12 +20,16 @@ class DataMain {
         DataUserController userController = new DataUserController();
 
         Language language = new Language("EN", "English");
+        Country country = new Country("USA", "America");
+
         Book book = new Book(0, "New Book", "New Author",
                 BookType.Horror, "New Information here", LocalDate.now(), language);
 
         Book updatedBook = new Book(0, "Updated Book", "Updated Author",
                 BookType.Horror, "Updated Information here", LocalDate.now(), language);
 
+        Users updatedUser = new Users(0,"Rama", "AL", "12-06-1999",UserType.Reader,"rama@gmail.com",
+                "mynewpass", "09638796578", country, language);
 
         /* for languages and countries*/
         //show all countries and by code
@@ -57,7 +59,8 @@ class DataMain {
         userController.showAllUsers();
         //show user by id
 //        userController.ShowUserById(1);
-
+        //update user data
+        userController.updateUser(2, updatedUser);
 
 
     }
