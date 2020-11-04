@@ -2,10 +2,8 @@ package service.repository;
 
 import service.model.*;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.*;
 
 public class JDBCUserRepository extends JDBCRepository {
@@ -98,6 +96,46 @@ public class JDBCUserRepository extends JDBCRepository {
             throw new BookyDatabaseException("Cannot read languages from the database.",throwable);
         }
         return  languages;
+    }
+
+    public Users GetUserById(int id) throws BookyDatabaseException{
+
+        JDBCLanguageRepository languageRepository = new JDBCLanguageRepository();
+        JDBCCountryRepository countryRepository = new JDBCCountryRepository();
+
+        Connection connection = this.getDataBaseConneection();
+
+        String sql = "SELECT * FROM users WHERE id = ?";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id); // set id parameter
+            ResultSet resultSet = statement.executeQuery();
+            if (!resultSet.next()){
+                connection.close();
+                throw new BookyDatabaseException("User with id " + id + " cannot be found");
+            } else {
+                String firstName = resultSet.getString("firstName");
+                String lastName = resultSet.getString("lastName");
+                UserType type = UserType.valueOf(resultSet.getString("type"));
+                String email = resultSet.getString("email");
+                String password = resultSet.getString("password");
+                String phoneNumber = resultSet.getString("phoneNumber");
+                String dateOfBirth = resultSet.getString("dateOfBirth");
+                String languageCode = resultSet.getString("language");
+                String countryCode = resultSet.getString("country");
+
+                connection.close();
+
+                Language language = languageRepository.getLanguageByCode(languageCode);
+                Country country = countryRepository.getCountryByCode(countryCode);
+
+                return new Users(0,firstName, lastName, dateOfBirth, type,email,password,phoneNumber,country,language);
+            }
+        } catch (SQLException throwable) {
+            throw new BookyDatabaseException("Cannot read users from the database.",throwable);
+        }
+
     }
 
 }

@@ -55,6 +55,8 @@ class DataMain {
         /* for users*/
         //show all users
         userController.showAllUsers();
+        //show user by id
+//        userController.ShowUserById(1);
 
 
 
