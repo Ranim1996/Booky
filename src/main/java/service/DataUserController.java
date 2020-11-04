@@ -34,7 +34,7 @@ public class DataUserController {
      * Show/print the user with given id
      * @param id of the user to be shown.
      */
-    void ShowUserById(int id){
+    public void ShowUserById(int id){
         JDBCUserRepository userRepository = new JDBCUserRepository();
 
         try {

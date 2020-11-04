@@ -12,12 +12,12 @@ public class Users {
     private int id;
     private String firstName; // user's first name
     private String lastName; // user's last name
-    private UserType type; // type of the user
+    private UserType usertype; // type of the user
     private String email; // user's email
     private String password; // user's password
     private String phoneNumber; // user's phone number
-    private Country country; // user's country
-    private Language language; // user's language
+    private Country country_code; // user's country
+    private Language language_code; // user's language
     private String dateOfBirth; // user's date of birth
 
 //    private String image;
@@ -33,12 +33,12 @@ public class Users {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
-        this.type = type;
+        this.usertype = type;
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumbar;
-        this.language = language;
-        this.country = country;
+        this.language_code = language;
+        this.country_code = country;
     }
 
     public Users() {
@@ -68,11 +68,11 @@ public class Users {
         this.lastName = lastName;
     }
 
-    public UserType getType() {
-        return type;
+    public UserType getUsertype() {
+        return usertype;
     }
-    public void setType(UserType type) {
-        this.type = type;
+    public void setUsertype(UserType usertype) {
+        this.usertype = usertype;
     }
 
     public String getEmail() {
@@ -96,18 +96,18 @@ public class Users {
         this.phoneNumber = phoneNumber;
     }
 
-    public Country getCountry() {
-        return country;
+    public Language getLanguage_code() {
+        return language_code;
     }
-    public void setCountry(Country country) {
-        this.country = country;
+    public void setLanguage_code(Language language_code) {
+        this.language_code = language_code;
     }
 
-    public Language getLanguage() {
-        return language;
+    public Country getCountry_code() {
+        return country_code;
     }
-    public void setLanguage(Language language) {
-        this.language = language;
+    public void setCountry_code(Country country_code) {
+        this.country_code = country_code;
     }
 
     public String getDateOfBirth() {
@@ -141,9 +141,9 @@ public class Users {
                 ", Email: '" + email + '\'' +
                 ", Password: '" + password + '\'' +
                 ", Phone Number: " + phoneNumber + '\'' +
-                ", User Type: " + type + '\'' +
-                ", Country: " + country + '\'' +
-                ", Language: " + language + '\'' +
+                ", User Type: " + usertype + '\'' +
+                ", Country: " + country_code + '\'' +
+                ", Language: " + language_code + '\'' +
                 '}';
     }
 }

@@ -65,7 +65,7 @@ class DataMain {
         //update user data in the db
 //        userController.updateUser(2, updatedUser);
         //add new user to the db
-//        userController.addUser(user);
+        userController.addUser(user);
 
 
     }

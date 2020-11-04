@@ -51,7 +51,7 @@ public class BookFakeDataStore {
     public List<Book> getBooksByLanguage(Language language) {
         List<Book> filetered = new ArrayList<>();
         for (Book b : bookList) {
-            if (b.getLanguage().equals(language)) {
+            if (b.getLanguage_code().equals(language)) {
                 filetered.add(b);
             }
         }
@@ -62,7 +62,7 @@ public class BookFakeDataStore {
     public List<Book> getBooksByBookType(BookType type) {
         List<Book> filetered = new ArrayList<>();
         for (Book b : bookList) {
-            if (b.getType().equals(type)) {
+            if (b.getBookType().equals(type)) {
                 filetered.add(b);
             }
         }
@@ -104,9 +104,9 @@ public class BookFakeDataStore {
         }
         old.setBookName(b.getBookName());
         old.setAuthorName(b.getAuthorName());
-        old.setLanguage(b.getLanguage());
+        old.setLanguage_code(b.getLanguage_code());
         old.setDescribtion(b.getDescribtion());
-        old.setType(b.getType());
+        old.setBookName(b.getBookName());
         old.setTime(b.getTime());
         return true;
     }
@@ -124,7 +124,7 @@ public class BookFakeDataStore {
     // get book type
     public Book getBookType(BookType type) {
         for (Book b : bookList) {
-            if (b.getType().equals(type)) {
+            if (b.getBookType().equals(type)) {
                 return b;
             }
         }

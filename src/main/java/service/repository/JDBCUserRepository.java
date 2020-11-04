@@ -151,12 +151,12 @@ public class JDBCUserRepository extends JDBCRepository {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, user.getFirstName());
             preparedStatement.setString(2, user.getLastName());
-            preparedStatement.setString(3, user.getType().name());
+            preparedStatement.setString(3, user.getUsertype().name());
             preparedStatement.setString(4, user.getEmail());
             preparedStatement.setString(5, user.getPassword());
             preparedStatement.setString(6, user.getPhoneNumber());
-            preparedStatement.setString(7, user.getCountry().getCode());
-            preparedStatement.setString(8, user.getLanguage().getCode());
+            preparedStatement.setString(7, user.getCountry_code().getCode());
+            preparedStatement.setString(8, user.getLanguage_code().getCode());
             preparedStatement.setString(9, user.getDateOfBirth());
 
 
@@ -181,27 +181,27 @@ public class JDBCUserRepository extends JDBCRepository {
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, user.getFirstName());
             preparedStatement.setString(2, user.getLastName());
-            preparedStatement.setString(3, user.getType().name());
+            preparedStatement.setString(3, user.getUsertype().name());
             preparedStatement.setString(4, user.getEmail());
             preparedStatement.setString(5, user.getPassword());
             preparedStatement.setString(6, user.getPhoneNumber());
-            preparedStatement.setString(7, user.getCountry().getCode());
-            preparedStatement.setString(8, user.getLanguage().getCode());
+            preparedStatement.setString(7, user.getCountry_code().getCode());
+            preparedStatement.setString(8, user.getLanguage_code().getCode());
             preparedStatement.setString(9, user.getDateOfBirth());
 
             preparedStatement.executeUpdate();
             connection.commit();
 
-            String sqlID = "SELECT max(id) Id FROM users";
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sqlID);
-            if (resultSet.next()){
-                int userId = resultSet.getInt("Id");
-                connection.commit();
-                connection.close();
-            } else {
-                throw  new BookyDatabaseException("Cannot get the id of the new user.");
-            }
+//            String sqlID = "SELECT max(id) Id FROM users";
+//            Statement statement = connection.createStatement();
+//            ResultSet resultSet = statement.executeQuery(sqlID);
+//            if (resultSet.next()){
+//                int userId = resultSet.getInt("Id");
+//                connection.commit();
+//                connection.close();
+//            } else {
+//                throw  new BookyDatabaseException("Cannot get the id of the new user.");
+//            }
 
         } catch (SQLException throwable) {
             throw  new BookyDatabaseException("Cannot create new user.", throwable);

@@ -55,7 +55,7 @@ public class UsersFakeDataStore {
     public List<Users> getUsers(Language language) {
         List<Users> filetered = new ArrayList<>();
         for (Users u : usersList) {
-            if (u.getLanguage().equals(language)) {
+            if (u.getLanguage_code().equals(language)) {
                 filetered.add(u);
             }
         }
@@ -66,7 +66,7 @@ public class UsersFakeDataStore {
     public List<Users> getUsers(Country country) {
         List<Users> filetered = new ArrayList<>();
         for (Users u : usersList) {
-            if (u.getCountry().equals(country)) {
+            if (u.getCountry_code().equals(country)) {
                 filetered.add(u);
             }
         }
@@ -110,11 +110,11 @@ public class UsersFakeDataStore {
         old.setFirstName(u.getFirstName());
         old.setLastName(u.getLastName());
         old.setDateOfBirth(u.getDateOfBirth());
-        old.setCountry(u.getCountry());
+        old.setCountry_code(u.getCountry_code());
         old.setEmail(u.getEmail());
         old.setPassword(u.getPassword());
         old.setPhoneNumber(u.getPhoneNumber());
-        old.setLanguage(u.getLanguage());
+        old.setLanguage_code(u.getLanguage_code());
 //        usersList.add(u);
         return true;
     }
@@ -125,7 +125,7 @@ public class UsersFakeDataStore {
         if (old == null) {
             return false;
         }
-        old.setType(u.getType());
+        old.setUsertype(u.getUsertype());
         return true;
     }
 

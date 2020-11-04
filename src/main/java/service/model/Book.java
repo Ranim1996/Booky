@@ -11,10 +11,10 @@ public class Book {
     private int id;
     private String bookName; // book name
     private String authorName; // for whom is the book
-    private BookType type; // type of the book
+    private BookType bookType; // type of the book
     private String describtion; // short describtion about the content of the book
     LocalDate time = LocalDate.now(); //the time when the admin publish info about a book
-    private Language language; // book's language
+    private Language language_code; // book's language
     private static int idSeeder = 1;
 
     //constractures
@@ -26,8 +26,8 @@ public class Book {
         this.authorName = authorName;
         this.time = time;
         this.describtion = describtion;
-        this.type = type;
-        this.language = language;
+        this.bookType = type;
+        this.language_code = language;
     }
 
     public Book() {
@@ -62,12 +62,12 @@ public class Book {
         this.authorName = authorName;
     }
 
-    public BookType getType() {
-        return type;
+    public BookType getBookType() {
+        return bookType;
     }
 
-    public void setType(BookType type) {
-        this.type = type;
+    public void setBookType(BookType bookType) {
+        this.bookType = bookType;
     }
 
     public String getDescribtion() {
@@ -86,12 +86,12 @@ public class Book {
         this.time = time;
     }
 
-    public Language getLanguage() {
-        return language;
+    public Language getLanguage_code() {
+        return language_code;
     }
 
-    public void setLanguage(Language language) {
-        this.language = language;
+    public void setLanguage_code(Language language_code) {
+        this.language_code = language_code;
     }
 
     //methods
@@ -114,9 +114,9 @@ public class Book {
                 "Book ID: " + id +
                 ", Book Name: '" + bookName + '\'' +
                 ", Written by: " + authorName +
-                ", Book Type: " + type + '\'' +
+                ", Book Type: " + bookType + '\'' +
                 ", Published at: " + time + '\'' +
-                ", Language: " + language + '\'' +
+                ", Language: " + language_code + '\'' +
                 '}';
     }
 }

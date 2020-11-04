@@ -108,11 +108,11 @@ public class JDBCBookRepository  extends JDBCRepository{
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, book.getBookName());
             preparedStatement.setString(2, book.getAuthorName());
-            preparedStatement.setString(3, book.getType().name());
+            preparedStatement.setString(3, book.getBookType().name());
             preparedStatement.setString(4, book.getDescribtion());
             preparedStatement.setDate(5, new java.sql.Date(System.currentTimeMillis()));
 
-            preparedStatement.setString(6, book.getLanguage().getCode());
+            preparedStatement.setString(6, book.getLanguage_code().getCode());
             preparedStatement.executeUpdate();
             connection.commit();
 
@@ -176,11 +176,11 @@ public class JDBCBookRepository  extends JDBCRepository{
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, book.getBookName());
             preparedStatement.setString(2, book.getAuthorName());
-            preparedStatement.setString(3, book.getType().name());
+            preparedStatement.setString(3, book.getBookType().name());
             preparedStatement.setString(4, book.getDescribtion());
             preparedStatement.setDate(5, new java.sql.Date(System.currentTimeMillis()));
 
-            preparedStatement.setString(6, book.getLanguage().getCode());
+            preparedStatement.setString(6, book.getLanguage_code().getCode());
             preparedStatement.setInt(7, id);
 
             preparedStatement.executeUpdate();
