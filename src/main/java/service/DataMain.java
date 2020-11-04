@@ -21,8 +21,12 @@ class DataMain {
         DataBookController bookController = new DataBookController();
 
         Language language = new Language("EN", "English");
-        Book book = new Book(0, "New Book", "New writer",
-                BookType.Horror, "Information here", LocalDate.now(), language);
+        Book book = new Book(0, "New Book", "New Author",
+                BookType.Horror, "New Information here", LocalDate.now(), language);
+
+        Book updatedBook = new Book(0, "Updated Book", "Updated Author",
+                BookType.Horror, "Updated Information here", LocalDate.now(), language);
+
 
         //show all countries and by code
         countryController.showAllCountries();
@@ -39,11 +43,11 @@ class DataMain {
         //add book to the db
 //        bookController.addBook(book);
         //update book in db
-//        bookController.updateBook(1,book);
+        bookController.updateBook(updatedBook);
         //show book by its id
 //        bookController.ShowBookById(1);
         //delete book from db
-        bookController.DeleteBook(1);
+//        bookController.DeleteBook(1);
 
 
 

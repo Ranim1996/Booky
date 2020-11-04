@@ -165,17 +165,11 @@ public class JDBCBookRepository  extends JDBCRepository{
 
     }
 
-    public void UpdateBook(int id, Book book) throws BookyDatabaseException {
-
-        Book old = this.GetBookById(id);
-
-        if (old == null){
-            throw  new BookyDatabaseException("No book with the given id.");
-        }
+    public void UpdateBook(Book book) throws BookyDatabaseException {
 
         Connection connection = this.getDataBaseConneection();
 
-        String sql = "UPDATE bookName = ? ,authorName = ? ,bookType = ?," +
+        String sql = "UPDATE book SET bookName = ? ,authorName = ? ,bookType = ?," +
                 "describtion = ? ,time = ? ,language_code = ? WHERE id = ?";
         try {
 
@@ -187,6 +181,8 @@ public class JDBCBookRepository  extends JDBCRepository{
             preparedStatement.setDate(5, new java.sql.Date(System.currentTimeMillis()));
 
             preparedStatement.setString(6, book.getLanguage().getCode());
+            preparedStatement.setInt(7, 3);
+
             preparedStatement.executeUpdate();
             connection.commit();
 
