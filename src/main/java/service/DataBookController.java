@@ -47,4 +47,20 @@ public class DataBookController {
         }
     }
 
+    /**
+     * Add/create a new book.
+     * @param book should be inserted into the DB.
+     */
+    void addBook(Book book){
+
+        JDBCBookRepository bookRepository = new JDBCBookRepository();
+
+        try {
+            bookRepository.AddBook(book);
+        }
+        catch (BookyDatabaseException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
