@@ -61,11 +61,11 @@ class DataMain {
         //show all users from the db
         userController.showAllUsers();
         //show user by id
-//        userController.ShowUserById(1);
+        userController.ShowUserById(1);
         //update user data in the db
 //        userController.updateUser(2, updatedUser);
         //add new user to the db
-        userController.addUser(user);
+//        userController.addUser(user);
 
 
     }
