@@ -26,12 +26,12 @@ public class UsersTest {
         assertEquals("Ranim", u.getFirstName());
         assertEquals("Alayoubi", u.getLastName());
         assertEquals("06/06/1996", u.getDateOfBirth());
-        assertEquals(UserType.Admin, u.getType());
+        assertEquals(UserType.Admin, u.getUsertype());
         assertEquals("ranim@gmail.com", u.getEmail());
         assertEquals("password199", u.getPassword());
         assertEquals("0684567447", u.getPhoneNumber());
-        assertEquals(syria, u.getCountry());
-        assertEquals(arabic, u.getLanguage());
+        assertEquals(syria, u.getCountry_code());
+        assertEquals(arabic, u.getLanguage_code());
     }
 
     @Rule // this rule is added to throw exceptions when its needed
@@ -133,7 +133,7 @@ public class UsersTest {
         thrown.expectMessage("User type must not be null");
 
         Users u= new Users();
-        u.setType(null);
+        u.setUsertype(null);
     }
 
     @Test // user phone number null
@@ -158,18 +158,16 @@ public class UsersTest {
     public void getUserLanguageWithNullValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("User language must not be null");
-
         Users u= new Users();
-        u.setLanguage(null);
+        u.setLanguage_code(null);
     }
 
     @Test // user country null
     public void getUserCountryWithNullValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("User country must not be null");
-
         Users u= new Users();
-        u.setCountry(null);
+        u.setCountry_code(null);
     }
 
 

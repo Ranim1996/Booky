@@ -24,10 +24,10 @@ public class BookTest {
         assertEquals(1, b.getId());
         assertEquals("BookName1", b.getBookName());
         assertEquals("Author1", b.getAuthorName());
-        assertEquals(BookType.Classics, b.getType());
+        assertEquals(BookType.Classics, b.getBookType());
         assertEquals("Info", b.getDescribtion());
         assertEquals(LocalDate.now(), b.getTime());
-        assertEquals(arabic, b.getLanguage());
+        assertEquals(arabic, b.getLanguage_code());
     }
 
     @Rule // this rule is added to throw exceptions when its needed
@@ -75,7 +75,7 @@ public class BookTest {
         thrown.expectMessage("Book language must not be null required!");
 
         Book b = new Book();
-        b.setLanguage(null);
+        b.setLanguage_code(null);
     }
 
 
