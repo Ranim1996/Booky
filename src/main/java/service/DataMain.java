@@ -37,7 +37,15 @@ class DataMain {
         //filter books by french language
         bookController.showBookByLanguageCode("FR");
         //add book to the db
-        bookController.addBook(book);
+//        bookController.addBook(book);
+        //update book in db
+//        bookController.updateBook(1,book);
+        //show book by its id
+//        bookController.ShowBookById(1);
+        //delete book from db
+        bookController.DeleteBook(1);
+
+
 
     }
 }

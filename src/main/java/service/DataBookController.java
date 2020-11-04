@@ -63,4 +63,52 @@ public class DataBookController {
         }
     }
 
+    /**
+     * Update a new book.
+     * @param book should be updated into the DB.
+     */
+    void updateBook(int id, Book book){
+
+        JDBCBookRepository bookRepository = new JDBCBookRepository();
+
+        try {
+            bookRepository.UpdateBook(id, book);
+        }
+        catch (BookyDatabaseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Show/print the book with given id
+     * @param id of the book to be shown.
+     */
+    void ShowBookById(int id){
+        JDBCBookRepository bookRepository = new JDBCBookRepository();
+
+        try {
+            Book book = bookRepository.GetBookById(id);
+            logger.info(book.toString());
+
+        } catch (BookyDatabaseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * This method deletes the book record from the DB for given book id.
+     * @param id of the book who should be deleted from the DB
+     * @throws BookyDatabaseException
+     */
+    void DeleteBook(int id){
+        JDBCBookRepository bookRepository = new JDBCBookRepository();
+
+        try{
+            bookRepository.deleteBook(id);
+        }
+        catch (BookyDatabaseException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

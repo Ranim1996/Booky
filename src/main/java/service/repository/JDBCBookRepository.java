@@ -132,41 +132,85 @@ public class JDBCBookRepository  extends JDBCRepository{
         }
     }
 
-    public void UpdateBook(Book book) throws BookyDatabaseException {
+    public Book GetBookById(int id) throws BookyDatabaseException{
+
+        JDBCLanguageRepository languageRepository = new JDBCLanguageRepository();
 
         Connection connection = this.getDataBaseConneection();
 
-        String sql = "UPDATE book id = VALUE (?) , bookName = VALUE (?) ,authorName = VALUE (?) ,bookType=VALUE (?)," +
-                "describtion = VALUE (?) ,time = VALUE (?) ,language_code = VALUE (?) ";
+        String sql = "SELECT * FROM book WHERE id = ?";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id); // set id parameter
+            ResultSet resultSet = statement.executeQuery();
+            if (!resultSet.next()){
+                connection.close();
+                throw new BookyDatabaseException("Book with id " + id + " cannot be found");
+            } else {
+                String bookName = resultSet.getString("bookName");
+                String authorName = resultSet.getString("authorName");
+                BookType type =  BookType.valueOf(resultSet.getString("bookType"));
+                String describtion = resultSet.getString("describtion");
+                LocalDate time = resultSet.getDate("time").toLocalDate();
+                String languageCode = resultSet.getString("language_code");
+
+                connection.close();
+                Language language = languageRepository.getLanguageByCode(languageCode);
+                return new Book(0,bookName,authorName,type, describtion, time, language);
+            }
+        } catch (SQLException throwable) {
+            throw new BookyDatabaseException("Cannot read books from the database.",throwable);
+        }
+
+    }
+
+    public void UpdateBook(int id, Book book) throws BookyDatabaseException {
+
+        Book old = this.GetBookById(id);
+
+        if (old == null){
+            throw  new BookyDatabaseException("No book with the given id.");
+        }
+
+        Connection connection = this.getDataBaseConneection();
+
+        String sql = "UPDATE bookName = ? ,authorName = ? ,bookType = ?," +
+                "describtion = ? ,time = ? ,language_code = ? WHERE id = ?";
         try {
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, book.getBookName());
-            preparedStatement.setString(1, book.getAuthorName());
-            preparedStatement.setString(1, book.getType().name());
-            preparedStatement.setString(1, book.getDescribtion());
-            preparedStatement.setDate(1, new java.sql.Date(System.currentTimeMillis()));
+            preparedStatement.setString(2, book.getAuthorName());
+            preparedStatement.setString(3, book.getType().name());
+            preparedStatement.setString(4, book.getDescribtion());
+            preparedStatement.setDate(5, new java.sql.Date(System.currentTimeMillis()));
 
-            preparedStatement.setString(2, book.getLanguage().getCode());
+            preparedStatement.setString(6, book.getLanguage().getCode());
             preparedStatement.executeUpdate();
             connection.commit();
 
-            String sqlID = "SELECT max(id) ID FROM book";
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sqlID);
-            if (resultSet.next()){
-                int bookId = resultSet.getInt("ID");
-                connection.commit();
-                connection.close();
-            } else {
-                throw  new BookyDatabaseException("Cannot get the id of the new book.");
-            }
-
         } catch (SQLException throwable) {
-            throw  new BookyDatabaseException("Cannot create new book.", throwable);
+            throw  new BookyDatabaseException("Cannot update book.", throwable);
         }
     }
 
+    public void deleteBook(int bId) throws BookyDatabaseException {
+
+        Connection connection = this.getDataBaseConneection();
+
+        String sql = "Delete FROM book where id = ?";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,bId);
+            preparedStatement.executeUpdate();
+            connection.commit();
+        }
+        catch (SQLException throwable){
+            throw  new BookyDatabaseException("Cannot delete book.", throwable);
+        }
+
+    }
 
 
 }
