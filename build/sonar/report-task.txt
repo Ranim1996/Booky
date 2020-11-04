@@ -2,5 +2,5 @@ projectKey=org.example:BookyApp
 serverUrl=http://localhost:9000
 serverVersion=8.5.1.38104
 dashboardUrl=http://localhost:9000/dashboard?id=org.example%3ABookyApp
-ceTaskId=AXWUXs6D-IoNsFQ5X3UH
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AXWUXs6D-IoNsFQ5X3UH
+ceTaskId=AXWUenFL-IoNsFQ5X3UI
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AXWUenFL-IoNsFQ5X3UI
