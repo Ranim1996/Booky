@@ -73,7 +73,7 @@ public class JDBCUserRepository extends JDBCRepository {
         return  countries;
     }
 
-    //get used countries in the db
+    //get used languages in the db
     private Map<String, Language> getUsedLanguages() throws BookyDatabaseException {
         Map<String, Language> languages = new HashMap<>();
 
@@ -98,6 +98,7 @@ public class JDBCUserRepository extends JDBCRepository {
         return  languages;
     }
 
+    //get user by id
     public Users GetUserById(int id) throws BookyDatabaseException{
 
         JDBCLanguageRepository languageRepository = new JDBCLanguageRepository();
@@ -137,6 +138,7 @@ public class JDBCUserRepository extends JDBCRepository {
         }
     }
 
+    // update user data
     public void UpdateUser(int id, Users user) throws BookyDatabaseException {
 
         Connection connection = this.getDataBaseConneection();
@@ -165,6 +167,44 @@ public class JDBCUserRepository extends JDBCRepository {
 
         } catch (SQLException throwable) {
             throw  new BookyDatabaseException("Cannot update user information.", throwable);
+        }
+    }
+
+    // add new user
+    public void addUser(Users user) throws BookyDatabaseException {
+
+        Connection connection = this.getDataBaseConneection();
+
+        String sql = "INSERT INTO users ( firstName, lastName, userType, email, password, phoneNumber, country_code, " +
+                "language_code, dateOfBirth) VALUES (?,?,?,?,?,?,?,?,?) ";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, user.getFirstName());
+            preparedStatement.setString(2, user.getLastName());
+            preparedStatement.setString(3, user.getType().name());
+            preparedStatement.setString(4, user.getEmail());
+            preparedStatement.setString(5, user.getPassword());
+            preparedStatement.setString(6, user.getPhoneNumber());
+            preparedStatement.setString(7, user.getCountry().getCode());
+            preparedStatement.setString(8, user.getLanguage().getCode());
+            preparedStatement.setString(9, user.getDateOfBirth());
+
+            preparedStatement.executeUpdate();
+            connection.commit();
+
+            String sqlID = "SELECT max(id) Id FROM users";
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sqlID);
+            if (resultSet.next()){
+                int userId = resultSet.getInt("Id");
+                connection.commit();
+                connection.close();
+            } else {
+                throw  new BookyDatabaseException("Cannot get the id of the new user.");
+            }
+
+        } catch (SQLException throwable) {
+            throw  new BookyDatabaseException("Cannot create new user.", throwable);
         }
     }
 

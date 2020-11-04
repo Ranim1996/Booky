@@ -64,4 +64,17 @@ public class DataUserController {
         }
     }
 
+    /**
+     * Add/create a new user.
+     * @param user should be inserted into the DB.
+     */
+    void addUser(Users user){
+        JDBCUserRepository usersRepository = new JDBCUserRepository();
+        try {
+            usersRepository.addUser(user);
+        } catch (BookyDatabaseException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
