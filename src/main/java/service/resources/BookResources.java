@@ -1,5 +1,6 @@
 package service.resources;
 
+import service.DataBookController;
 import service.model.Book;
 import service.model.BookType;
 import service.model.Language;
@@ -24,11 +25,20 @@ public class BookResources {
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBookPath(@PathParam("id") int id) {
-        Book b = fakeDataStore.getBook(id);
-        if (b == null) {
+//        Book b = fakeDataStore.getBook(id);
+//        if (b == null) {
+//            return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid book ID!.").build();
+//        } else {
+//            return Response.ok(b).build();
+//        }
+
+        DataBookController bookController = new DataBookController();
+        Book book = bookController.ShowBookById(id);
+
+        if (book == null) {
             return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid book ID!.").build();
         } else {
-            return Response.ok(b).build();
+            return Response.ok(book).build();
         }
     }
 
@@ -99,9 +109,15 @@ public class BookResources {
     @DELETE //DELETE at http://localhost:9090/booky/books/3
     @Path("{id}")
     public Response deleteBook(@PathParam("id") int bID) {
-        fakeDataStore.deleteBook(bID);
-        // Idempotent method. Always return the same response (even if the resource has already been deleted before).
+//        fakeDataStore.deleteBook(bID);
+//        // Idempotent method. Always return the same response (even if the resource has already been deleted before).
+//        return Response.noContent().build();
+
+        DataBookController bookController = new DataBookController();
+        bookController.DeleteBook(bID);
+
         return Response.noContent().build();
+
     }
 
     //add book with book object

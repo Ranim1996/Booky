@@ -39,7 +39,7 @@ public class DataBookController {
         JDBCBookRepository bookRepository = new JDBCBookRepository();
 
         try {
-            Book book = bookRepository.getBookByLanguageCode("FR");
+            Book book = bookRepository.getBookByLanguageCode(code);
             logger.info(book.toString());
         }
         catch (BookyDatabaseException e) {
@@ -85,15 +85,17 @@ public class DataBookController {
      * Show/print the book with given id
      * @param id of the book to be shown.
      */
-    void ShowBookById(int id){
+    public Book ShowBookById(int id){
         JDBCBookRepository bookRepository = new JDBCBookRepository();
 
         try {
             Book book = bookRepository.GetBookById(id);
-            logger.info(book.toString());
+//            logger.info(book.toString());
+            return book;
 
         } catch (BookyDatabaseException e) {
             e.printStackTrace();
+            return null;
         }
     }
 
@@ -102,14 +104,17 @@ public class DataBookController {
      * @param id of the book who should be deleted from the DB
      * @throws BookyDatabaseException
      */
-    void DeleteBook(int id){
+    public boolean DeleteBook(int id){
+
         JDBCBookRepository bookRepository = new JDBCBookRepository();
 
         try{
             bookRepository.deleteBook(id);
+            return true;
         }
         catch (BookyDatabaseException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
