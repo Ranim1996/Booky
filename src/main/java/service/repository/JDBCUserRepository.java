@@ -116,6 +116,7 @@ public class JDBCUserRepository extends JDBCRepository {
                 connection.close();
                 throw new BookyDatabaseException("User with id " + id + " cannot be found");
             } else {
+                int UId = resultSet.getInt("id");
                 String firstName = resultSet.getString("firstName");
                 String lastName = resultSet.getString("lastName");
                 UserType type = UserType.valueOf(resultSet.getString("userType"));
@@ -131,7 +132,7 @@ public class JDBCUserRepository extends JDBCRepository {
                 Language language = languageRepository.getLanguageByCode(languageCode);
                 Country country = countryRepository.getCountryByCode(countryCode);
 
-                return new Users(0,firstName, lastName, dateOfBirth, type,email,password,phoneNumber,country,language);
+                return new Users(UId,firstName, lastName, dateOfBirth, type,email,password,phoneNumber,country,language);
             }
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read users from the database.",throwable);

@@ -24,7 +24,16 @@ public class UserResources {
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUserPath(@PathParam("id") int id) {
-        Users u = fakeDataStore.getUser(id);
+//        Users u = fakeDataStore.getUser(id);
+//        if (u == null) {
+//            return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid user ID!.").build();
+//        } else {
+//            return Response.ok(u).build();
+//        }
+
+        DataUserController userController = new DataUserController();
+        Users u = userController.ShowUserById(id);
+
         if (u == null) {
             return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid user ID!.").build();
         } else {

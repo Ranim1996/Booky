@@ -34,16 +34,21 @@ public class DataUserController {
      * Show/print the user with given id
      * @param id of the user to be shown.
      */
-    public void ShowUserById(int id){
+    public Users ShowUserById(int id){
         JDBCUserRepository userRepository = new JDBCUserRepository();
 
         try {
             Users user = userRepository.GetUserById(id);
-            logger.info(user.toString());
+//            logger.info(user.toString());
+//            System.out.println("hi");
+            System.out.println("message user controller" + user);
+            return user;
 
         } catch (BookyDatabaseException e) {
             e.printStackTrace();
+            return null;
         }
+
     }
 
     /**
