@@ -106,7 +106,7 @@ public class BookFakeDataStore {
         old.setAuthorName(b.getAuthorName());
         old.setLanguage_code(b.getLanguage_code());
         old.setDescribtion(b.getDescribtion());
-        old.setBookName(b.getBookName());
+        old.setBookType(b.getBookType());
         old.setTime(b.getTime());
         return true;
     }
