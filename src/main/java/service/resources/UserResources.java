@@ -90,7 +90,13 @@ public class UserResources {
     @Path("{id}")
     public Response updateUser(@PathParam("id") int id, Users u) {
         // Idempotent method. Always update (even if the resource has already been updated before).
-        if (fakeDataStore.updatePersonalInfo(id, u)) {
+//        if (fakeDataStore.updatePersonalInfo(id, u)) {
+//            return Response.noContent().build();
+//        } else {
+//            return Response.status(Response.Status.NOT_FOUND).entity("Please provide a valid user ID.").build();
+//        }
+        DataUserController userController = new DataUserController();
+        if (userController.updateUser(id, u)) {
             return Response.noContent().build();
         } else {
             return Response.status(Response.Status.NOT_FOUND).entity("Please provide a valid user ID.").build();

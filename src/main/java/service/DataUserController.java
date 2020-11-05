@@ -57,15 +57,17 @@ public class DataUserController {
      * @param user
      * should be updated into the DB.
      */
-    void updateUser(int id, Users user){
+    public boolean updateUser(int id, Users user){
 
         JDBCUserRepository userRepository = new JDBCUserRepository();
 
         try {
             userRepository.UpdateUser(id, user);
+            return true;
         }
         catch (BookyDatabaseException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
