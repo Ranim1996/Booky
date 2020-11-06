@@ -28,8 +28,8 @@ public class Users {
     public Users(int id, String firstName, String lastName, String dateOfBirth, UserType type,
                  String email, String password,
                  String phoneNumbar, Country country, Language language) {
-        this.id = idSeeder;
-        idSeeder++;
+        this.id = id;
+//        idSeeder++;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
@@ -42,8 +42,7 @@ public class Users {
     }
 
     public Users() {
-        this.id = idSeeder;
-        idSeeder++;
+
     }
 
     // getters and setters

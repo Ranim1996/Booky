@@ -22,17 +22,17 @@ class DataMain {
         Language language = new Language("FR", "French");
         Country country = new Country("FR", "France");
 
-        Book book = new Book(0, "New Book", "New Author",
-                BookType.Horror, "New Information here", LocalDate.now(), language);
-
-        Book updatedBook = new Book(0, "Updated Book", "Updated Author",
-                BookType.Horror, "Updated Information here", LocalDate.now(), language);
-
-        Users updatedUser = new Users(0,"Rama", "AL", "12-06-1999",UserType.Reader,"rama@gmail.com",
-                "mynewpass", "09638796578", country, language);
-
-        Users user = new Users(0,"Ivana", "Kurd", "10-09-1990",UserType.Reader,"Ivana@gmail.com",
-                "ivananan", "0649897659", country, language);
+//        Book book = new Book(0, "New Book", "New Author",
+//                BookType.Horror, "New Information here", LocalDate.now(), language);
+//
+//        Book updatedBook = new Book(0, "Updated Book", "Updated Author",
+//                BookType.Horror, "Updated Information here", LocalDate.now(), language);
+//
+//        Users updatedUser = new Users(0,"Rama", "AL", "12-06-1999",UserType.Reader,"rama@gmail.com",
+//                "mynewpass", "09638796578", country, language);
+//
+//        Users user = new Users(0,"Ivana", "Kurd", "10-09-1990",UserType.Reader,"Ivana@gmail.com",
+//                "ivananan", "0649897659", country, language);
 
         /* for languages and countries*/
         //show all countries and by code

@@ -106,7 +106,7 @@ public class BookResources {
 //    }
 
     //get all books
-    @GET //GET at http://localhost:9090/booky/books?type= or ?language=
+    @GET //GET at http://localhost:9090/booky/books/
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBooks() {
         List<Book> books;
