@@ -83,27 +83,42 @@ public class BookResources {
 //    }
 
     //filter books by book type and language
+//    @GET //GET at http://localhost:9090/booky/books?type= or ?language=
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Response getFilteredBooks(@QueryParam("type") BookType type,
+//                                      @QueryParam("language") String languageCode) {
+////        List<Book> books;
+////        //If query parameter is missing return all books. Otherwise filter books by given book type
+////        if (uriInfo.getQueryParameters().containsKey("type")){
+////            Book b = fakeDataStore.getBookType(type);
+////                books = fakeDataStore.getBooksByBookType(type);
+////            }
+////        //If query parameter is missing return all books. Otherwise filter books by given language code
+////        else if(uriInfo.getQueryParameters().containsKey("language")){
+////            Language l = fakeDataStore.getLanguage(languageCode);
+////            books= fakeDataStore.getBooksByLanguage(l);
+////        }
+////        else {
+////            books = fakeDataStore.getBooks();
+////        }
+////        GenericEntity<List<Book>> entity = new GenericEntity<>(books) {  };
+////        return Response.ok(entity).build();
+//    }
+
+    //get all books
     @GET //GET at http://localhost:9090/booky/books?type= or ?language=
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getFilteredBooks(@QueryParam("type") BookType type,
-                                      @QueryParam("language") String languageCode) {
+    public Response getBooks() {
         List<Book> books;
-        //If query parameter is missing return all books. Otherwise filter books by given book type
-        if (uriInfo.getQueryParameters().containsKey("type")){
-            Book b = fakeDataStore.getBookType(type);
-                books = fakeDataStore.getBooksByBookType(type);
-            }
-        //If query parameter is missing return all books. Otherwise filter books by given language code
-        else if(uriInfo.getQueryParameters().containsKey("language")){
-            Language l = fakeDataStore.getLanguage(languageCode);
-            books= fakeDataStore.getBooksByLanguage(l);
-        }
-        else {
-            books = fakeDataStore.getBooks();
-        }
+
+        DataBookController bookController = new DataBookController();
+        books = bookController.showAllBooks();
+
         GenericEntity<List<Book>> entity = new GenericEntity<>(books) {  };
         return Response.ok(entity).build();
     }
+
+
 
     //delete book with specific id
     @DELETE //DELETE at http://localhost:9090/booky/books/3
@@ -124,10 +139,21 @@ public class BookResources {
     @POST //POST at http://localhost:9090/booky/books/
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createBook(Book b) {
-        if (!fakeDataStore.add(b)){
+//        if (!fakeDataStore.add(b)){
+//            String entity =  "Book with this id is " + b.getId() + " already exists.";
+//            return Response.status(Response.Status.CONFLICT).entity(entity).build();
+//        } else {
+//            String url = uriInfo.getAbsolutePath() + "/" + b.getId(); // url of the posted book
+//            URI uri = URI.create(url);
+//            return Response.created(uri).build();
+//        }
+
+        DataBookController bookController = new DataBookController();
+        if (!bookController.addBook(b)){
             String entity =  "Book with this id is " + b.getId() + " already exists.";
             return Response.status(Response.Status.CONFLICT).entity(entity).build();
-        } else {
+        }
+        else {
             String url = uriInfo.getAbsolutePath() + "/" + b.getId(); // url of the posted book
             URI uri = URI.create(url);
             return Response.created(uri).build();
@@ -140,9 +166,17 @@ public class BookResources {
     @Path("{id}")
     public Response updateBook(@PathParam("id") int id,  Book b) {
         // Idempotent method. Always update (even if the resource has already been updated before).
-        if (fakeDataStore.update(id, b)) {
+//        if (fakeDataStore.update(id, b)) {
+//            return Response.noContent().build();
+//        } else {
+//            return Response.status(Response.Status.NOT_FOUND).entity("Please provide a valid book ID.").build();
+//        }
+
+        DataBookController bookController = new DataBookController();
+        if (bookController.updateBook(id, b)){
             return Response.noContent().build();
-        } else {
+        }
+        else{
             return Response.status(Response.Status.NOT_FOUND).entity("Please provide a valid book ID.").build();
         }
     }

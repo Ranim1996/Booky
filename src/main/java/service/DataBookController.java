@@ -8,24 +8,27 @@ import service.repository.BookyDatabaseException;
 import service.repository.JDBCBookRepository;
 
 import java.util.Collection;
+import java.util.List;
 
 public class DataBookController {
 
     final Logger logger = LoggerFactory.getLogger(DataBookController.class);
 
     //show all books
-    void showAllBooks(){
+    public List<Book> showAllBooks(){
 
         JDBCBookRepository bookRepository = new JDBCBookRepository();
 
         try {
-            Collection<Book> books = bookRepository.getBooks();
+            List<Book> books = bookRepository.getBooks();
             for (Book book : books) {
                 logger.info(book.toString());
             }
+            return books;
         }
         catch (BookyDatabaseException e) {
             e.printStackTrace();
+            return null;
         }
     }
 
@@ -51,15 +54,17 @@ public class DataBookController {
      * Add/create a new book.
      * @param book should be inserted into the DB.
      */
-    void addBook(Book book){
+    public boolean addBook(Book book){
 
         JDBCBookRepository bookRepository = new JDBCBookRepository();
 
         try {
             bookRepository.AddBook(book);
+            return true;
         }
         catch (BookyDatabaseException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
@@ -69,15 +74,17 @@ public class DataBookController {
      * @param book
      * should be updated into the DB.
      */
-    void updateBook(int id, Book book){
+    public boolean updateBook(int id, Book book){
 
         JDBCBookRepository bookRepository = new JDBCBookRepository();
 
         try {
             bookRepository.UpdateBook(id, book);
+            return true;
         }
         catch (BookyDatabaseException e) {
             e.printStackTrace();
+            return false;
         }
     }
 

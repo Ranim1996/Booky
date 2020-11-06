@@ -11,7 +11,7 @@ import java.util.*;
 
 public class JDBCBookRepository  extends JDBCRepository{
 
-    //get book from data base by code
+    //get book from data base by language code
     public Book getBookByLanguageCode(String languageCode) throws BookyDatabaseException {
 
         Connection connection = this.getDataBaseConneection();
@@ -28,6 +28,7 @@ public class JDBCBookRepository  extends JDBCRepository{
                 connection.close();
                 throw new BookyDatabaseException("Book with language code " + languageCode + " cannot be found");
             } else {
+                int id = resultSet.getInt("id");
                 String bookName = resultSet.getString("bookName");
                 String authorName = resultSet.getString("authorName");
                 BookType type =  BookType.valueOf(resultSet.getString("bookType"));
@@ -35,7 +36,7 @@ public class JDBCBookRepository  extends JDBCRepository{
                 LocalDate time = resultSet.getDate("time").toLocalDate();
                 connection.close();
                 Language language = languageRepository.getLanguageByCode(languageCode);
-                return new Book(0,bookName,authorName,type, describtion, time, language);
+                return new Book(id,bookName,authorName,type, describtion, time, language);
             }
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read Book from the database.",throwable);
@@ -43,7 +44,7 @@ public class JDBCBookRepository  extends JDBCRepository{
     }
 
     //get all books from data base
-    public Collection<Book> getBooks() throws BookyDatabaseException {
+    public List<Book> getBooks() throws BookyDatabaseException {
 
         Map<String, Language> languages = this.getUsedLanguages();
         List<Book> books = new ArrayList<>();
