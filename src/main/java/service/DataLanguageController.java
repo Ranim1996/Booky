@@ -32,15 +32,17 @@ public class DataLanguageController {
      * @param code of the language to be shown.
      */
     //show language by it's code
-    void showLanguageByCode(String code){
+    public Language showLanguageByCode(String code){
         JDBCLanguageRepository languagesRepository = new JDBCLanguageRepository();
 
         try {
-            Language language = languagesRepository.getLanguageByCode("AR");
+            Language language = languagesRepository.getLanguageByCode(code);
             logger.info(language.toString());
+            return language;
         }
         catch (BookyDatabaseException e) {
             e.printStackTrace();
+            return null;
         }
     }
 }

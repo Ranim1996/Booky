@@ -1,6 +1,7 @@
 package service.resources;
 
 import service.DataBookController;
+import service.DataLanguageController;
 import service.model.Book;
 import service.model.BookType;
 import service.model.Language;
@@ -110,16 +111,20 @@ public class BookResources {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBooks(@QueryParam("language") String languageCode, @QueryParam("type") BookType type) {
 
-        List<Book> books = null;
+        List<Book> books;
 
         DataBookController bookController = new DataBookController();
+        DataLanguageController languageController = new DataLanguageController();
+
         if(uriInfo.getQueryParameters().containsKey("language")){
-            Book book = bookController.showBookByLanguageCode(languageCode);
-//            books.add(book);
+            Language l = languageController.showLanguageByCode(languageCode);
+            System.out.println("filter language " + l);
+            books = bookController.BookFilteredWithLanguage(l);
+//            System.out.println(" by languages " +books);
         }
         else if (uriInfo.getQueryParameters().containsKey("type")){
-            Book book = bookController.showBookByType(type);
-//            books.add(book);
+            books = bookController.BookFilteredWithType(type);
+//            System.out.println("filter book type " + type + books);
         }
         else{
             books = bookController.showAllBooks();
