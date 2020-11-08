@@ -3,6 +3,7 @@ package service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import service.model.Book;
+import service.model.BookType;
 import service.model.Language;
 import service.repository.BookyDatabaseException;
 import service.repository.JDBCBookRepository;
@@ -34,21 +35,44 @@ public class DataBookController {
 
     /**
      * Show/print the book with given code
-     * @param code of the book to be shown.
+     * @param language of the book to be shown.
      */
     //show book by language code
-    void showBookByLanguageCode(String code){
+    public Book showBookByLanguageCode(String language){
 
         JDBCBookRepository bookRepository = new JDBCBookRepository();
 
         try {
-            Book book = bookRepository.getBookByLanguageCode(code);
+            Book book = bookRepository.getBookByLanguageCode(language);
             logger.info(book.toString());
+            return book;
         }
         catch (BookyDatabaseException e) {
             e.printStackTrace();
+            return null;
         }
     }
+
+    /**
+     * Show/print the book with given code
+     * @param type of the book to be shown.
+     */
+    //show book by language code
+    public Book showBookByType(BookType type){
+
+        JDBCBookRepository bookRepository = new JDBCBookRepository();
+
+        try {
+            Book book = bookRepository.getBookByType(type);
+            logger.info(book.toString());
+            return book;
+        }
+        catch (BookyDatabaseException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
     /**
      * Add/create a new book.

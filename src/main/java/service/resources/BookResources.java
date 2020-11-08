@@ -106,13 +106,24 @@ public class BookResources {
 //    }
 
     //get all books
-    @GET //GET at http://localhost:9090/booky/books/
+    @GET //GET at http://localhost:9090/booky/books?language= OR ?type=
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getBooks() {
-        List<Book> books;
+    public Response getBooks(@QueryParam("language") String languageCode, @QueryParam("type") BookType type) {
+
+        List<Book> books = null;
 
         DataBookController bookController = new DataBookController();
-        books = bookController.showAllBooks();
+        if(uriInfo.getQueryParameters().containsKey("language")){
+            Book book = bookController.showBookByLanguageCode(languageCode);
+//            books.add(book);
+        }
+        else if (uriInfo.getQueryParameters().containsKey("type")){
+            Book book = bookController.showBookByType(type);
+//            books.add(book);
+        }
+        else{
+            books = bookController.showAllBooks();
+        }
 
         GenericEntity<List<Book>> entity = new GenericEntity<>(books) {  };
         return Response.ok(entity).build();
@@ -130,6 +141,7 @@ public class BookResources {
 
         DataBookController bookController = new DataBookController();
         bookController.DeleteBook(bID);
+//        System.out.println(bID);
 
         return Response.noContent().build();
 
@@ -139,6 +151,7 @@ public class BookResources {
     @POST //POST at http://localhost:9090/booky/books/
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createBook(Book b) {
+
 //        if (!fakeDataStore.add(b)){
 //            String entity =  "Book with this id is " + b.getId() + " already exists.";
 //            return Response.status(Response.Status.CONFLICT).entity(entity).build();
@@ -174,10 +187,14 @@ public class BookResources {
 
         DataBookController bookController = new DataBookController();
         if (bookController.updateBook(id, b)){
+            System.out.println(id);
+            //System.out.println("true");
             return Response.noContent().build();
         }
         else{
+            //System.out.println("false");
             return Response.status(Response.Status.NOT_FOUND).entity("Please provide a valid book ID.").build();
+
         }
     }
 

@@ -22,9 +22,9 @@ class DataMain {
         Language language = new Language("FR", "French");
         Country country = new Country("FR", "France");
 
-//        Book book = new Book(0, "New Book", "New Author",
-//                BookType.Horror, "New Information here", LocalDate.now(), language);
-//
+        Book book = new Book(0, "New Book", "New Author",
+                BookType.Horror, "New Information here", LocalDate.now(), language);
+
 //        Book updatedBook = new Book(0, "Updated Book", "Updated Author",
 //                BookType.Horror, "Updated Information here", LocalDate.now(), language);
 //
