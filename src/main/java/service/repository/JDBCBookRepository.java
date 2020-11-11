@@ -196,6 +196,51 @@ public class JDBCBookRepository  extends JDBCRepository{
     }
 
 
+    //get all books with the given type and language from data base
+    public List<Book> getBooksByTypeAndLanguage(BookType type, Language language) throws BookyDatabaseException {
+
+        Map<String, Language> languages = this.getUsedLanguages();
+        List<Book> filtered = new ArrayList<>();
+
+        Connection connection = this.getDataBaseConneection();
+        String sql = "SELECT * FROM book WHERE bookType = ? AND language_code = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, type.name()); // set type parameter
+            statement.setString(2, language.getCode()); // set type parameter
+
+            ResultSet resultSet = statement.executeQuery();
+
+//            for (Book b : this.getBooks()) {
+//                if (b.getLanguage_code().equals(type)) {
+
+            while (resultSet.next()){
+                int id = resultSet.getInt("id");
+                String bookName = resultSet.getString("bookName");
+                String authorName = resultSet.getString("authorName");
+                BookType bType =  BookType.valueOf(resultSet.getString("bookType"));
+                String describtion = resultSet.getString("describtion");
+                LocalDate time = resultSet.getDate("time").toLocalDate();
+
+                String code = resultSet.getString("language_code");
+
+                Language bLanguage = languages.get(code);
+
+                Book book = new Book(id,bookName,authorName,bType, describtion, time, bLanguage);
+                filtered.add(book);
+
+            }
+
+//                }
+//            }
+
+        } catch (SQLException throwable) {
+            throw new BookyDatabaseException("Cannot read books from the database.",throwable);
+        }
+        return filtered;
+    }
+
+
 
     //mapping the languages
     private Map<String, Language> getUsedLanguages() throws BookyDatabaseException {

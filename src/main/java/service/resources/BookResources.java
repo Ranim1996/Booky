@@ -1,5 +1,6 @@
 package service.resources;
 
+import org.glassfish.jersey.process.internal.RequestScoped;
 import service.DataBookController;
 import service.DataLanguageController;
 import service.model.Book;
@@ -10,7 +11,6 @@ import service.repository.*;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 
 @Path("/books")
@@ -116,15 +116,17 @@ public class BookResources {
         DataBookController bookController = new DataBookController();
         DataLanguageController languageController = new DataLanguageController();
 
-        if(uriInfo.getQueryParameters().containsKey("language")){
+        if (uriInfo.getQueryParameters().containsKey("type") && uriInfo.getQueryParameters().containsKey("language")){
             Language l = languageController.showLanguageByCode(languageCode);
-            System.out.println("filter language " + l);
+            books = bookController.BookFilteredWithTypeAndLanguage(type, l);
+            System.out.println("hi"+ books);
+        }
+        else if(uriInfo.getQueryParameters().containsKey("language")){
+            Language l = languageController.showLanguageByCode(languageCode);
             books = bookController.BookFilteredWithLanguage(l);
-//            System.out.println(" by languages " +books);
         }
         else if (uriInfo.getQueryParameters().containsKey("type")){
             books = bookController.BookFilteredWithType(type);
-//            System.out.println("filter book type " + type + books);
         }
         else{
             books = bookController.showAllBooks();
@@ -133,6 +135,29 @@ public class BookResources {
         GenericEntity<List<Book>> entity = new GenericEntity<>(books) {  };
         return Response.ok(entity).build();
     }
+
+//    @GET //GET at http://localhost:9090/booky/books
+//    @Path("{type}&{language}")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Response GetCombinedBooks(@QueryParam("language") String languageCode, @QueryParam("type") BookType type){
+//        List<Book> books;
+//
+//        DataBookController bookController = new DataBookController();
+//        DataLanguageController languageController = new DataLanguageController();
+//
+//        if (uriInfo.getQueryParameters().containsKey("type") && uriInfo.getQueryParameters().containsKey("language")){
+//            Language l = languageController.showLanguageByCode(languageCode);
+//            books = bookController.BookFilteredWithTypeAndLanguage(type, l);
+//            System.out.println("hi"+ books);
+//        }
+//        else{
+//            books = bookController.showAllBooks();
+//        }
+//
+//        GenericEntity<List<Book>> entity = new GenericEntity<>(books) {  };
+//        return Response.ok(entity).build();
+//    }
+
 
 
 
@@ -202,7 +227,6 @@ public class BookResources {
 
         }
     }
-
 
 //    @PUT //PUT at http://localhost:9090/booky/books/{id}
 //    @Consumes({MediaType.APPLICATION_FORM_URLENCODED})

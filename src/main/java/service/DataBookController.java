@@ -87,7 +87,7 @@ public class DataBookController {
 //            for (Book book : books) {
 //                logger.info(book.toString());
 //            }
-            System.out.println("In filter language" + language);
+//            System.out.println("In filter language" + language);
             return books;
         }
         catch (BookyDatabaseException e) {
@@ -110,6 +110,28 @@ public class DataBookController {
 //            for (Book book : books) {
 //                logger.info(book.toString());
 //            }
+            return books;
+        }
+        catch (BookyDatabaseException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Show/print the book with given type code
+     * @param type
+     * @param language
+     * of the book to be shown.
+     */
+    //show book by language code
+    public List<Book> BookFilteredWithTypeAndLanguage(BookType type, Language language){
+
+        JDBCBookRepository bookRepository = new JDBCBookRepository();
+
+        try {
+            List<Book> books = bookRepository.getBooksByTypeAndLanguage(type, language);
+            System.out.println(books);
             return books;
         }
         catch (BookyDatabaseException e) {

@@ -19,7 +19,7 @@ class DataMain {
         DataBookController bookController = new DataBookController();
         DataUserController userController = new DataUserController();
 
-        Language language = new Language("FR", "French");
+        Language language = new Language("AR", "Arabic");
         Country country = new Country("FR", "France");
 
         Book book = new Book(0, "New Book", "New Author",
@@ -59,13 +59,14 @@ class DataMain {
 
         /* for users*/
         //show all users from the db
-        userController.showAllUsers();
+//        userController.showAllUsers();
         //show user by id
-        userController.ShowUserById(1);
+//        userController.ShowUserById(1);
         //update user data in the db
 //        userController.updateUser(2, updatedUser);
         //add new user to the db
 //        userController.addUser(user);
+        bookController.BookFilteredWithTypeAndLanguage(BookType.Classics,language);
 
 
     }
