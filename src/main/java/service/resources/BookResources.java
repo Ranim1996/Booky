@@ -1,8 +1,7 @@
 package service.resources;
 
-import org.glassfish.jersey.process.internal.RequestScoped;
-import service.DataBookController;
-import service.DataLanguageController;
+import service.ControllerPersistance.DataBookController;
+import service.ControllerPersistance.DataLanguageController;
 import service.model.Book;
 import service.model.BookType;
 import service.model.Language;

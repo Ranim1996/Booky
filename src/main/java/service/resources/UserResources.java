@@ -1,9 +1,8 @@
 package service.resources;
 
-import service.DataUserController;
+import service.ControllerPersistance.DataUserController;
 import service.model.Users;
 import service.model.Language;
-import service.model.Country;
 import service.repository.*;
 
 import javax.ws.rs.*;
