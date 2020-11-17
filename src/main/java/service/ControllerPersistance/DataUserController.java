@@ -6,7 +6,11 @@ import service.model.Users;
 import service.repository.BookyDatabaseException;
 import service.repository.JDBCUserRepository;
 
+import java.sql.SQLException;
+import java.util.Base64;
 import java.util.Collection;
+import java.util.List;
+import java.util.StringTokenizer;
 
 public class DataUserController {
 
@@ -37,8 +41,6 @@ public class DataUserController {
 
         try {
             Users user = userRepository.GetUserById(id);
-//            logger.info(user.toString());
-//            System.out.println("hi");
             System.out.println("message user controller" + user);
             return user;
 
@@ -79,6 +81,72 @@ public class DataUserController {
             usersRepository.addUser(user);
         } catch (BookyDatabaseException e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * Get a new user.
+     * @param email should show user by email.
+     */
+    public Users getUserByEmail(String email) {
+
+        JDBCUserRepository userRepository = new JDBCUserRepository();
+
+        try{
+            Users u = null;
+            List<Users> users = userRepository.getUsers();
+            for (Users p : users){
+                if(p.getEmail().equals(email)){
+                    return p;
+                }
+            }
+
+        } catch (BookyDatabaseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * log into account
+     * @param email
+     * @param password
+     * log in with email and password
+     */
+    public boolean login(String email, String password){
+
+        Users u = getUserByEmail(email);
+
+        if(u.equals(null)){
+            return false;
+        }
+        if(u.getPassword().equals(password)){
+            System.out.println("login is done" + u);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * log into account
+     * @param id
+     * @param auth
+     * log in with email and password
+     */
+    public boolean isIdAndAuthSame(int id, String auth) {
+
+        String encodedCredentials = auth.replaceFirst("Basic ", "");
+        String credentials = new
+                String(Base64.getDecoder().decode(encodedCredentials.getBytes()));
+
+        final StringTokenizer tokenizer = new StringTokenizer(credentials, ":");
+        final String email = tokenizer.nextToken();
+
+        Users user = ShowUserById(id);
+        if (!user.getEmail().equals(email)) {
+            return false;
+        } else {
+            return true;
         }
     }
 

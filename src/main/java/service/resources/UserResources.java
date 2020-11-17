@@ -5,10 +5,12 @@ import service.model.Users;
 import service.model.Language;
 import service.repository.*;
 
+import javax.annotation.security.PermitAll;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
 import java.util.List;
+import java.util.StringTokenizer;
 
 @Path("/users")
 public class UserResources {
@@ -22,21 +24,21 @@ public class UserResources {
     @GET //GET at http://localhost:9090/booky/users/3
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getUserPath(@PathParam("id") int id) {
-//        Users u = fakeDataStore.getUser(id);
-//        if (u == null) {
-//            return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid user ID!.").build();
-//        } else {
-//            return Response.ok(u).build();
-//        }
+    public Response getUserPath(@PathParam("id") int id, @HeaderParam("Authorization") String auth) {
 
         DataUserController userController = new DataUserController();
-        Users u = userController.ShowUserById(id);
 
-        if (u == null) {
-            return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid user ID!.").build();
-        } else {
-            return Response.ok(u).build();
+        if (!userController.isIdAndAuthSame(id, auth)){
+            return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid email and/or password.").build();
+        }
+        else{
+            Users u = userController.ShowUserById(id);
+            if(u != null){
+                return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid id.").build();
+            }
+            else {
+                return Response.ok(u).build();
+            }
         }
     }
 
@@ -89,16 +91,34 @@ public class UserResources {
     @Path("{id}")
     public Response updateUser(@PathParam("id") int id, Users u) {
         // Idempotent method. Always update (even if the resource has already been updated before).
-//        if (fakeDataStore.updatePersonalInfo(id, u)) {
-//            return Response.noContent().build();
-//        } else {
-//            return Response.status(Response.Status.NOT_FOUND).entity("Please provide a valid user ID.").build();
-//        }
         DataUserController userController = new DataUserController();
         if (userController.updateUser(id, u)) {
             return Response.noContent().build();
         } else {
             return Response.status(Response.Status.NOT_FOUND).entity("Please provide a valid user ID.").build();
+        }
+    }
+
+    //log into the web application using email and password
+    @POST
+    @Path("login")
+    @PermitAll
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response LoginUser(String body) {
+
+        DataUserController userController = new DataUserController();
+
+        final StringTokenizer tokenizer = new StringTokenizer(body, ":");
+
+        final String email = tokenizer.nextToken();
+        final String password = tokenizer.nextToken();
+
+        Users user = userController.getUserByEmail(email);
+
+        if (userController.login(email, password)) {
+            return Response.ok(user).build();
+        } else {
+            return Response.status(Response.Status.NOT_FOUND).entity("Please provide a valid email.").build();
         }
     }
 

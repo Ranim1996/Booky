@@ -51,6 +51,8 @@ public class JDBCLanguageRepository extends JDBCRepository{
                 languages.add(language);
             }
 
+            connection.close();
+
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read languages from the database.",throwable);
         }

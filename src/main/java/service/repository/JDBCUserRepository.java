@@ -9,7 +9,7 @@ import java.util.*;
 public class JDBCUserRepository extends JDBCRepository {
 
     //get all users from data base
-    public Collection<Users> getUsers() throws BookyDatabaseException {
+    public List<Users> getUsers() throws BookyDatabaseException {
 
         Map<String, Country> countries = this.getUsedCountries();
         Map<String, Language> languages = this.getUsedLanguages();
@@ -193,16 +193,6 @@ public class JDBCUserRepository extends JDBCRepository {
             preparedStatement.executeUpdate();
             connection.commit();
 
-//            String sqlID = "SELECT max(id) Id FROM users";
-//            Statement statement = connection.createStatement();
-//            ResultSet resultSet = statement.executeQuery(sqlID);
-//            if (resultSet.next()){
-//                int userId = resultSet.getInt("Id");
-//                connection.commit();
-//                connection.close();
-//            } else {
-//                throw  new BookyDatabaseException("Cannot get the id of the new user.");
-//            }
 
         } catch (SQLException throwable) {
             throw  new BookyDatabaseException("Cannot create new user.", throwable);

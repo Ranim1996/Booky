@@ -131,15 +131,4 @@ public class BookFakeDataStore {
         return null;
     }
 
-    // to get type by book id
-//    public List<Book> GetTypeByBookId(int id){
-//        List<Book> foundBooks = new ArrayList<>();
-//        for (Book b: bookList){
-//            if(b.getBookID() == id){
-//                foundBooks.add(b);
-//            }
-//        }
-//        return foundBooks;
-//    }
-
 }
