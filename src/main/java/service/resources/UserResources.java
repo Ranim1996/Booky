@@ -6,9 +6,11 @@ import service.model.Language;
 import service.repository.*;
 
 import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
+import java.util.Base64;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -23,6 +25,7 @@ public class UserResources {
     //return user with specific id
     @GET //GET at http://localhost:9090/booky/users/3
     @Path("{id}")
+    @PermitAll
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUserPath(@PathParam("id") int id, @HeaderParam("Authorization") String auth) {
 
@@ -75,10 +78,13 @@ public class UserResources {
     @POST //POST at http://localhost:9090/booky/users/
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createUser(Users u) {
-        if (!fakeDataStore.addUser(u)){
+
+        DataUserController userController = new DataUserController();
+        if(!userController.addUser(u)){
             String entity =  "User with this id is " + u.getId() + " already exists.";
             return Response.status(Response.Status.CONFLICT).entity(entity).build();
-        } else {
+        }
+        else {
             String url = uriInfo.getAbsolutePath() + "/" + u.getId(); // url of the created user
             URI uri = URI.create(url);
             return Response.created(uri).build();
@@ -100,6 +106,9 @@ public class UserResources {
     }
 
     //log into the web application using email and password
+
+    //http headers like the demo implement it with the headers
+
     @POST
     @Path("login")
     @PermitAll
@@ -118,7 +127,7 @@ public class UserResources {
         if (userController.login(email, password)) {
             return Response.ok(user).build();
         } else {
-            return Response.status(Response.Status.NOT_FOUND).entity("Please provide a valid email.").build();
+            return Response.status(Response.Status.NOT_FOUND).entity("Please provide a valid email/Password.").build();
         }
     }
 
