@@ -141,13 +141,17 @@ public class DataUserController {
     public boolean isIdAndAuthSame(int id, String auth) {
 
         String encodedCredentials = auth.replaceFirst("Basic ", "");
-        String credentials = new
-                String(Base64.getDecoder().decode(encodedCredentials.getBytes()));
+        String credentials = new String(Base64.getDecoder().decode(encodedCredentials.getBytes()));
+
+        System.out.println(credentials);
 
         final StringTokenizer tokenizer = new StringTokenizer(credentials, ":");
         final String email = tokenizer.nextToken();
 
+        System.out.println(email);
+
         Users user = ShowUserById(id);
+
         if (!user.getEmail().equals(email)) {
             return false;
         } else {

@@ -31,6 +31,8 @@ public class UserResources {
 
         DataUserController userController = new DataUserController();
 
+        System.out.println("Authentication: " + auth);
+
         if (!userController.isIdAndAuthSame(id, auth)){
             return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid email and/or password.").build();
         }
@@ -108,13 +110,13 @@ public class UserResources {
     //log into the web application using email and password
 
     //http headers like the demo implement it with the headers
-
     @POST
     @Path("login")
     @PermitAll
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response LoginUser(String body) {
+    public Response LoginUser(String body, @HeaderParam("Authorization") String auth) {
 
+        System.out.println("Log in auth: " + auth);
         DataUserController userController = new DataUserController();
 
         final StringTokenizer tokenizer = new StringTokenizer(body, ":");
