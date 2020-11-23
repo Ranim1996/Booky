@@ -53,11 +53,12 @@ public class AuthenticationFilter implements ContainerRequestFilter {
              /* isUserAllowed : implement this method to check if this user has any of
              the roles in the rolesSet
              if not isUserAllowed abort the requestContext with FORBIDDEN response*/
-//            if (!isUserAllowed(username, password, rolesSet)) {
-//                Response response = Response.status(Response.Status.FORBIDDEN).build();
-//                requestContext.abortWith(response);
-//                return;
-//            }
+            if (!isUserAllowed(rolesSet)) {
+                Response response = Response.status(Response.Status.FORBIDDEN).build();
+                requestContext.abortWith(response);
+                return;
+            }
+
         }
 
 
@@ -114,7 +115,6 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         if (rolesSet.contains("READER") || rolesSet.contains("ADMIN")){
             return true;
         }
-
         return false;
     }
 
