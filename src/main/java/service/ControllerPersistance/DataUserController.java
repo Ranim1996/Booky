@@ -2,8 +2,11 @@ package service.ControllerPersistance;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import service.model.Book;
+import service.model.UserType;
 import service.model.Users;
 import service.repository.BookyDatabaseException;
+import service.repository.JDBCBookRepository;
 import service.repository.JDBCUserRepository;
 
 import java.sql.SQLException;
@@ -41,7 +44,27 @@ public class DataUserController {
 
         try {
             Users user = userRepository.GetUserById(id);
-            System.out.println("message user controller" + user);
+            System.out.println("In user controller" + user);
+            return user;
+
+        } catch (BookyDatabaseException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    /**
+     * Show/print the user with given user type
+     * @param type of the user to be shown.
+     */
+    public Users ShowUserByType(UserType type){
+
+        JDBCUserRepository userRepository = new JDBCUserRepository();
+
+        try {
+            Users user = userRepository.GetUsersByType(type);
+            System.out.println("In user controller" + user);
             return user;
 
         } catch (BookyDatabaseException e) {
@@ -63,24 +86,6 @@ public class DataUserController {
 
         try {
             userRepository.UpdateUser(id, user);
-            return true;
-        }
-        catch (BookyDatabaseException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    /**
-     * Add/create a new user.
-     * @param user should be inserted into the DB.
-     */
-    public boolean addUser(Users user){
-
-        JDBCUserRepository usersRepository = new JDBCUserRepository();
-
-        try {
-            usersRepository.addUser(user);
             return true;
         }
         catch (BookyDatabaseException e) {
@@ -156,6 +161,25 @@ public class DataUserController {
             return false;
         } else {
             return true;
+        }
+    }
+
+    /**
+     * Add/create a new book.
+     * @param user should be inserted into the DB.
+     */
+    public boolean addUser(Users user){
+
+        JDBCUserRepository userRepository = new JDBCUserRepository();
+
+
+        try {
+            userRepository.AddUser(user);
+            return true;
+        }
+        catch (BookyDatabaseException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 

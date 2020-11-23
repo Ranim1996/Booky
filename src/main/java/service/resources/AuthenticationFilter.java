@@ -29,6 +29,10 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
         Method method = resourceInfo.getResourceMethod();
 
+        // if access is allowed for all -> do not check anything further : access is approved for all
+        if (method.isAnnotationPresent(PermitAll.class)) {
+            return;
+        }
 
         // if access is denied for all: deny access
         if (method.isAnnotationPresent(DenyAll.class)) {
@@ -91,16 +95,6 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         if (!isValidUser(email, password)) {
             Response response = Response.status(Response.Status.UNAUTHORIZED).entity("Invalid email and/or password.").build();
             requestContext.abortWith(response);
-            return;
-        }
-//        else{
-//            Response response = Response.status(Response.Status.OK).build();
-//            System.out.println("valid: " + response);
-//            return;
-//        }
-
-        // if access is allowed for all -> do not check anything further : access is approved for all
-        if (method.isAnnotationPresent(PermitAll.class)) {
             return;
         }
 

@@ -1,6 +1,9 @@
 package service.resources;
 
+import service.ControllerPersistance.DataBookController;
 import service.ControllerPersistance.DataUserController;
+import service.model.Book;
+import service.model.UserType;
 import service.model.Users;
 import service.model.Language;
 import service.repository.*;
@@ -31,18 +34,18 @@ public class UserResources {
 
         DataUserController userController = new DataUserController();
 
-        System.out.println("Authentication: " + auth);
+        System.out.println("Authentication get User Path: " + auth);
 
         if (!userController.isIdAndAuthSame(id, auth)){
             return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid email and/or password.").build();
         }
         else{
             Users u = userController.ShowUserById(id);
-            if(u != null){
-                return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid id.").build();
+            if(userController.ShowUserById(id) != null){
+                return Response.ok(u).build();
             }
             else {
-                return Response.ok(u).build();
+                return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid id.").build();
             }
         }
     }
@@ -76,27 +79,11 @@ public class UserResources {
         return Response.noContent().build();
     }
 
-    //add book with user object
-    @POST //POST at http://localhost:9090/booky/users/
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response createUser(Users u) {
-
-        DataUserController userController = new DataUserController();
-        if(!userController.addUser(u)){
-            String entity =  "User with this id is " + u.getId() + " already exists.";
-            return Response.status(Response.Status.CONFLICT).entity(entity).build();
-        }
-        else {
-            String url = uriInfo.getAbsolutePath() + "/" + u.getId(); // url of the created user
-            URI uri = URI.create(url);
-            return Response.created(uri).build();
-        }
-    }
-
     //update user personal infirmation using the user object
     @PUT //PUT at http://localhost:9090/booky/users/{id}
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("{id}")
+    @PermitAll
     public Response updateUser(@PathParam("id") int id, Users u) {
         // Idempotent method. Always update (even if the resource has already been updated before).
         DataUserController userController = new DataUserController();
@@ -130,6 +117,27 @@ public class UserResources {
             return Response.ok(user).build();
         } else {
             return Response.status(Response.Status.NOT_FOUND).entity("Please provide a valid email/Password.").build();
+        }
+    }
+
+    //add book with book object
+    @POST //POST at http://localhost:9090/booky/users/
+    @Consumes(MediaType.APPLICATION_JSON)
+    @PermitAll
+    public Response createUser(Users user) {
+
+        System.out.println("in user resources new user.");
+
+        DataUserController userController = new DataUserController();
+
+        if (!userController.addUser(user)){
+            String entity =  "User with this id: " + user.getId() + " already exists.";
+            return Response.status(Response.Status.CONFLICT).entity(entity).build();
+        }
+        else {
+            String url = uriInfo.getAbsolutePath() + "/" + user.getId(); // url of the posted user
+            URI uri = URI.create(url);
+            return Response.created(uri).build();
         }
     }
 

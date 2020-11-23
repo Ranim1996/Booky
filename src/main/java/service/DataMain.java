@@ -20,5 +20,9 @@ class DataMain {
 
     // this java class is created to test everything in the controller
 
+        DataUserController userController = new DataUserController();
+
+        userController.ShowUserByType(UserType.Admin);
+
     }
 }

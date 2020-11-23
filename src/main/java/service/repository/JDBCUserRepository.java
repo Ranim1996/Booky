@@ -171,18 +171,64 @@ public class JDBCUserRepository extends JDBCRepository {
         }
     }
 
-    // add new user
-    public void addUser(Users user) throws BookyDatabaseException {
+    //get user by type
+    public Users GetUsersByType(UserType userType) throws BookyDatabaseException{
+
+        JDBCLanguageRepository languageRepository = new JDBCLanguageRepository();
+        JDBCCountryRepository countryRepository = new JDBCCountryRepository();
+
+        Connection connection = this.getDataBaseConneection();
+
+        String sql = "SELECT * FROM users WHERE userType = ?";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, userType.name()); // set usertype parameter
+            ResultSet resultSet = statement.executeQuery();
+            if (!resultSet.next()){
+                connection.close();
+                throw new BookyDatabaseException("User with type " + userType + " cannot be found");
+            } else {
+                int UId = resultSet.getInt("id");
+                String firstName = resultSet.getString("firstName");
+                String lastName = resultSet.getString("lastName");
+                UserType type = UserType.valueOf(resultSet.getString("userType"));
+                String email = resultSet.getString("email");
+                String password = resultSet.getString("password");
+                String phoneNumber = resultSet.getString("phoneNumber");
+                String dateOfBirth = resultSet.getString("dateOfBirth");
+                String languageCode = resultSet.getString("language_code");
+                String countryCode = resultSet.getString("country_code");
+
+                connection.close();
+
+                Language language = languageRepository.getLanguageByCode(languageCode);
+                Country country = countryRepository.getCountryByCode(countryCode);
+
+                return new Users(UId,firstName, lastName, dateOfBirth, type,email,password,phoneNumber,country,language);
+            }
+        } catch (SQLException throwable) {
+            throw new BookyDatabaseException("Cannot read users from the database.",throwable);
+        }
+    }
+
+    public void AddUser(Users user) throws BookyDatabaseException {
+
+        String type = UserType.Reader.name();
+
 
         Connection connection = this.getDataBaseConneection();
 
         String sql = "INSERT INTO users ( firstName, lastName, userType, email, password, phoneNumber, country_code, " +
                 "language_code, dateOfBirth) VALUES (?,?,?,?,?,?,?,?,?) ";
+
         try {
+
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
             preparedStatement.setString(1, user.getFirstName());
             preparedStatement.setString(2, user.getLastName());
-            preparedStatement.setString(3, user.getUsertype().name());
+            preparedStatement.setString(3, type);
             preparedStatement.setString(4, user.getEmail());
             preparedStatement.setString(5, user.getPassword());
             preparedStatement.setString(6, user.getPhoneNumber());

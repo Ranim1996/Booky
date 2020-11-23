@@ -7,6 +7,7 @@ import service.model.BookType;
 import service.model.Language;
 import service.repository.*;
 
+import javax.annotation.security.PermitAll;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
@@ -37,6 +38,7 @@ public class BookResources {
     //get all books
     @GET //GET at http://localhost:9090/booky/books?language= OR ?type=
     @Produces(MediaType.APPLICATION_JSON)
+    @PermitAll
     public Response getBooks(@QueryParam("language") String languageCode, @QueryParam("type") BookType type) {
 
         List<Book> books;
@@ -79,9 +81,11 @@ public class BookResources {
     //add book with book object
     @POST //POST at http://localhost:9090/booky/books/
     @Consumes(MediaType.APPLICATION_JSON)
+    @PermitAll
     public Response createBook(Book b) {
 
         DataBookController bookController = new DataBookController();
+
         if (!bookController.addBook(b)){
             String entity =  "Book with this id is " + b.getId() + " already exists.";
             return Response.status(Response.Status.CONFLICT).entity(entity).build();
@@ -97,6 +101,7 @@ public class BookResources {
     @PUT //PUT at http://localhost:9090/booky/books/{id}
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("{id}")
+    @PermitAll
     public Response updateBook(@PathParam("id") int id,  Book b) {
 
         DataBookController bookController = new DataBookController();

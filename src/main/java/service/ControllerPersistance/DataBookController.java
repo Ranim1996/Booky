@@ -33,46 +33,6 @@ public class DataBookController {
     }
 
     /**
-     * Show/print the book with given code
-     * @param language of the book to be shown.
-     */
-    //show book by language code
-//    public Book showBookByLanguageCode(String language){
-//
-//        JDBCBookRepository bookRepository = new JDBCBookRepository();
-//
-//        try {
-//            Book book = bookRepository.getBookByLanguageCode(language);
-//            logger.info(book.toString());
-//            return book;
-//        }
-//        catch (BookyDatabaseException e) {
-//            e.printStackTrace();
-//            return null;
-//        }
-//    }
-
-    /**
-     * Show/print the book with given type
-     * @param type of the book to be shown.
-     */
-    //show book by language code
-//    public Book showBookByType(BookType type){
-//
-//        JDBCBookRepository bookRepository = new JDBCBookRepository();
-//
-//        try {
-//            Book book = bookRepository.getBookByType(type);
-//            logger.info(book.toString());
-//            return book;
-//        }
-//        catch (BookyDatabaseException e) {
-//            e.printStackTrace();
-//            return null;
-//        }
-//    }
-
-    /**
      * Show/print the book with given laguage code
      * @param language of the book to be shown.
      */
@@ -83,10 +43,6 @@ public class DataBookController {
 
         try {
             List<Book> books = bookRepository.getBooksByLanguage(language);
-//            for (Book book : books) {
-//                logger.info(book.toString());
-//            }
-//            System.out.println("In filter language" + language);
             return books;
         }
         catch (BookyDatabaseException e) {
@@ -106,9 +62,6 @@ public class DataBookController {
 
         try {
             List<Book> books = bookRepository.getBooksByType(type);
-//            for (Book book : books) {
-//                logger.info(book.toString());
-//            }
             return books;
         }
         catch (BookyDatabaseException e) {
