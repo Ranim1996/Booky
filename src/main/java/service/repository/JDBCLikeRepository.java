@@ -1,5 +1,7 @@
 package service.repository;
 
+import service.model.Book;
+import service.model.BookType;
 import service.model.Like;
 
 import java.sql.*;
@@ -9,62 +11,33 @@ import java.util.List;
 
 public class JDBCLikeRepository extends JDBCRepository {
 
-    //get likes from data base
-    public Collection<Like> getLikes() throws BookyDatabaseException {
+    //get all likes
+    public List<Like> getLikes() throws BookyDatabaseException {
 
         List<Like> likes = new ArrayList<>();
 
         Connection connection = this.getDataBaseConneection();
 
-        String sql = "SELECT * FROM likes";
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
-
-            while (resultSet.next()) {
-                int Id = resultSet.getInt("id");
-                int bookId = resultSet.getInt("bookId");
-                int userId = resultSet.getInt("userId");
-
-
-                Like like = new Like(Id,bookId,userId);
-                likes.add(like);
-            }
-            connection.setAutoCommit(false);
-            connection.close();
-
-        } catch (SQLException throwable) {
-            throw new BookyDatabaseException("Cannot read likes from the database.",throwable);
-        }
-        return likes;
-    }
-
-    //get likes by book id
-    public Collection<Like> getLikesByBook(int id) throws BookyDatabaseException {
-
-        List<Like> likes = new ArrayList<>();
-
-        Connection connection = this.getDataBaseConneection();
-
-        String sql = "SELECT * FROM likes WHERE bookId = ?";
+        String sql = "SELECT b.id, b.bookName, b.authorName, b.bookType, b.describtion, b.language_code, l.id AS likeId " +
+                "FROM ((users INNER JOIN likes l ON users.id = l.userId) INNER JOIN book b ON l.bookId = b.id) " +
+                "GROUP BY l.id";
 
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-
-            statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
 
-            while(resultSet.next()){
+            while (resultSet.next()){
                 int Id = resultSet.getInt("id");
-                int bookId = resultSet.getInt("bookId");
-                int userId = resultSet.getInt("userId");
+                int bookID = resultSet.getInt("bookId");
+                int likerId = resultSet.getInt("userId");
+                Like like = new Like(Id, bookID, likerId);
 
-
-                Like like = new Like(Id,bookId,userId);
                 likes.add(like);
+
             }
-            connection.setAutoCommit(false);
+
             connection.close();
+
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read likes from the database.",throwable);
@@ -73,75 +46,66 @@ public class JDBCLikeRepository extends JDBCRepository {
     }
 
     //get likes by user id and book id
-    public Like getLikeByBookAndUser(int bookId,int userId) throws BookyDatabaseException {
+    public List<Book> getLikedBooksByUserId(int uId) throws BookyDatabaseException {
 
-        Like like = null;
+        List<Book> books = new ArrayList<>();
 
         Connection connection = this.getDataBaseConneection();
 
-        String sql = "SELECT * FROM likes WHERE bookId = ? AND userId = ?";
+        String sql = "SELECT b.id, b.bookName, b.authorName, b.bookType, b.describtion, b.language_code, l.id AS likeId " +
+                "FROM ((users INNER JOIN likes l ON users.id = l.userId) INNER JOIN book b ON l.bookId = b.id) " +
+                "WHERE users.id = ? GROUP BY l.id";
 
         try {
+
+            System.out.println("try JDBC");
+
             PreparedStatement statement = connection.prepareStatement(sql);
 
-            statement.setInt(1, bookId);
-            statement.setInt(2, userId);
+            statement.setInt(1, uId);
+
             ResultSet resultSet = statement.executeQuery();
 
             while(resultSet.next()){
+
                 int Id = resultSet.getInt("id");
-                int bookID = resultSet.getInt("bookId");
-                int likerId = resultSet.getInt("userId");
+                String name = resultSet.getString("bookName");
+                String author = resultSet.getString("authorName");
+                BookType type =  BookType.valueOf(resultSet.getString("bookType"));
 
+                System.out.println("after likes");
 
-                like = new Like(Id,bookID,likerId);
+                Book book = new Book(Id, name, author,type);
 
+                books.add(book);
             }
-            connection.setAutoCommit(false);
             connection.close();
+
+            return books;
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read likes from the database.",throwable);
         }
-        return like;
     }
 
     //add like
    public void addLike(Like like) throws BookyDatabaseException {
 
-       System.out.println("hi jdbc");
-
-
        Connection connection = this.getDataBaseConneection();
 
         String sql = "INSERT INTO likes (bookId, userId) SELECT * FROM (SELECT ?,?) AS tmp " +
                 "WHERE NOT EXISTS (SELECT userId FROM likes WHERE userId = ? AND bookId = ?) LIMIT 1";
-       System.out.println("hi after sql");
-
        try {
-            System.out.println("hi try jdbc");
 
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, like.getBookId());
-           System.out.println("1");
-
+           PreparedStatement preparedStatement = connection.prepareStatement(sql);
+           preparedStatement.setInt(1, like.getBookId());
            preparedStatement.setInt(2, like.getUserId());
-           System.out.println("2");
-
            preparedStatement.setInt(3, like.getUserId());
-           System.out.println("3");
-
            preparedStatement.setInt(4, like.getBookId());
-           System.out.println("4");
-
-
-           System.out.println("hi befor prepare");
 
             preparedStatement.executeUpdate();
             connection.commit();
             connection.close();
-           System.out.println("hi after prepare");
-
 
        } catch (SQLException throwable) {
             throw  new BookyDatabaseException("Cannot add like.", throwable);
@@ -159,10 +123,7 @@ public class JDBCLikeRepository extends JDBCRepository {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1,like.getId());
 
-//            PreparedStatement ps = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-//            ps.setInt(1,1);
             statement.executeUpdate();
-//            connection.setAutoCommit(false);
             connection.commit();
             connection.close();
 

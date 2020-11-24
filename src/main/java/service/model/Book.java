@@ -30,6 +30,13 @@ public class Book {
         this.language_code = language;
     }
 
+    public Book(int id, String bookName, String authorName, BookType type){
+        this.id = id;
+        this.bookName = bookName;
+        this.authorName = authorName;
+        this.bookType = type;
+    }
+
     public Book() {
 
     }

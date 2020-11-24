@@ -3,10 +3,7 @@ package service.resources;
 import service.ControllerPersistance.DataBookController;
 import service.ControllerPersistance.DataLanguageController;
 import service.ControllerPersistance.DataLikeController;
-import service.model.Book;
-import service.model.BookType;
-import service.model.Language;
-import service.model.Like;
+import service.model.*;
 import service.repository.*;
 
 import javax.annotation.security.PermitAll;
@@ -121,48 +118,6 @@ public class BookResources {
         }
     }
 
-    //get likes on a book
-    @GET
-    @Path("{id}/likes")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getBookLikes(@PathParam("id") int id) {
-
-        DataLikeController likeController = new DataLikeController();
-
-        GenericEntity<List<Like>> entity = new GenericEntity<>(likeController.getLikesByBook(id)) {  };
-        return Response.ok(entity).build();
-    }
-
-    //get counted likes on abook
-    @GET
-    @Path("{id}/likes/count")
-    @Produces(MediaType.TEXT_PLAIN)
-    public Response getBookLikesCount(@PathParam("id") int id) {
-
-        DataLikeController likeController = new DataLikeController();
-
-        List<Like> entity = likeController.getLikesByBook(id);
-
-        return Response.ok(entity.size()).build();
-    }
-
-    //get likes by book and user
-    @GET
-    @Path("{id}/likes/user/{userId}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getLikeByBookAndUser(@PathParam("id") int id, @PathParam("userId") int userId) {
-
-        DataLikeController likeController = new DataLikeController();
-
-        Like like = likeController.getLikesByBookAndUser(id,userId);
-
-        if (like == null) {
-            return Response.status(Response.Status.BAD_REQUEST).entity("").build();
-        } else {
-            return Response.ok(like).build();
-        }
-    }
-
     //add like with like object
     @POST //POST at http://localhost:9090/booky/books/like
     @Consumes(MediaType.APPLICATION_JSON)
@@ -170,7 +125,6 @@ public class BookResources {
     @PermitAll
     public Response AddLikeToBook(Like like) {
 
-        System.out.println("hi resources");
         DataLikeController likeController = new DataLikeController();
 
         if (!likeController.likeBook(like)){
@@ -182,6 +136,29 @@ public class BookResources {
             URI uri = URI.create(url);
             return Response.created(uri).build();
         }
+    }
+
+    @GET //GET at http://localhost:9090/booky/books/MyList
+    @Path("MyList")
+    @Produces(MediaType.APPLICATION_JSON)
+    @PermitAll
+    public Response getLikedBooksByUser(@QueryParam("id") int userId) {
+
+        System.out.println("resources");
+
+        DataLikeController controller = new DataLikeController();
+
+        List<Book> books;
+
+//        if (uriInfo.getQueryParameters().containsKey("id")){
+            books = controller.LikedBooksByUser(userId);
+//        }
+//        else{
+//            likes = controller.GetAllLikes();
+//        }
+
+        GenericEntity<List<Book>> entity = new GenericEntity<>(books) {};
+        return Response.ok(entity).build();
     }
 
 }
