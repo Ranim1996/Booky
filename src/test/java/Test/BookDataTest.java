@@ -69,7 +69,7 @@ public class BookDataTest {
         books.add(b1);
         books.add(b2);
 
-        assertEquals(l1, books.equals(l1));
+        assertEquals(l1, books.contains(l1));
     }
 
     @Test // test get book by type
@@ -92,7 +92,7 @@ public class BookDataTest {
         assertEquals(BookType.DetectiveandMystery, b1.getBookType());
     }
 
-    @Test // test get book by id
+    @Test // test get book id
     public void getBookId(){
         List<Language> languages = new ArrayList<>();
         List<Book> books = new ArrayList<>();
