@@ -144,21 +144,30 @@ public class BookResources {
     @PermitAll
     public Response getLikedBooksByUser(@QueryParam("id") int userId) {
 
-        System.out.println("resources");
-
         DataLikeController controller = new DataLikeController();
 
         List<Book> books;
 
-//        if (uriInfo.getQueryParameters().containsKey("id")){
-            books = controller.LikedBooksByUser(userId);
-//        }
-//        else{
-//            likes = controller.GetAllLikes();
-//        }
+        books = controller.LikedBooksByUser(userId);
 
         GenericEntity<List<Book>> entity = new GenericEntity<>(books) {};
         return Response.ok(entity).build();
     }
+
+
+    @DELETE //GET at http://localhost:9090/booky/books/MyList
+    @Path("MyList/{id}/user/{uId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @PermitAll
+    public Response removeBook(@PathParam("id") int bId, @PathParam("uId") int uId) {
+
+        System.out.println("resources");
+        DataLikeController likeController = new DataLikeController();
+        System.out.println("ids: " + bId + uId);
+        likeController.DeleteBook(bId, uId);
+
+        return Response.noContent().build();
+    }
+
 
 }

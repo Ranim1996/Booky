@@ -1,9 +1,6 @@
 package service;
 
-import service.ControllerPersistance.DataBookController;
-import service.ControllerPersistance.DataCountryController;
-import service.ControllerPersistance.DataLanguageController;
-import service.ControllerPersistance.DataUserController;
+import service.ControllerPersistance.*;
 import service.model.*;
 
 import java.net.URI;
@@ -20,9 +17,8 @@ class DataMain {
 
     // this java class is created to test everything in the controller
 
-        DataUserController userController = new DataUserController();
-
-        userController.ShowUserByType(UserType.Admin);
+        DataLikeController likeController = new DataLikeController();
+        likeController.DeleteBook(9,7);
 
     }
 }

@@ -54,11 +54,9 @@ public class JDBCLikeRepository extends JDBCRepository {
 
         String sql = "SELECT b.id, b.bookName, b.authorName, b.bookType, b.describtion, b.language_code, l.id AS likeId " +
                 "FROM ((users INNER JOIN likes l ON users.id = l.userId) INNER JOIN book b ON l.bookId = b.id) " +
-                "WHERE users.id = ? GROUP BY l.id";
+                "WHERE users.id = ? AND status = 0 GROUP BY l.id";
 
         try {
-
-            System.out.println("try JDBC");
 
             PreparedStatement statement = connection.prepareStatement(sql);
 
@@ -72,8 +70,6 @@ public class JDBCLikeRepository extends JDBCRepository {
                 String name = resultSet.getString("bookName");
                 String author = resultSet.getString("authorName");
                 BookType type =  BookType.valueOf(resultSet.getString("bookType"));
-
-                System.out.println("after likes");
 
                 Book book = new Book(Id, name, author,type);
 
@@ -112,26 +108,24 @@ public class JDBCLikeRepository extends JDBCRepository {
         }
     }
 
-    //remove like
-    public boolean deleteLike(Like like) throws BookyDatabaseException{
+    //remove book from my list
+    public void deleteBook(int bId, int uId) throws BookyDatabaseException {
 
         Connection connection = this.getDataBaseConneection();
 
-        String sql = "DELETE FROM likes WHERE id=?";
-
+        String sql = "Delete FROM likes where bookId = ? AND userId = ?";
         try {
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1,like.getId());
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,bId);
+            preparedStatement.setInt(2,uId);
 
-            statement.executeUpdate();
+            preparedStatement.executeUpdate();
             connection.commit();
-            connection.close();
-
-            return true;
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
         }
-        return false;
+        catch (SQLException throwable){
+            throw  new BookyDatabaseException("Cannot delete book.", throwable);
+        }
+
     }
 
 }
