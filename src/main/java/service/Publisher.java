@@ -29,8 +29,6 @@ class Publisher {
                     BASE_URI.toURL() + "books/2", // show book with id 2
                     BASE_URI.toURL() + "books", // show all books
                     BASE_URI.toURL() + "books?language=EN", // filter books with language code EN
-                    BASE_URI.toURL() + "books/5", // nothing will be shown just for testing that there is no book with id 5
-                    BASE_URI.toURL() + "books?language=AR", // filter books with language code AR
                     BASE_URI.toURL() + "books?type=Fantasy", // filter books with book type classics
 
 
@@ -38,7 +36,6 @@ class Publisher {
                     BASE_URI.toURL() + "users/3", //show user with id 3
                     BASE_URI.toURL() + "users", //show all users
                     BASE_URI.toURL() + "users?language=EN", //show user speaks english
-                    BASE_URI.toURL() + "users/10" // nothing will be shown for testing that there is no user with id 10
 
             };
             for (String getOperation : getOperations) {

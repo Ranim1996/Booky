@@ -121,6 +121,7 @@ public class JDBCLikeRepository extends JDBCRepository {
 
             preparedStatement.executeUpdate();
             connection.commit();
+            connection.close();
         }
         catch (SQLException throwable){
             throw  new BookyDatabaseException("Cannot delete book.", throwable);

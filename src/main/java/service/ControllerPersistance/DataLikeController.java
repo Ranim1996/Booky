@@ -10,14 +10,14 @@ import java.util.List;
 
 public class DataLikeController {
 
+    JDBCLikeRepository likeRepository = new JDBCLikeRepository();
+
     /**
      * add like to db
      * @param like .
      */
     //add like
     public boolean likeBook(Like like) {
-
-        JDBCLikeRepository likeRepository = new JDBCLikeRepository();
 
         try {
             likeRepository.addLike(like);
@@ -36,8 +36,6 @@ public class DataLikeController {
     //show books added to my favorite list
     public List<Book> LikedBooksByUser(int userId){
 
-        JDBCLikeRepository likeRepository = new JDBCLikeRepository();
-
         try {
             List<Book> likedBooks = likeRepository.getLikedBooksByUserId(userId);
             return likedBooks;
@@ -55,8 +53,6 @@ public class DataLikeController {
      * @throws BookyDatabaseException
      */
     public boolean DeleteBook(int id, int userId){
-
-        JDBCLikeRepository likeRepository = new JDBCLikeRepository();
 
         try{
             likeRepository.deleteBook(id, userId);

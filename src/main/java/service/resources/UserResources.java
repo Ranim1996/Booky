@@ -23,7 +23,7 @@ public class UserResources {
     @Context
     private UriInfo uriInfo;
     // this has to be static because the service is stateless:
-    private static final UsersFakeDataStore fakeDataStore = new UsersFakeDataStore();
+    DataUserController userController = new DataUserController();
 
     //return user with specific id
     @GET //GET at http://localhost:9090/booky/users/3
@@ -31,8 +31,6 @@ public class UserResources {
     @PermitAll
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUserPath(@PathParam("id") int id, @HeaderParam("Authorization") String auth) {
-
-        DataUserController userController = new DataUserController();
 
         System.out.println("Authentication get User Path: " + auth);
 
@@ -50,35 +48,6 @@ public class UserResources {
         }
     }
 
-    // return all users if id is invalid or return books with that code
-    @GET //GET at http://localhost:9090/booky/users?
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllUsers(@QueryParam("language") String languageCode) {
-        List<Users> users;
-        //If query parameter is missing return all books. Otherwise filter books by given languageCode
-        if (uriInfo.getQueryParameters().containsKey("language")){
-            Language l = fakeDataStore.getLanguage(languageCode);
-            if (l == null){ // if language code invalid, return BAD_REQUEST
-                return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid language code.").build();
-            } else {
-                users = fakeDataStore.getUsers(l);
-            }
-        } else {
-            users = fakeDataStore.getUsers();
-        }
-        GenericEntity<List<Users>> entity = new GenericEntity<>(users) {  };
-        return Response.ok(entity).build();
-    }
-
-    //delete user with specific id
-    @DELETE //DELETE at http://localhost:9090/booky/users/3
-    @Path("{id}")
-    public Response deleteUser(@PathParam("id") int uID) {
-        fakeDataStore.deleteUser(uID);
-        // Idempotent method. Always return the same response (even if the resource has already been deleted before).
-        return Response.noContent().build();
-    }
-
     //update user personal infirmation using the user object
     @PUT //PUT at http://localhost:9090/booky/users/{id}
     @Consumes(MediaType.APPLICATION_JSON)
@@ -86,7 +55,6 @@ public class UserResources {
     @PermitAll
     public Response updateUser(@PathParam("id") int id, Users u) {
         // Idempotent method. Always update (even if the resource has already been updated before).
-        DataUserController userController = new DataUserController();
         if (userController.updateUser(id, u)) {
             return Response.noContent().build();
         } else {
@@ -102,9 +70,6 @@ public class UserResources {
     @PermitAll
     @Consumes(MediaType.APPLICATION_JSON)
     public Response LoginUser(String body, @HeaderParam("Authorization") String auth) {
-
-        System.out.println("Log in auth: " + auth);
-        DataUserController userController = new DataUserController();
 
         final StringTokenizer tokenizer = new StringTokenizer(body, ":");
 
@@ -125,10 +90,6 @@ public class UserResources {
     @Consumes(MediaType.APPLICATION_JSON)
     @PermitAll
     public Response createUser(Users user) {
-
-        System.out.println("in user resources new user.");
-
-        DataUserController userController = new DataUserController();
 
         if (!userController.addUser(user)){
             String entity =  "User with this id: " + user.getId() + " already exists.";

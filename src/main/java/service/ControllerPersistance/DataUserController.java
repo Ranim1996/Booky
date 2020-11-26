@@ -43,7 +43,7 @@ public class DataUserController {
         JDBCUserRepository userRepository = new JDBCUserRepository();
 
         try {
-            Users user = userRepository.GetUserById(id);
+            Users user = userRepository.getUserById(id);
             System.out.println("In user controller" + user);
             return user;
 
@@ -63,7 +63,7 @@ public class DataUserController {
         JDBCUserRepository userRepository = new JDBCUserRepository();
 
         try {
-            Users user = userRepository.GetUsersByType(type);
+            Users user = userRepository.getUsersByType(type);
             System.out.println("In user controller" + user);
             return user;
 
@@ -85,7 +85,7 @@ public class DataUserController {
         JDBCUserRepository userRepository = new JDBCUserRepository();
 
         try {
-            userRepository.UpdateUser(id, user);
+            userRepository.updateUser(id, user);
             return true;
         }
         catch (BookyDatabaseException e) {

@@ -228,7 +228,7 @@ public class JDBCBookRepository  extends JDBCRepository{
         }
     }
 
-    public Book GetBookById(int id) throws BookyDatabaseException{
+    public Book getBookById(int id) throws BookyDatabaseException{
 
         JDBCLanguageRepository languageRepository = new JDBCLanguageRepository();
 
@@ -261,7 +261,7 @@ public class JDBCBookRepository  extends JDBCRepository{
 
     }
 
-    public void UpdateBook(int id, Book book) throws BookyDatabaseException {
+    public void updateBook(int id, Book book) throws BookyDatabaseException {
 
         Connection connection = this.getDataBaseConneection();
 
@@ -281,6 +281,7 @@ public class JDBCBookRepository  extends JDBCRepository{
 
             preparedStatement.executeUpdate();
             connection.commit();
+            connection.close();
 
         } catch (SQLException throwable) {
             throw  new BookyDatabaseException("Cannot update book.", throwable);
@@ -297,6 +298,7 @@ public class JDBCBookRepository  extends JDBCRepository{
             preparedStatement.setInt(1,bId);
             preparedStatement.executeUpdate();
             connection.commit();
+            connection.close();
         }
         catch (SQLException throwable){
             throw  new BookyDatabaseException("Cannot delete book.", throwable);

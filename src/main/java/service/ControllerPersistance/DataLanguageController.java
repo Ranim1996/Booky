@@ -11,10 +11,10 @@ import java.util.Collection;
 public class DataLanguageController {
 
     final Logger logger = LoggerFactory.getLogger(DataLanguageController.class);
+    JDBCLanguageRepository languagesRepository = new JDBCLanguageRepository();
 
     //show all languages
     void showAllLanguages(){
-        JDBCLanguageRepository languagesRepository = new JDBCLanguageRepository();
 
         try {
             Collection<Language> languages = languagesRepository.getLanguages();
@@ -33,7 +33,6 @@ public class DataLanguageController {
      */
     //show language by it's code
     public Language showLanguageByCode(String code){
-        JDBCLanguageRepository languagesRepository = new JDBCLanguageRepository();
 
         try {
             Language language = languagesRepository.getLanguageByCode(code);

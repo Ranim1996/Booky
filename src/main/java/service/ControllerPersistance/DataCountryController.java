@@ -12,10 +12,10 @@ import java.util.Collection;
 public class DataCountryController {
 
     final Logger logger = LoggerFactory.getLogger(DataCountryController.class);
+    JDBCCountryRepository countriesRepository = new JDBCCountryRepository();
 
     //show all countries
     void showAllCountries(){
-        JDBCCountryRepository countriesRepository = new JDBCCountryRepository();
 
         try {
             Collection<Country> countries = countriesRepository.getCountries();
@@ -34,7 +34,6 @@ public class DataCountryController {
      */
     //show country by it's code
     void showCountryByCode(String code){
-        JDBCCountryRepository countriesRepository = new JDBCCountryRepository();
 
         try {
             Country country = countriesRepository.getCountryByCode("USA");

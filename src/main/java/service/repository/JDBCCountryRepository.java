@@ -50,6 +50,7 @@ public class JDBCCountryRepository extends JDBCRepository{
                 Country country = new Country(code, name);
                 countries.add(country);
             }
+            connection.close();
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read countries from the database.",throwable);

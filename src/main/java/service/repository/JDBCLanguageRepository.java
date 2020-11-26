@@ -50,7 +50,6 @@ public class JDBCLanguageRepository extends JDBCRepository{
                 Language language = new Language(code, name);
                 languages.add(language);
             }
-
             connection.close();
 
         } catch (SQLException throwable) {

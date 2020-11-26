@@ -8,6 +8,9 @@ import java.util.*;
 
 public class JDBCUserRepository extends JDBCRepository {
 
+    JDBCLanguageRepository languageRepository = new JDBCLanguageRepository();
+    JDBCCountryRepository countryRepository = new JDBCCountryRepository();
+
     //get all users from data base
     public List<Users> getUsers() throws BookyDatabaseException {
 
@@ -41,6 +44,7 @@ public class JDBCUserRepository extends JDBCRepository {
                 Users user = new Users(id, firstName, lastName, dateOfBirth, type,email,password,phoneNumber,country,language);
                 users.add(user);
             }
+            connection.close();
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read users from the database.",throwable);
@@ -75,6 +79,7 @@ public class JDBCUserRepository extends JDBCRepository {
 
     //get used languages in the db
     private Map<String, Language> getUsedLanguages() throws BookyDatabaseException {
+
         Map<String, Language> languages = new HashMap<>();
 
         Connection connection = this.getDataBaseConneection();
@@ -99,10 +104,7 @@ public class JDBCUserRepository extends JDBCRepository {
     }
 
     //get user by id
-    public Users GetUserById(int id) throws BookyDatabaseException{
-
-        JDBCLanguageRepository languageRepository = new JDBCLanguageRepository();
-        JDBCCountryRepository countryRepository = new JDBCCountryRepository();
+    public Users getUserById(int id) throws BookyDatabaseException{
 
         Connection connection = this.getDataBaseConneection();
 
@@ -140,7 +142,7 @@ public class JDBCUserRepository extends JDBCRepository {
     }
 
     // update user data
-    public void UpdateUser(int id, Users user) throws BookyDatabaseException {
+    public void updateUser(int id, Users user) throws BookyDatabaseException {
 
         Connection connection = this.getDataBaseConneection();
 
@@ -165,6 +167,7 @@ public class JDBCUserRepository extends JDBCRepository {
 
             preparedStatement.executeUpdate();
             connection.commit();
+            connection.close();
 
         } catch (SQLException throwable) {
             throw  new BookyDatabaseException("Cannot update user information.", throwable);
@@ -172,10 +175,7 @@ public class JDBCUserRepository extends JDBCRepository {
     }
 
     //get user by type
-    public Users GetUsersByType(UserType userType) throws BookyDatabaseException{
-
-        JDBCLanguageRepository languageRepository = new JDBCLanguageRepository();
-        JDBCCountryRepository countryRepository = new JDBCCountryRepository();
+    public Users getUsersByType(UserType userType) throws BookyDatabaseException{
 
         Connection connection = this.getDataBaseConneection();
 
@@ -216,7 +216,6 @@ public class JDBCUserRepository extends JDBCRepository {
 
         String type = UserType.Reader.name();
 
-
         Connection connection = this.getDataBaseConneection();
 
         String sql = "INSERT INTO users ( firstName, lastName, userType, email, password, phoneNumber, country_code, " +
@@ -238,7 +237,7 @@ public class JDBCUserRepository extends JDBCRepository {
 
             preparedStatement.executeUpdate();
             connection.commit();
-
+            connection.close();
 
         } catch (SQLException throwable) {
             throw  new BookyDatabaseException("Cannot create new user.", throwable);

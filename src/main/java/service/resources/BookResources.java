@@ -16,6 +16,9 @@ import java.util.List;
 @Path("/books")
 public class BookResources {
 
+    DataBookController bookController = new DataBookController();
+    DataLikeController likeController = new DataLikeController();
+
     @Context
     private UriInfo uriInfo;
 
@@ -25,8 +28,7 @@ public class BookResources {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getBookPath(@PathParam("id") int id) {
 
-        DataBookController bookController = new DataBookController();
-        Book book = bookController.ShowBookById(id);
+        Book book = bookController.showBookById(id);
 
         if (book == null) {
             return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid book ID!.").build();
@@ -43,20 +45,19 @@ public class BookResources {
 
         List<Book> books;
 
-        DataBookController bookController = new DataBookController();
         DataLanguageController languageController = new DataLanguageController();
 
         if (uriInfo.getQueryParameters().containsKey("type") && uriInfo.getQueryParameters().containsKey("language")){
             Language l = languageController.showLanguageByCode(languageCode);
-            books = bookController.BookFilteredWithTypeAndLanguage(type, l);
+            books = bookController.bookFilteredWithTypeAndLanguage(type, l);
             System.out.println("hi"+ books);
         }
         else if(uriInfo.getQueryParameters().containsKey("language")){
             Language l = languageController.showLanguageByCode(languageCode);
-            books = bookController.BookFilteredWithLanguage(l);
+            books = bookController.bookFilteredWithLanguage(l);
         }
         else if (uriInfo.getQueryParameters().containsKey("type")){
-            books = bookController.BookFilteredWithType(type);
+            books = bookController.bookFilteredWithType(type);
         }
         else{
             books = bookController.showAllBooks();
@@ -72,8 +73,7 @@ public class BookResources {
     @RolesAllowed("ADMIN")
     public Response deleteBook(@PathParam("id") int bID) {
 
-        DataBookController bookController = new DataBookController();
-        bookController.DeleteBook(bID);
+        bookController.deleteBook(bID);
 
         return Response.noContent().build();
 
@@ -85,8 +85,6 @@ public class BookResources {
     @PermitAll
     @RolesAllowed("ADMIN")
     public Response createBook(Book b) {
-
-        DataBookController bookController = new DataBookController();
 
         if (!bookController.addBook(b)){
             String entity =  "Book with this id is " + b.getId() + " already exists.";
@@ -107,7 +105,6 @@ public class BookResources {
     @RolesAllowed("ADMIN")
     public Response updateBook(@PathParam("id") int id,  Book b) {
 
-        DataBookController bookController = new DataBookController();
         if (bookController.updateBook(id, b)){
             System.out.println(id);
             return Response.noContent().build();
@@ -123,9 +120,7 @@ public class BookResources {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("like")
     @PermitAll
-    public Response AddLikeToBook(Like like) {
-
-        DataLikeController likeController = new DataLikeController();
+    public Response addLikeToBook(Like like) {
 
         if (!likeController.likeBook(like)){
             String entity =  "Like with this id: "  + like.getId() + " already exists.";
@@ -144,11 +139,9 @@ public class BookResources {
     @PermitAll
     public Response getLikedBooksByUser(@QueryParam("id") int userId) {
 
-        DataLikeController controller = new DataLikeController();
-
         List<Book> books;
 
-        books = controller.LikedBooksByUser(userId);
+        books = likeController.LikedBooksByUser(userId);
 
         GenericEntity<List<Book>> entity = new GenericEntity<>(books) {};
         return Response.ok(entity).build();

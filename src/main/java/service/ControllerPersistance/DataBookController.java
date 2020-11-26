@@ -13,11 +13,10 @@ import java.util.List;
 public class DataBookController {
 
     final Logger logger = LoggerFactory.getLogger(DataBookController.class);
+    JDBCBookRepository bookRepository = new JDBCBookRepository();
 
     //show all books
     public List<Book> showAllBooks(){
-
-        JDBCBookRepository bookRepository = new JDBCBookRepository();
 
         try {
             List<Book> books = bookRepository.getBooks();
@@ -37,9 +36,7 @@ public class DataBookController {
      * @param language of the book to be shown.
      */
     //show book by language code
-    public List<Book> BookFilteredWithLanguage(Language language){
-
-        JDBCBookRepository bookRepository = new JDBCBookRepository();
+    public List<Book> bookFilteredWithLanguage(Language language){
 
         try {
             List<Book> books = bookRepository.getBooksByLanguage(language);
@@ -56,9 +53,7 @@ public class DataBookController {
      * @param type of the book to be shown.
      */
     //show book by language code
-    public List<Book> BookFilteredWithType(BookType type){
-
-        JDBCBookRepository bookRepository = new JDBCBookRepository();
+    public List<Book> bookFilteredWithType(BookType type){
 
         try {
             List<Book> books = bookRepository.getBooksByType(type);
@@ -77,9 +72,7 @@ public class DataBookController {
      * of the book to be shown.
      */
     //show book by language code
-    public List<Book> BookFilteredWithTypeAndLanguage(BookType type, Language language){
-
-        JDBCBookRepository bookRepository = new JDBCBookRepository();
+    public List<Book> bookFilteredWithTypeAndLanguage(BookType type, Language language){
 
         try {
             List<Book> books = bookRepository.getBooksByTypeAndLanguage(type, language);
@@ -99,8 +92,6 @@ public class DataBookController {
      */
     public boolean addBook(Book book){
 
-        JDBCBookRepository bookRepository = new JDBCBookRepository();
-
         try {
             bookRepository.AddBook(book);
             return true;
@@ -119,10 +110,8 @@ public class DataBookController {
      */
     public boolean updateBook(int id, Book book){
 
-        JDBCBookRepository bookRepository = new JDBCBookRepository();
-
         try {
-            bookRepository.UpdateBook(id, book);
+            bookRepository.updateBook(id, book);
             return true;
         }
         catch (BookyDatabaseException e) {
@@ -135,12 +124,10 @@ public class DataBookController {
      * Show/print the book with given id
      * @param id of the book to be shown.
      */
-    public Book ShowBookById(int id){
-        JDBCBookRepository bookRepository = new JDBCBookRepository();
+    public Book showBookById(int id){
 
         try {
-            Book book = bookRepository.GetBookById(id);
-//            logger.info(book.toString());
+            Book book = bookRepository.getBookById(id);
             return book;
 
         } catch (BookyDatabaseException e) {
@@ -154,9 +141,7 @@ public class DataBookController {
      * @param id of the book who should be deleted from the DB
      * @throws BookyDatabaseException
      */
-    public boolean DeleteBook(int id){
-
-        JDBCBookRepository bookRepository = new JDBCBookRepository();
+    public boolean deleteBook(int id){
 
         try{
             bookRepository.deleteBook(id);
