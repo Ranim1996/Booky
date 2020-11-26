@@ -20,9 +20,7 @@ public class JDBCBookRepository  extends JDBCRepository{
 
         String sql = "SELECT * FROM book";
 
-        Statement statement = connection.createStatement();
-
-        try {
+        try (Statement statement = connection.createStatement()){
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
 
@@ -42,13 +40,11 @@ public class JDBCBookRepository  extends JDBCRepository{
             }
 
             connection.close();
-            statement.close();
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read books from the database.",throwable);
         }finally {
             connection.close();
-            statement.close();
         }
         return books;
     }
@@ -63,9 +59,7 @@ public class JDBCBookRepository  extends JDBCRepository{
 
         String sql = "SELECT * FROM book WHERE language_code = ?";
 
-        PreparedStatement statement = connection.prepareStatement(sql);
-
-        try {
+        try (PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, language.getCode()); // set language_code parameter
             ResultSet resultSet = statement.executeQuery();
 
@@ -86,13 +80,11 @@ public class JDBCBookRepository  extends JDBCRepository{
 
             }
             connection.close();
-            statement.close();
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read books from the database.",throwable);
         }finally {
             connection.close();
-            statement.close();
         }
 
         return filtered;
@@ -108,9 +100,7 @@ public class JDBCBookRepository  extends JDBCRepository{
 
         String sql = "SELECT * FROM book WHERE bookType = ?";
 
-        PreparedStatement statement = connection.prepareStatement(sql);
-
-        try {
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, type.name()); // set type parameter
             ResultSet resultSet = statement.executeQuery();
 
@@ -132,13 +122,11 @@ public class JDBCBookRepository  extends JDBCRepository{
             }
 
             connection.close();
-            statement.close();
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read books from the database.",throwable);
         }finally {
-            if (connection != null) connection.close();
-            if (statement != null) statement.close();
+            connection.close();
         }
         return filtered;
     }
@@ -154,9 +142,7 @@ public class JDBCBookRepository  extends JDBCRepository{
 
         String sql = "SELECT * FROM book WHERE bookType = ? AND language_code = ?";
 
-        PreparedStatement statement = connection.prepareStatement(sql);
-
-        try {
+        try (PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, type.name()); // set type parameter
             statement.setString(2, language.getCode()); // set type parameter
 
@@ -181,13 +167,11 @@ public class JDBCBookRepository  extends JDBCRepository{
             }
 
             connection.close();
-            statement.close();
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read books from the database.",throwable);
         }finally {
             connection.close();
-            statement.close();
         }
         return filtered;
     }
@@ -203,9 +187,7 @@ public class JDBCBookRepository  extends JDBCRepository{
 
         String sql = "SELECT * FROM language WHERE code in (select language_code from book)";
 
-        Statement statement = connection.createStatement();
-
-        try {
+        try (Statement statement = connection.createStatement()){
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 String name = resultSet.getString("name");
@@ -216,13 +198,10 @@ public class JDBCBookRepository  extends JDBCRepository{
 
             connection.commit();
             connection.close();
-            statement.close();
-
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read languages from the database.",throwable);
         }finally {
-            connection.close();
             connection.close();
         }
         return  languages;
@@ -235,9 +214,7 @@ public class JDBCBookRepository  extends JDBCRepository{
         String sql = "INSERT INTO book ( bookName, authorName, bookType, describtion, time, language_code) " +
                 "VALUES (?,?,?,?,?,?) ";
 
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-        try {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setString(1, book.getBookName());
             preparedStatement.setString(2, book.getAuthorName());
@@ -256,7 +233,6 @@ public class JDBCBookRepository  extends JDBCRepository{
                 int bookId = resultSet.getInt("ID");
                 connection.commit();
                 connection.close();
-                statement.close();
             } else {
                 throw  new BookyDatabaseException("Cannot get the id of the new book.");
             }
@@ -265,7 +241,6 @@ public class JDBCBookRepository  extends JDBCRepository{
             throw  new BookyDatabaseException("Cannot create new book.", throwable);
         }finally {
             connection.close();
-            preparedStatement.close();
         }
     }
 
@@ -277,9 +252,7 @@ public class JDBCBookRepository  extends JDBCRepository{
 
         String sql = "SELECT * FROM book WHERE id = ?";
 
-        PreparedStatement statement = connection.prepareStatement(sql);
-
-        try {
+        try (PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setInt(1, id); // set id parameter
             ResultSet resultSet = statement.executeQuery();
             if (!resultSet.next()){
@@ -294,7 +267,6 @@ public class JDBCBookRepository  extends JDBCRepository{
                 String languageCode = resultSet.getString("language_code");
 
                 connection.close();
-                statement.close();
 
                 Language language = languageRepository.getLanguageByCode(languageCode);
                 return new Book(0,bookName,authorName,type, describtion, time, language);
@@ -303,7 +275,6 @@ public class JDBCBookRepository  extends JDBCRepository{
             throw new BookyDatabaseException("Cannot read books from the database.",throwable);
         }finally {
             connection.close();
-            statement.close();
         }
 
     }
@@ -315,9 +286,8 @@ public class JDBCBookRepository  extends JDBCRepository{
         String sql = "UPDATE book SET bookName = ? ,authorName = ? ,bookType = ?," +
                 "describtion = ? ,time = ? ,language_code = ? WHERE id = ?";
 
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-        try {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setString(1, book.getBookName());
             preparedStatement.setString(2, book.getAuthorName());
@@ -331,13 +301,11 @@ public class JDBCBookRepository  extends JDBCRepository{
             preparedStatement.executeUpdate();
             connection.commit();
             connection.close();
-            preparedStatement.close();
 
         } catch (SQLException throwable) {
             throw  new BookyDatabaseException("Cannot update book.", throwable);
         }finally {
             connection.close();
-            preparedStatement.close();
         }
     }
 
@@ -347,20 +315,16 @@ public class JDBCBookRepository  extends JDBCRepository{
 
         String sql = "Delete FROM book where id = ?";
 
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-        try {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             preparedStatement.setInt(1,bId);
             preparedStatement.executeUpdate();
             connection.commit();
             connection.close();
-            preparedStatement.close();
         }
         catch (SQLException throwable){
             throw  new BookyDatabaseException("Cannot delete book.", throwable);
         }finally {
             connection.close();
-            preparedStatement.close();
         }
 
     }

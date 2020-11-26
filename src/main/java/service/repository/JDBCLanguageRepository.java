@@ -21,9 +21,7 @@ public class JDBCLanguageRepository extends JDBCRepository{
 
         String sql = "SELECT * FROM language WHERE code = ?";
 
-        PreparedStatement statement = connection.prepareStatement(sql);
-
-        try {
+        try (PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, languageCode); // set language_code parameter
             ResultSet resultSet = statement.executeQuery();
             if (!resultSet.next()){
@@ -33,14 +31,12 @@ public class JDBCLanguageRepository extends JDBCRepository{
             } else {
                 String name = resultSet.getString("name");
                 connection.close();
-                statement.close();
                 return new Language(languageCode, name);
             }
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read Language from the database.",throwable);
         }finally {
             connection.close();
-            statement.close();
         }
     }
 
@@ -53,9 +49,8 @@ public class JDBCLanguageRepository extends JDBCRepository{
 
         String sql = "SELECT * FROM language";
 
-        Statement statement = connection.createStatement();
 
-        try {
+        try (Statement statement = connection.createStatement()){
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 String code = resultSet.getString("code");
@@ -64,13 +59,11 @@ public class JDBCLanguageRepository extends JDBCRepository{
                 languages.add(language);
             }
             connection.close();
-            statement.close();
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read languages from the database.",throwable);
         }finally {
             connection.close();
-            statement.close();
         }
         return languages;
     }

@@ -21,9 +21,7 @@ public class JDBCCountryRepository extends JDBCRepository{
 
         String sql = "SELECT * FROM country WHERE code = ?";
 
-        PreparedStatement statement = connection.prepareStatement(sql);
-
-        try {
+        try (PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, countryCode); // set country_code parameter
             ResultSet resultSet = statement.executeQuery();
             if (!resultSet.next()){
@@ -33,14 +31,12 @@ public class JDBCCountryRepository extends JDBCRepository{
             } else {
                 String name = resultSet.getString("name");
                 connection.close();
-                statement.close();
                 return new Country(countryCode, name);
             }
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read country from the database.",throwable);
         }finally {
             connection.close();
-            statement.close();
         }
     }
 
@@ -52,9 +48,7 @@ public class JDBCCountryRepository extends JDBCRepository{
 
         String sql = "SELECT * FROM country";
 
-        Statement statement = connection.createStatement();
-
-        try {
+        try (Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 String code = resultSet.getString("code");
@@ -63,13 +57,11 @@ public class JDBCCountryRepository extends JDBCRepository{
                 countries.add(country);
             }
             connection.close();
-            statement.close();
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read countries from the database.",throwable);
         }finally {
             connection.close();
-            statement.close();
         }
         return countries;
     }

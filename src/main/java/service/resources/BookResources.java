@@ -70,7 +70,7 @@ public class BookResources {
     //delete book with specific id
     @DELETE //DELETE at http://localhost:9090/booky/books/3
     @Path("{id}")
-    @RolesAllowed("ADMIN")
+    @RolesAllowed("Admin")
     public Response deleteBook(@PathParam("id") int bID) {
 
         bookController.deleteBook(bID);
@@ -83,7 +83,7 @@ public class BookResources {
     @POST //POST at http://localhost:9090/booky/books/
     @Consumes(MediaType.APPLICATION_JSON)
     @PermitAll
-    @RolesAllowed("ADMIN")
+    @RolesAllowed("Admin")
     public Response createBook(Book b) {
 
         if (!bookController.addBook(b)){
@@ -102,7 +102,7 @@ public class BookResources {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("{id}")
     @PermitAll
-    @RolesAllowed("ADMIN")
+    @RolesAllowed("Admin")
     public Response updateBook(@PathParam("id") int id,  Book b) {
 
         if (bookController.updateBook(id, b)){
@@ -136,7 +136,7 @@ public class BookResources {
     @GET //GET at http://localhost:9090/booky/books/MyList
     @Path("MyList")
     @Produces(MediaType.APPLICATION_JSON)
-    @PermitAll
+    @RolesAllowed("Reader")
     public Response getLikedBooksByUser(@QueryParam("id") int userId) {
 
         List<Book> books;
@@ -151,7 +151,7 @@ public class BookResources {
     @DELETE //GET at http://localhost:9090/booky/books/MyList
     @Path("MyList/{id}/user/{uId}")
     @Produces(MediaType.APPLICATION_JSON)
-    @PermitAll
+    @RolesAllowed("Reader")
     public Response removeBook(@PathParam("id") int bId, @PathParam("uId") int uId) {
         
         likeController.deleteBook(bId, uId);

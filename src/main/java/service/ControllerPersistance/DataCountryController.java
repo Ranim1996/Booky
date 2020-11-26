@@ -1,7 +1,5 @@
 package service.ControllerPersistance;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import service.model.Country;
 import service.repository.BookyDatabaseException;
 import service.repository.JDBCCountryRepository;

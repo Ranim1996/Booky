@@ -21,9 +21,7 @@ public class JDBCLikeRepository extends JDBCRepository {
                 "FROM ((users INNER JOIN likes l ON users.id = l.userId) INNER JOIN book b ON l.bookId = b.id) " +
                 "GROUP BY l.id";
 
-        PreparedStatement statement = connection.prepareStatement(sql);
-
-        try {
+        try (PreparedStatement statement = connection.prepareStatement(sql)){
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()){
@@ -36,13 +34,11 @@ public class JDBCLikeRepository extends JDBCRepository {
 
             }
             connection.close();
-            statement.close();
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read likes from the database.",throwable);
         }finally {
             connection.close();
-            statement.close();
         }
         return likes;
     }
@@ -58,9 +54,7 @@ public class JDBCLikeRepository extends JDBCRepository {
                 "FROM ((users INNER JOIN likes l ON users.id = l.userId) INNER JOIN book b ON l.bookId = b.id) " +
                 "WHERE users.id = ? AND status = 0 GROUP BY l.id";
 
-        PreparedStatement statement = connection.prepareStatement(sql);
-
-        try {
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, uId);
 
             ResultSet resultSet = statement.executeQuery();
@@ -77,15 +71,12 @@ public class JDBCLikeRepository extends JDBCRepository {
                 books.add(book);
             }
             connection.close();
-            statement.close();
-
             return books;
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read likes from the database.",throwable);
         }finally {
             connection.close();
-            statement.close();
         }
     }
 
@@ -97,9 +88,7 @@ public class JDBCLikeRepository extends JDBCRepository {
         String sql = "INSERT INTO likes (bookId, userId) SELECT * FROM (SELECT ?,?) AS tmp " +
                 "WHERE NOT EXISTS (SELECT userId FROM likes WHERE userId = ? AND bookId = ?) LIMIT 1";
 
-       PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-       try {
+       try (PreparedStatement preparedStatement = connection.prepareStatement(sql)){
            preparedStatement.setInt(1, like.getBookId());
            preparedStatement.setInt(2, like.getUserId());
            preparedStatement.setInt(3, like.getUserId());
@@ -108,13 +97,11 @@ public class JDBCLikeRepository extends JDBCRepository {
             preparedStatement.executeUpdate();
             connection.commit();
             connection.close();
-           preparedStatement.close();
 
        } catch (SQLException throwable) {
             throw  new BookyDatabaseException("Cannot add like.", throwable);
         }finally {
            connection.close();
-           preparedStatement.close();
        }
     }
 
@@ -125,22 +112,18 @@ public class JDBCLikeRepository extends JDBCRepository {
 
         String sql = "Delete FROM likes where bookId = ? AND userId = ?";
 
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-        try {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             preparedStatement.setInt(1,bId);
             preparedStatement.setInt(2,uId);
 
             preparedStatement.executeUpdate();
             connection.commit();
             connection.close();
-            preparedStatement.close();
         }
         catch (SQLException throwable){
             throw  new BookyDatabaseException("Cannot delete book.", throwable);
         }finally {
             connection.close();
-            preparedStatement.close();
         }
     }
 
