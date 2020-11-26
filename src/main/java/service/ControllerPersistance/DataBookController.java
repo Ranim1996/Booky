@@ -27,7 +27,7 @@ public class DataBookController {
             return books;
         }
         catch (BookyDatabaseException | SQLException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             return null;
         }
     }
@@ -44,7 +44,7 @@ public class DataBookController {
             return books;
         }
         catch (BookyDatabaseException | SQLException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             return null;
         }
     }
@@ -61,7 +61,7 @@ public class DataBookController {
             return books;
         }
         catch (BookyDatabaseException | SQLException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             return null;
         }
     }
@@ -81,7 +81,7 @@ public class DataBookController {
             return books;
         }
         catch (BookyDatabaseException | SQLException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             return null;
         }
     }
@@ -98,7 +98,7 @@ public class DataBookController {
             return true;
         }
         catch (BookyDatabaseException | SQLException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             return false;
         }
     }
@@ -132,7 +132,7 @@ public class DataBookController {
             return book;
 
         } catch (BookyDatabaseException | SQLException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             return null;
         }
     }
@@ -149,7 +149,7 @@ public class DataBookController {
             return true;
         }
         catch (BookyDatabaseException | SQLException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
             return false;
         }
     }
