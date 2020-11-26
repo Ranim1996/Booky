@@ -38,8 +38,8 @@ public class UserResources {
             return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid email and/or password.").build();
         }
         else{
-            Users u = userController.ShowUserById(id);
-            if(userController.ShowUserById(id) != null){
+            Users u = userController.showUserById(id);
+            if(userController.showUserById(id) != null){
                 return Response.ok(u).build();
             }
             else {
