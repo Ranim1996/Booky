@@ -22,8 +22,10 @@ public class JDBCUserRepository extends JDBCRepository {
         Connection connection = this.getDataBaseConneection();
 
         String sql = "SELECT * FROM users";
+
+        Statement statement = connection.createStatement();
+
         try {
-            Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
@@ -50,6 +52,7 @@ public class JDBCUserRepository extends JDBCRepository {
             throw new BookyDatabaseException("Cannot read users from the database.",throwable);
         }finally {
             if (connection != null) connection.close();
+            if (statement != null) statement.close();
         }
         return users;
     }
@@ -61,8 +64,10 @@ public class JDBCUserRepository extends JDBCRepository {
         Connection connection = this.getDataBaseConneection();
 
         String sql = "SELECT * FROM country WHERE code in (select country_code from users)";
+
+        Statement statement = connection.createStatement();
+
         try {
-            Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 String name = resultSet.getString("name");
@@ -77,6 +82,7 @@ public class JDBCUserRepository extends JDBCRepository {
             throw new BookyDatabaseException("Cannot read countries from the database.",throwable);
         }finally {
             if (connection != null) connection.close();
+            if (statement != null) statement.close();
         }
         return  countries;
     }
@@ -89,8 +95,10 @@ public class JDBCUserRepository extends JDBCRepository {
         Connection connection = this.getDataBaseConneection();
 
         String sql = "SELECT * FROM language WHERE code in (select language_code from users)";
+
+        Statement statement = connection.createStatement();
+
         try {
-            Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 String name = resultSet.getString("name");
@@ -105,6 +113,7 @@ public class JDBCUserRepository extends JDBCRepository {
             throw new BookyDatabaseException("Cannot read languages from the database.",throwable);
         }finally {
             if (connection != null) connection.close();
+            if (statement != null) statement.close();
         }
         return  languages;
     }
@@ -116,8 +125,9 @@ public class JDBCUserRepository extends JDBCRepository {
 
         String sql = "SELECT * FROM users WHERE id = ?";
 
+        PreparedStatement statement = connection.prepareStatement(sql);
+
         try {
-            PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id); // set id parameter
             ResultSet resultSet = statement.executeQuery();
             if (!resultSet.next()){
@@ -146,6 +156,7 @@ public class JDBCUserRepository extends JDBCRepository {
             throw new BookyDatabaseException("Cannot read users from the database.",throwable);
         }finally {
             if (connection != null) connection.close();
+            if (statement != null) statement.close();
         }
     }
 
@@ -157,9 +168,10 @@ public class JDBCUserRepository extends JDBCRepository {
         String sql = "UPDATE users SET firstName = ? ,lastName = ? , userType = ?," +
                 "email = ? ,password = ?, phoneNumber = ?, country_code = ?, language_code = ?, " +
                 "dateOfBirth = ? WHERE id = ?";
-        try {
 
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+        try {
             preparedStatement.setString(1, user.getFirstName());
             preparedStatement.setString(2, user.getLastName());
             preparedStatement.setString(3, user.getUsertype().name());
@@ -181,6 +193,7 @@ public class JDBCUserRepository extends JDBCRepository {
             throw  new BookyDatabaseException("Cannot update user information.", throwable);
         }finally {
             if (connection != null) connection.close();
+            if (preparedStatement != null) preparedStatement.close();
         }
     }
 
@@ -191,8 +204,9 @@ public class JDBCUserRepository extends JDBCRepository {
 
         String sql = "SELECT * FROM users WHERE userType = ?";
 
+        PreparedStatement statement = connection.prepareStatement(sql);
+
         try {
-            PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, userType.name()); // set usertype parameter
             ResultSet resultSet = statement.executeQuery();
             if (!resultSet.next()){
@@ -221,6 +235,7 @@ public class JDBCUserRepository extends JDBCRepository {
             throw new BookyDatabaseException("Cannot read users from the database.",throwable);
         }finally {
             if (connection != null) connection.close();
+            if (statement != null) statement.close();
         }
     }
 
@@ -233,10 +248,9 @@ public class JDBCUserRepository extends JDBCRepository {
         String sql = "INSERT INTO users ( firstName, lastName, userType, email, password, phoneNumber, country_code, " +
                 "language_code, dateOfBirth) VALUES (?,?,?,?,?,?,?,?,?) ";
 
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
         try {
-
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
             preparedStatement.setString(1, user.getFirstName());
             preparedStatement.setString(2, user.getLastName());
             preparedStatement.setString(3, type);
@@ -255,6 +269,7 @@ public class JDBCUserRepository extends JDBCRepository {
             throw  new BookyDatabaseException("Cannot create new user.", throwable);
         }finally {
             if (connection != null) connection.close();
+            if (preparedStatement != null) preparedStatement.close();
         }
     }
 
