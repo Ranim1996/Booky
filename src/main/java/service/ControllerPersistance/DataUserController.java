@@ -22,7 +22,6 @@ public class DataUserController {
         try {
             Collection<Users> users = usersRepository.getUsers();
         } catch (BookyDatabaseException | SQLException e) {
-            e.printStackTrace();
         }
     }
 
