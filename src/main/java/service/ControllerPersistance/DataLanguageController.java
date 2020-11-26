@@ -18,7 +18,6 @@ public class DataLanguageController {
             Collection<Language> languages = languagesRepository.getLanguages();
         }
         catch (BookyDatabaseException | SQLException e) {
-            e.printStackTrace();
         }
     }
 
@@ -33,7 +32,6 @@ public class DataLanguageController {
             return languagesRepository.getLanguageByCode(code);
         }
         catch (BookyDatabaseException | SQLException e) {
-            e.printStackTrace();
             return null;
         }
     }

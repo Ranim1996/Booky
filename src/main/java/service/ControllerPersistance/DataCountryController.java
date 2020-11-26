@@ -19,7 +19,6 @@ public class DataCountryController {
             Collection<Country> countries = countriesRepository.getCountries();
         }
         catch (BookyDatabaseException | SQLException e) {
-            e.printStackTrace();
         }
     }
 
@@ -34,7 +33,6 @@ public class DataCountryController {
             Country country = countriesRepository.getCountryByCode("USA");
         }
         catch (BookyDatabaseException | SQLException e) {
-            e.printStackTrace();
         }
     }
 
