@@ -28,10 +28,12 @@ public class JDBCCountryRepository extends JDBCRepository{
             ResultSet resultSet = statement.executeQuery();
             if (!resultSet.next()){
                 connection.close();
+                statement.close();
                 throw new BookyDatabaseException("Country with code " + countryCode + " cannot be found");
             } else {
                 String name = resultSet.getString("name");
                 connection.close();
+                statement.close();
                 return new Country(countryCode, name);
             }
         } catch (SQLException throwable) {
@@ -61,6 +63,7 @@ public class JDBCCountryRepository extends JDBCRepository{
                 countries.add(country);
             }
             connection.close();
+            statement.close();
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read countries from the database.",throwable);

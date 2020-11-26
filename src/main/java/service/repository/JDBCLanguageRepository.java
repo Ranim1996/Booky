@@ -28,10 +28,12 @@ public class JDBCLanguageRepository extends JDBCRepository{
             ResultSet resultSet = statement.executeQuery();
             if (!resultSet.next()){
                 connection.close();
+                statement.close();
                 throw new BookyDatabaseException("Language with code " + languageCode + " cannot be found");
             } else {
                 String name = resultSet.getString("name");
                 connection.close();
+                statement.close();
                 return new Language(languageCode, name);
             }
         } catch (SQLException throwable) {
@@ -62,6 +64,7 @@ public class JDBCLanguageRepository extends JDBCRepository{
                 languages.add(language);
             }
             connection.close();
+            statement.close();
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read languages from the database.",throwable);

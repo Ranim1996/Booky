@@ -46,6 +46,7 @@ public class JDBCUserRepository extends JDBCRepository {
                 users.add(user);
             }
             connection.close();
+            statement.close();
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read users from the database.",throwable);
@@ -76,6 +77,7 @@ public class JDBCUserRepository extends JDBCRepository {
             }
             connection.commit();
             connection.close();
+            statement.close();
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read countries from the database.",throwable);
@@ -107,6 +109,7 @@ public class JDBCUserRepository extends JDBCRepository {
             }
             connection.commit();
             connection.close();
+            statement.close();
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read languages from the database.",throwable);
@@ -145,6 +148,7 @@ public class JDBCUserRepository extends JDBCRepository {
                 String countryCode = resultSet.getString("country_code");
 
                 connection.close();
+                statement.close();
 
                 Language language = languageRepository.getLanguageByCode(languageCode);
                 Country country = countryRepository.getCountryByCode(countryCode);
@@ -187,6 +191,7 @@ public class JDBCUserRepository extends JDBCRepository {
             preparedStatement.executeUpdate();
             connection.commit();
             connection.close();
+            preparedStatement.close();
 
         } catch (SQLException throwable) {
             throw  new BookyDatabaseException("Cannot update user information.", throwable);
@@ -224,6 +229,7 @@ public class JDBCUserRepository extends JDBCRepository {
                 String countryCode = resultSet.getString("country_code");
 
                 connection.close();
+                statement.close();
 
                 Language language = languageRepository.getLanguageByCode(languageCode);
                 Country country = countryRepository.getCountryByCode(countryCode);
@@ -263,6 +269,7 @@ public class JDBCUserRepository extends JDBCRepository {
             preparedStatement.executeUpdate();
             connection.commit();
             connection.close();
+            preparedStatement.close();
 
         } catch (SQLException throwable) {
             throw  new BookyDatabaseException("Cannot create new user.", throwable);

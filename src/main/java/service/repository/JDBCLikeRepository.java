@@ -36,6 +36,7 @@ public class JDBCLikeRepository extends JDBCRepository {
 
             }
             connection.close();
+            statement.close();
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read likes from the database.",throwable);
@@ -76,6 +77,7 @@ public class JDBCLikeRepository extends JDBCRepository {
                 books.add(book);
             }
             connection.close();
+            statement.close();
 
             return books;
 
@@ -106,6 +108,7 @@ public class JDBCLikeRepository extends JDBCRepository {
             preparedStatement.executeUpdate();
             connection.commit();
             connection.close();
+           preparedStatement.close();
 
        } catch (SQLException throwable) {
             throw  new BookyDatabaseException("Cannot add like.", throwable);
@@ -131,6 +134,7 @@ public class JDBCLikeRepository extends JDBCRepository {
             preparedStatement.executeUpdate();
             connection.commit();
             connection.close();
+            preparedStatement.close();
         }
         catch (SQLException throwable){
             throw  new BookyDatabaseException("Cannot delete book.", throwable);
