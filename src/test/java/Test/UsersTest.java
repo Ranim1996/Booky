@@ -14,7 +14,7 @@ import service.model.Users;
 public class UsersTest {
 
     @Test //check whether user info are correct
-    public void NewCountryTest()
+    void NewCountryTest()
     {
         Country syria = new Country("SY", "Syria");
         Language arabic = new Language("AR", "Arabic");
@@ -35,10 +35,10 @@ public class UsersTest {
     }
 
     @Rule // this rule is added to throw exceptions when its needed
-    public ExpectedException thrown = ExpectedException.none();
+    ExpectedException thrown = ExpectedException.none();
 
     @Test // user first name null
-    public void getUserFirstNameWithNullValue() {
+    void getUserFirstNameWithNullValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("User first name must not be null");
 
@@ -47,7 +47,7 @@ public class UsersTest {
     }
 
     @Test // user first name string is empty
-    public void getUserFirstNameWithEmptyValue() {
+    void getUserFirstNameWithEmptyValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("User first name must not be empty");
 
@@ -56,7 +56,7 @@ public class UsersTest {
     }
 
     @Test // user last name null
-    public void getUserLastNameWithNullValue() {
+    void getUserLastNameWithNullValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("User last name must not be null");
 
@@ -65,7 +65,7 @@ public class UsersTest {
     }
 
     @Test // user last name string is empty
-    public void getUserLastNameWithEmptyValue() {
+    void getUserLastNameWithEmptyValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("User last name must not be empty");
 
@@ -74,7 +74,7 @@ public class UsersTest {
     }
 
     @Test // user email null
-    public void getUserEmailWithNullValue() {
+    void getUserEmailWithNullValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Email must not be null");
 
@@ -83,7 +83,7 @@ public class UsersTest {
     }
 
     @Test // user email string is empty
-    public void getUserEmailWithEmptyValue() {
+    void getUserEmailWithEmptyValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Email must not be empty");
 
@@ -92,7 +92,7 @@ public class UsersTest {
     }
 
     @Test // user password null
-    public void getUserPasswordWithNullValue() {
+    void getUserPasswordWithNullValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("password must not be null");
 
@@ -101,7 +101,7 @@ public class UsersTest {
     }
 
     @Test // user password string is empty
-    public void getUserPasswordWithEmptyValue() {
+    void getUserPasswordWithEmptyValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("password must not be empty");
 
@@ -110,7 +110,7 @@ public class UsersTest {
     }
 
     @Test // user date birth null
-    public void getUserDateBirthWithNullValue() {
+    void getUserDateBirthWithNullValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("User date birth must not be null");
 
@@ -119,7 +119,7 @@ public class UsersTest {
     }
 
     @Test // user date birth string is empty
-    public void getUserDateBirthWithEmptyValue() {
+    void getUserDateBirthWithEmptyValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("User date birth must not be empty");
 
@@ -128,7 +128,7 @@ public class UsersTest {
     }
 
     @Test // user type null
-    public void getUserTypeWithNullValue() {
+    void getUserTypeWithNullValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("User type must not be null");
 
@@ -137,7 +137,7 @@ public class UsersTest {
     }
 
     @Test // user phone number null
-    public void getUserPhoneNumberWithNullValue() {
+    void getUserPhoneNumberWithNullValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Phone number must not be null");
 
@@ -146,7 +146,7 @@ public class UsersTest {
     }
 
     @Test // user phone number string is empty
-    public void getUserPhoneNumberWithEmptyValue() {
+    void getUserPhoneNumberWithEmptyValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Phone number must not be empty");
 
@@ -155,7 +155,7 @@ public class UsersTest {
     }
 
     @Test // user language null
-    public void getUserLanguageWithNullValue() {
+    void getUserLanguageWithNullValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("User language must not be null");
         Users u= new Users();
@@ -163,7 +163,7 @@ public class UsersTest {
     }
 
     @Test // user country null
-    public void getUserCountryWithNullValue() {
+    void getUserCountryWithNullValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("User country must not be null");
         Users u= new Users();

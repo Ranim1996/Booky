@@ -11,7 +11,7 @@ import service.model.Country;
 public class CountryTest {
 
     @Test //check whether country info are correct
-    public void NewCountryTest()
+    void NewCountryTest()
     {
         Country c = new Country("SY", "Syria");
 
@@ -20,10 +20,10 @@ public class CountryTest {
     }
 
     @Rule // this rule is added to throw exceptions when its needed
-    public ExpectedException thrown = ExpectedException.none();
+    ExpectedException thrown = ExpectedException.none();
 
     @Test // country name null
-    public void getCountryNameWithNullValue() {
+    void getCountryNameWithNullValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Country name must not be null");
 
@@ -32,7 +32,7 @@ public class CountryTest {
     }
 
     @Test // country name string is empty
-    public void getCountryNameWithEmptyValue() {
+    void getCountryNameWithEmptyValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Country name must not be empty");
 
@@ -41,7 +41,7 @@ public class CountryTest {
     }
 
     @Test // country code null
-    public void getCountryCodeWithNullValue() {
+    void getCountryCodeWithNullValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Country code must not be null");
 
@@ -50,7 +50,7 @@ public class CountryTest {
     }
 
     @Test // country code string is empty
-    public void getCountryCodeWithEmptyValue() {
+    void getCountryCodeWithEmptyValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Country code must not be empty");
 

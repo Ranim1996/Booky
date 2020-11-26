@@ -11,7 +11,7 @@ import service.model.Language;
 public class LanguageTest {
 
     @Test //check whether language info are correct
-    public void NewCountryTest()
+    void NewCountryTest()
     {
         Language l = new Language("AR", "Arabic");
 
@@ -20,10 +20,10 @@ public class LanguageTest {
     }
 
     @Rule // this rule is added to throw exceptions when its needed
-    public ExpectedException thrown = ExpectedException.none();
+    ExpectedException thrown = ExpectedException.none();
 
     @Test // language name null
-    public void getLanguageNameWithNullValue() {
+    void getLanguageNameWithNullValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Language name must not be null");
 
@@ -32,7 +32,7 @@ public class LanguageTest {
     }
 
     @Test // language name string is empty
-    public void getLanguageNameWithEmptyValue() {
+    void getLanguageNameWithEmptyValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Language name must not be empty");
 
@@ -41,7 +41,7 @@ public class LanguageTest {
     }
 
     @Test // language code null
-    public void getLanguageCodeWithNullValue() {
+    void getLanguageCodeWithNullValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Langauge code must not be null");
 
@@ -50,15 +50,13 @@ public class LanguageTest {
     }
 
     @Test // language code string is empty
-    public void getLanguageCodeWithEmptyValue() {
+    void getLanguageCodeWithEmptyValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Language code must not be empty");
 
         Language l= new Language();
         l.setCode(" ");
     }
-
-
 
 }
 

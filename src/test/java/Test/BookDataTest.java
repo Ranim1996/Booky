@@ -17,7 +17,7 @@ import java.util.List;
 public class BookDataTest {
 
     @Test // test the size of the array
-    public void AddToLanguageList(){
+    void AddToLanguageList(){
         List<Language> languages = new ArrayList<>();
 
         Language l1 = new Language("AR", "Arabic");
@@ -33,7 +33,7 @@ public class BookDataTest {
     }
 
     @Test // test the size of book array
-    public void AddToBookList(){
+    void AddToBookList(){
         List<Language> languages = new ArrayList<>();
         List<Book> books = new ArrayList<>();
 
@@ -53,7 +53,7 @@ public class BookDataTest {
     }
 
     @Test // test get book by language
-    public void getBookByLanguage(){
+    void getBookByLanguage(){
         List<Language> languages = new ArrayList<>();
         List<Book> books = new ArrayList<>();
 
@@ -73,7 +73,7 @@ public class BookDataTest {
     }
 
     @Test // test get book by type
-    public void getBookByType(){
+    void getBookByType(){
         List<Language> languages = new ArrayList<>();
         List<Book> books = new ArrayList<>();
 
@@ -93,7 +93,7 @@ public class BookDataTest {
     }
 
     @Test // test get book id
-    public void getBookId(){
+    void getBookId(){
         List<Language> languages = new ArrayList<>();
         List<Book> books = new ArrayList<>();
 
@@ -113,7 +113,7 @@ public class BookDataTest {
     }
 
     @Test // test delete book
-    public void deleteBook(){
+    void deleteBook(){
 
         List<Language> languages = new ArrayList<>();
         List<Book> books = new ArrayList<>();
@@ -136,10 +136,10 @@ public class BookDataTest {
     }
 
     @Rule // this rule is added to throw exceptions when its needed
-    public ExpectedException thrown = ExpectedException.none();
+    ExpectedException thrown = ExpectedException.none();
 
     @Test // test book object must not be null
-    public void getBook(){
+    void getBook(){
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Book Object must not be null");
 

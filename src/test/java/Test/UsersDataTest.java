@@ -15,7 +15,7 @@ import java.util.List;
 public class UsersDataTest {
 
     @Test // test the size of the array languages
-    public void AddToLanguageList(){
+    void AddToLanguageList(){
         List<Language> languages = new ArrayList<>();
 
         Language l1 = new Language("AR", "Arabic");
@@ -31,7 +31,7 @@ public class UsersDataTest {
     }
 
     @Test // test the size of the array country
-    public void AddToCountryList(){
+    void AddToCountryList(){
         List<Country> countries = new ArrayList<>();
 
         Country c1 = new Country("USA", "America");
@@ -47,7 +47,7 @@ public class UsersDataTest {
     }
 
     @Test // test the size of the array
-    public void AddToUsersList() {
+    void AddToUsersList() {
         List<Language> languages = new ArrayList<>();
         List<Country> countries = new ArrayList<>();
         List<Users> users = new ArrayList<>();
@@ -79,7 +79,7 @@ public class UsersDataTest {
     }
 
     @Test // test get user by language
-    public void getUserByLanguage(){
+    void getUserByLanguage(){
         List<Language> languages = new ArrayList<>();
         List<Country> countries = new ArrayList<>();
         List<Users> users = new ArrayList<>();
@@ -108,7 +108,7 @@ public class UsersDataTest {
     }
 
     @Test // test get user by country
-    public void getUserByCountry(){
+    void getUserByCountry(){
         List<Language> languages = new ArrayList<>();
         List<Country> countries = new ArrayList<>();
         List<Users> users = new ArrayList<>();
@@ -137,7 +137,7 @@ public class UsersDataTest {
     }
 
     @Test // test get user by type
-    public void getBookByType(){
+    void getBookByType(){
         List<Language> languages = new ArrayList<>();
         List<Country> countries = new ArrayList<>();
         List<Users> users = new ArrayList<>();
@@ -166,7 +166,7 @@ public class UsersDataTest {
     }
 
     @Test // test get user id
-    public void getUserID(){
+    void getUserID(){
         List<Language> languages = new ArrayList<>();
         List<Country> countries = new ArrayList<>();
         List<Users> users = new ArrayList<>();
@@ -195,7 +195,7 @@ public class UsersDataTest {
     }
 
     @Test // test delete user
-    public void deleteUser(){
+    void deleteUser(){
         List<Language> languages = new ArrayList<>();
         List<Country> countries = new ArrayList<>();
         List<Users> users = new ArrayList<>();
@@ -226,16 +226,14 @@ public class UsersDataTest {
     }
 
     @Rule // this rule is added to throw exceptions when its needed
-    public ExpectedException thrown = ExpectedException.none();
+    ExpectedException thrown = ExpectedException.none();
 
     @Test // test book object must not be null
-    public void getUser(){
+    void getUser(){
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("User Object must not be null");
 
         Users u = null;
     }
-
-
 
 }

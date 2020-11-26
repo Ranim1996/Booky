@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class BookTest {
 
     @Test //check whether book info are correct
-    public void NewBookTest()
+    void NewBookTest()
     {
         Language arabic = new Language("AR", "Arabic");
 
@@ -31,10 +31,10 @@ public class BookTest {
     }
 
     @Rule // this rule is added to throw exceptions when its needed
-    public ExpectedException thrown = ExpectedException.none();
+    ExpectedException thrown = ExpectedException.none();
 
     @Test // book name null
-    public void getBookNameWithNullValue() {
+    void getBookNameWithNullValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Book name must not be null");
 
@@ -43,7 +43,7 @@ public class BookTest {
     }
 
     @Test // book name string is empty
-    public void getBookNameWithEmptyValue() {
+    void getBookNameWithEmptyValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Book name must not be empty");
 
@@ -52,7 +52,7 @@ public class BookTest {
     }
 
     @Test // author name null
-    public void getAuthorNameWithNullValue() {
+    void getAuthorNameWithNullValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Author name must not be null");
 
@@ -61,7 +61,7 @@ public class BookTest {
     }
 
     @Test // author name string is empty
-    public void getAuthorNameWithEmptyValue() {
+    void getAuthorNameWithEmptyValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Author name must not be empty");
 
@@ -70,27 +70,13 @@ public class BookTest {
     }
 
     @Test // book language null
-    public void getBookLanguageWithNullValue() {
+    void getBookLanguageWithNullValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Book language must not be null required!");
 
         Book b = new Book();
         b.setLanguage_code(null);
     }
-
-
-//    @Test // we can use try catch
-//    public void BookTitleIsEmpty(){
-//        try{
-//            Language arabic = new Language("AR", "Arabic");
-//            Book b = new Book(1, "","Author1", BookType.Classics, "Info", LocalDate.now(), arabic);
-//        }
-//        catch (Exception e){
-//            fail(e);
-//        }
-//    }
-
-
 
 }
 

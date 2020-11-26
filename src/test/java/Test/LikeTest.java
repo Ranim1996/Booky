@@ -11,7 +11,7 @@ import service.model.Like;
 public class LikeTest {
 
     @Test //check whether like info are correct
-    public void NewLikeTest()
+    void NewLikeTest()
     {
         Like l = new Like(1,2,3);
 
@@ -20,10 +20,10 @@ public class LikeTest {
     }
 
     @Rule // this rule is added to throw exceptions when its needed
-    public ExpectedException thrown = ExpectedException.none();
+    ExpectedException thrown = ExpectedException.none();
 
     @Test // book id zero
-    public void getBookIdWithZeroValue() {
+    void getBookIdWithZeroValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("Book id must not be zero");
 
@@ -32,7 +32,7 @@ public class LikeTest {
     }
 
     @Test // user id zero
-    public void getUserIdWithZeroValue() {
+    void getUserIdWithZeroValue() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("User id must not be zero");
 
