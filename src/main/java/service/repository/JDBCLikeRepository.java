@@ -12,7 +12,7 @@ import java.util.List;
 public class JDBCLikeRepository extends JDBCRepository {
 
     //get all likes
-    public List<Like> getLikes() throws BookyDatabaseException {
+    public List<Like> getLikes() throws BookyDatabaseException, SQLException {
 
         List<Like> likes = new ArrayList<>();
 
@@ -41,12 +41,14 @@ public class JDBCLikeRepository extends JDBCRepository {
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read likes from the database.",throwable);
+        }finally {
+            if (connection != null) connection.close();
         }
         return likes;
     }
 
     //get likes by user id and book id
-    public List<Book> getLikedBooksByUserId(int uId) throws BookyDatabaseException {
+    public List<Book> getLikedBooksByUserId(int uId) throws BookyDatabaseException, SQLException {
 
         List<Book> books = new ArrayList<>();
 
@@ -81,11 +83,13 @@ public class JDBCLikeRepository extends JDBCRepository {
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read likes from the database.",throwable);
+        }finally {
+            if (connection != null) connection.close();
         }
     }
 
     //add like
-   public void addLike(Like like) throws BookyDatabaseException {
+   public void addLike(Like like) throws BookyDatabaseException, SQLException {
 
        Connection connection = this.getDataBaseConneection();
 
@@ -105,11 +109,13 @@ public class JDBCLikeRepository extends JDBCRepository {
 
        } catch (SQLException throwable) {
             throw  new BookyDatabaseException("Cannot add like.", throwable);
-        }
+        }finally {
+           if (connection != null) connection.close();
+       }
     }
 
     //remove book from my list
-    public void deleteBook(int bId, int uId) throws BookyDatabaseException {
+    public void deleteBook(int bId, int uId) throws BookyDatabaseException, SQLException {
 
         Connection connection = this.getDataBaseConneection();
 
@@ -125,6 +131,8 @@ public class JDBCLikeRepository extends JDBCRepository {
         }
         catch (SQLException throwable){
             throw  new BookyDatabaseException("Cannot delete book.", throwable);
+        }finally {
+            if (connection != null) connection.close();
         }
 
     }

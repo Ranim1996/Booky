@@ -15,7 +15,7 @@ import java.util.List;
 public class JDBCLanguageRepository extends JDBCRepository{
 
     //get language from data base by code
-    public Language getLanguageByCode(String languageCode) throws BookyDatabaseException {
+    public Language getLanguageByCode(String languageCode) throws BookyDatabaseException, SQLException {
         Connection connection = this.getDataBaseConneection();
         String sql = "SELECT * FROM language WHERE code = ?";
         try {
@@ -32,11 +32,13 @@ public class JDBCLanguageRepository extends JDBCRepository{
             }
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read Language from the database.",throwable);
+        }finally {
+            if (connection != null) connection.close();
         }
     }
 
     //get all languages from data base
-    public Collection<Language> getLanguages() throws BookyDatabaseException {
+    public Collection<Language> getLanguages() throws BookyDatabaseException, SQLException {
         List<Language> languages = new ArrayList<>();
 
         Connection connection = this.getDataBaseConneection();
@@ -54,6 +56,8 @@ public class JDBCLanguageRepository extends JDBCRepository{
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read languages from the database.",throwable);
+        }finally {
+            if (connection != null) connection.close();
         }
         return languages;
     }

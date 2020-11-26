@@ -6,6 +6,7 @@ import service.model.Language;
 import service.repository.BookyDatabaseException;
 import service.repository.JDBCLanguageRepository;
 
+import java.sql.SQLException;
 import java.util.Collection;
 
 public class DataLanguageController {
@@ -22,7 +23,7 @@ public class DataLanguageController {
                 logger.info(language.toString());
             }
         }
-        catch (BookyDatabaseException e) {
+        catch (BookyDatabaseException | SQLException e) {
             e.printStackTrace();
         }
     }
@@ -39,7 +40,7 @@ public class DataLanguageController {
             logger.info(language.toString());
             return language;
         }
-        catch (BookyDatabaseException e) {
+        catch (BookyDatabaseException | SQLException e) {
             e.printStackTrace();
             return null;
         }

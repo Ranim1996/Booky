@@ -30,7 +30,7 @@ public class DataUserController {
                 logger.info(user.toString());
 
             }
-        } catch (BookyDatabaseException e) {
+        } catch (BookyDatabaseException | SQLException e) {
             e.printStackTrace();
         }
     }
@@ -47,7 +47,7 @@ public class DataUserController {
             System.out.println("In user controller" + user);
             return user;
 
-        } catch (BookyDatabaseException e) {
+        } catch (BookyDatabaseException | SQLException e) {
             e.printStackTrace();
             return null;
         }
@@ -67,7 +67,7 @@ public class DataUserController {
             System.out.println("In user controller" + user);
             return user;
 
-        } catch (BookyDatabaseException e) {
+        } catch (BookyDatabaseException | SQLException e) {
             e.printStackTrace();
             return null;
         }
@@ -88,7 +88,7 @@ public class DataUserController {
             userRepository.updateUser(id, user);
             return true;
         }
-        catch (BookyDatabaseException e) {
+        catch (BookyDatabaseException | SQLException e) {
             e.printStackTrace();
             return false;
         }
@@ -111,7 +111,7 @@ public class DataUserController {
                 }
             }
 
-        } catch (BookyDatabaseException e) {
+        } catch (BookyDatabaseException | SQLException e) {
             e.printStackTrace();
         }
         return null;
@@ -174,10 +174,10 @@ public class DataUserController {
 
 
         try {
-            userRepository.AddUser(user);
+            userRepository.addUser(user);
             return true;
         }
-        catch (BookyDatabaseException e) {
+        catch (BookyDatabaseException | SQLException e) {
             e.printStackTrace();
             return false;
         }

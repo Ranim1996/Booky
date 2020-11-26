@@ -15,7 +15,7 @@ import java.util.List;
 public class JDBCCountryRepository extends JDBCRepository{
 
     //get country from data base by code
-    public Country getCountryByCode(String countryCode) throws BookyDatabaseException {
+    public Country getCountryByCode(String countryCode) throws BookyDatabaseException, SQLException {
         Connection connection = this.getDataBaseConneection();
         String sql = "SELECT * FROM country WHERE code = ?";
         try {
@@ -32,11 +32,13 @@ public class JDBCCountryRepository extends JDBCRepository{
             }
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read country from the database.",throwable);
+        }finally {
+            if (connection != null) connection.close();
         }
     }
 
     //get all countries from data base
-    public Collection<Country> getCountries() throws BookyDatabaseException {
+    public Collection<Country> getCountries() throws BookyDatabaseException, SQLException {
         List<Country> countries = new ArrayList<>();
 
         Connection connection = this.getDataBaseConneection();
@@ -54,6 +56,8 @@ public class JDBCCountryRepository extends JDBCRepository{
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read countries from the database.",throwable);
+        }finally {
+            if (connection != null) connection.close();
         }
         return countries;
     }

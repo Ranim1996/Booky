@@ -12,7 +12,7 @@ public class JDBCUserRepository extends JDBCRepository {
     JDBCCountryRepository countryRepository = new JDBCCountryRepository();
 
     //get all users from data base
-    public List<Users> getUsers() throws BookyDatabaseException {
+    public List<Users> getUsers() throws BookyDatabaseException, SQLException {
 
         Map<String, Country> countries = this.getUsedCountries();
         Map<String, Language> languages = this.getUsedLanguages();
@@ -48,12 +48,14 @@ public class JDBCUserRepository extends JDBCRepository {
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read users from the database.",throwable);
+        }finally {
+            if (connection != null) connection.close();
         }
         return users;
     }
 
     //get used countries in the db
-    private Map<String, Country> getUsedCountries() throws BookyDatabaseException {
+    private Map<String, Country> getUsedCountries() throws BookyDatabaseException, SQLException {
         Map<String, Country> countries = new HashMap<>();
 
         Connection connection = this.getDataBaseConneection();
@@ -73,12 +75,14 @@ public class JDBCUserRepository extends JDBCRepository {
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read countries from the database.",throwable);
+        }finally {
+            if (connection != null) connection.close();
         }
         return  countries;
     }
 
     //get used languages in the db
-    private Map<String, Language> getUsedLanguages() throws BookyDatabaseException {
+    private Map<String, Language> getUsedLanguages() throws BookyDatabaseException, SQLException {
 
         Map<String, Language> languages = new HashMap<>();
 
@@ -99,12 +103,14 @@ public class JDBCUserRepository extends JDBCRepository {
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read languages from the database.",throwable);
+        }finally {
+            if (connection != null) connection.close();
         }
         return  languages;
     }
 
     //get user by id
-    public Users getUserById(int id) throws BookyDatabaseException{
+    public Users getUserById(int id) throws BookyDatabaseException, SQLException {
 
         Connection connection = this.getDataBaseConneection();
 
@@ -138,11 +144,13 @@ public class JDBCUserRepository extends JDBCRepository {
             }
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read users from the database.",throwable);
+        }finally {
+            if (connection != null) connection.close();
         }
     }
 
     // update user data
-    public void updateUser(int id, Users user) throws BookyDatabaseException {
+    public void updateUser(int id, Users user) throws BookyDatabaseException, SQLException {
 
         Connection connection = this.getDataBaseConneection();
 
@@ -171,11 +179,13 @@ public class JDBCUserRepository extends JDBCRepository {
 
         } catch (SQLException throwable) {
             throw  new BookyDatabaseException("Cannot update user information.", throwable);
+        }finally {
+            if (connection != null) connection.close();
         }
     }
 
     //get user by type
-    public Users getUsersByType(UserType userType) throws BookyDatabaseException{
+    public Users getUsersByType(UserType userType) throws BookyDatabaseException, SQLException {
 
         Connection connection = this.getDataBaseConneection();
 
@@ -209,10 +219,12 @@ public class JDBCUserRepository extends JDBCRepository {
             }
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read users from the database.",throwable);
+        }finally {
+            if (connection != null) connection.close();
         }
     }
 
-    public void AddUser(Users user) throws BookyDatabaseException {
+    public void addUser(Users user) throws BookyDatabaseException, SQLException {
 
         String type = UserType.Reader.name();
 
@@ -241,6 +253,8 @@ public class JDBCUserRepository extends JDBCRepository {
 
         } catch (SQLException throwable) {
             throw  new BookyDatabaseException("Cannot create new user.", throwable);
+        }finally {
+            if (connection != null) connection.close();
         }
     }
 

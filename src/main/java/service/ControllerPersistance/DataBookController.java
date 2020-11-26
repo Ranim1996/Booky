@@ -8,6 +8,7 @@ import service.model.Language;
 import service.repository.BookyDatabaseException;
 import service.repository.JDBCBookRepository;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class DataBookController {
@@ -25,7 +26,7 @@ public class DataBookController {
             }
             return books;
         }
-        catch (BookyDatabaseException e) {
+        catch (BookyDatabaseException | SQLException e) {
             e.printStackTrace();
             return null;
         }
@@ -42,7 +43,7 @@ public class DataBookController {
             List<Book> books = bookRepository.getBooksByLanguage(language);
             return books;
         }
-        catch (BookyDatabaseException e) {
+        catch (BookyDatabaseException | SQLException e) {
             e.printStackTrace();
             return null;
         }
@@ -59,7 +60,7 @@ public class DataBookController {
             List<Book> books = bookRepository.getBooksByType(type);
             return books;
         }
-        catch (BookyDatabaseException e) {
+        catch (BookyDatabaseException | SQLException e) {
             e.printStackTrace();
             return null;
         }
@@ -79,7 +80,7 @@ public class DataBookController {
             System.out.println(books);
             return books;
         }
-        catch (BookyDatabaseException e) {
+        catch (BookyDatabaseException | SQLException e) {
             e.printStackTrace();
             return null;
         }
@@ -93,10 +94,10 @@ public class DataBookController {
     public boolean addBook(Book book){
 
         try {
-            bookRepository.AddBook(book);
+            bookRepository.addBook(book);
             return true;
         }
-        catch (BookyDatabaseException e) {
+        catch (BookyDatabaseException | SQLException e) {
             e.printStackTrace();
             return false;
         }
@@ -114,7 +115,7 @@ public class DataBookController {
             bookRepository.updateBook(id, book);
             return true;
         }
-        catch (BookyDatabaseException e) {
+        catch (BookyDatabaseException | SQLException e) {
             e.printStackTrace();
             return false;
         }
@@ -130,7 +131,7 @@ public class DataBookController {
             Book book = bookRepository.getBookById(id);
             return book;
 
-        } catch (BookyDatabaseException e) {
+        } catch (BookyDatabaseException | SQLException e) {
             e.printStackTrace();
             return null;
         }
@@ -147,7 +148,7 @@ public class DataBookController {
             bookRepository.deleteBook(id);
             return true;
         }
-        catch (BookyDatabaseException e) {
+        catch (BookyDatabaseException | SQLException e) {
             e.printStackTrace();
             return false;
         }

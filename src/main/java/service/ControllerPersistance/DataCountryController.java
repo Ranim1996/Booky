@@ -7,6 +7,7 @@ import service.repository.BookyDatabaseException;
 import service.repository.JDBCCountryRepository;
 
 
+import java.sql.SQLException;
 import java.util.Collection;
 
 public class DataCountryController {
@@ -23,7 +24,7 @@ public class DataCountryController {
                 logger.info(country.toString());
             }
         }
-        catch (BookyDatabaseException e) {
+        catch (BookyDatabaseException | SQLException e) {
             e.printStackTrace();
         }
     }
@@ -39,7 +40,7 @@ public class DataCountryController {
             Country country = countriesRepository.getCountryByCode("USA");
             logger.info(country.toString());
         }
-        catch (BookyDatabaseException e) {
+        catch (BookyDatabaseException | SQLException e) {
             e.printStackTrace();
         }
     }

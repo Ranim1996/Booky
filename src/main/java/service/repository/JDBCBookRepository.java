@@ -13,7 +13,7 @@ import java.util.*;
 public class JDBCBookRepository  extends JDBCRepository{
 
     //get all books from data base
-    public List<Book> getBooks() throws BookyDatabaseException {
+    public List<Book> getBooks() throws BookyDatabaseException, SQLException {
 
         Map<String, Language> languages = this.getUsedLanguages();
         List<Book> books = new ArrayList<>();
@@ -44,12 +44,14 @@ public class JDBCBookRepository  extends JDBCRepository{
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read books from the database.",throwable);
+        }finally {
+            if (connection != null) connection.close();
         }
         return books;
     }
 
     //get all books with the given language from data base
-    public List<Book> getBooksByLanguage(Language language) throws BookyDatabaseException {
+    public List<Book> getBooksByLanguage(Language language) throws BookyDatabaseException, SQLException {
 
         Map<String, Language> languages = this.getUsedLanguages();
         List<Book> filtered = new ArrayList<>();
@@ -61,33 +63,36 @@ public class JDBCBookRepository  extends JDBCRepository{
                 statement.setString(1, language.getCode()); // set language_code parameter
                 ResultSet resultSet = statement.executeQuery();
 
-                        while (resultSet.next()){
-                            int id = resultSet.getInt("id");
-                            String bookName = resultSet.getString("bookName");
-                            String authorName = resultSet.getString("authorName");
-                            BookType type =  BookType.valueOf(resultSet.getString("bookType"));
-                            String describtion = resultSet.getString("describtion");
-                            LocalDate time = resultSet.getDate("time").toLocalDate();
+                while (resultSet.next()){
+                    int id = resultSet.getInt("id");
+                    String bookName = resultSet.getString("bookName");
+                    String authorName = resultSet.getString("authorName");
+                    BookType type =  BookType.valueOf(resultSet.getString("bookType"));
+                    String describtion = resultSet.getString("describtion");
+                    LocalDate time = resultSet.getDate("time").toLocalDate();
 
-                            String code = resultSet.getString("language_code");
+                    String code = resultSet.getString("language_code");
 
-                            Language bLanguage = languages.get(code);
+                    Language bLanguage = languages.get(code);
 
-                            Book book = new Book(id,bookName,authorName,type, describtion, time, bLanguage);
-                            filtered.add(book);
+                    Book book = new Book(id,bookName,authorName,type, describtion, time, bLanguage);
+                    filtered.add(book);
 
-                        }
+                }
 
-                        connection.close();
+                connection.close();
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read books from the database.",throwable);
+        }finally {
+            if (connection != null) connection.close();
         }
+
         return filtered;
     }
 
     //get all books with the given type from data base
-    public List<Book> getBooksByType(BookType type) throws BookyDatabaseException {
+    public List<Book> getBooksByType(BookType type) throws BookyDatabaseException, SQLException {
 
         Map<String, Language> languages = this.getUsedLanguages();
         List<Book> filtered = new ArrayList<>();
@@ -99,34 +104,36 @@ public class JDBCBookRepository  extends JDBCRepository{
             statement.setString(1, type.name()); // set type parameter
             ResultSet resultSet = statement.executeQuery();
 
-                    while (resultSet.next()){
-                        int id = resultSet.getInt("id");
-                        String bookName = resultSet.getString("bookName");
-                        String authorName = resultSet.getString("authorName");
-                        BookType bType =  BookType.valueOf(resultSet.getString("bookType"));
-                        String describtion = resultSet.getString("describtion");
-                        LocalDate time = resultSet.getDate("time").toLocalDate();
+            while (resultSet.next()){
+                int id = resultSet.getInt("id");
+                String bookName = resultSet.getString("bookName");
+                String authorName = resultSet.getString("authorName");
+                BookType bType =  BookType.valueOf(resultSet.getString("bookType"));
+                String describtion = resultSet.getString("describtion");
+                LocalDate time = resultSet.getDate("time").toLocalDate();
 
-                        String code = resultSet.getString("language_code");
+                String code = resultSet.getString("language_code");
 
-                        Language bLanguage = languages.get(code);
+                Language bLanguage = languages.get(code);
 
-                        Book book = new Book(id,bookName,authorName,bType, describtion, time, bLanguage);
-                        filtered.add(book);
+                Book book = new Book(id,bookName,authorName,bType, describtion, time, bLanguage);
+                filtered.add(book);
 
-                    }
+            }
 
-                    connection.close();
+            connection.close();
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read books from the database.",throwable);
+        }finally {
+            if (connection != null) connection.close();
         }
         return filtered;
     }
 
 
     //get all books with the given type and language from data base
-    public List<Book> getBooksByTypeAndLanguage(BookType type, Language language) throws BookyDatabaseException {
+    public List<Book> getBooksByTypeAndLanguage(BookType type, Language language) throws BookyDatabaseException, SQLException {
 
         Map<String, Language> languages = this.getUsedLanguages();
         List<Book> filtered = new ArrayList<>();
@@ -162,6 +169,8 @@ public class JDBCBookRepository  extends JDBCRepository{
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read books from the database.",throwable);
+        }finally {
+            if (connection != null) connection.close();
         }
         return filtered;
     }
@@ -169,7 +178,7 @@ public class JDBCBookRepository  extends JDBCRepository{
 
 
     //mapping the languages
-    private Map<String, Language> getUsedLanguages() throws BookyDatabaseException {
+    private Map<String, Language> getUsedLanguages() throws BookyDatabaseException, SQLException {
         Map<String, Language> languages = new HashMap<>();
         Connection connection = this.getDataBaseConneection();
         String sql = "SELECT * FROM language WHERE code in (select language_code from book)";
@@ -189,11 +198,13 @@ public class JDBCBookRepository  extends JDBCRepository{
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read languages from the database.",throwable);
+        }finally {
+            if (connection != null) connection.close();
         }
         return  languages;
     }
 
-    public void AddBook(Book book) throws BookyDatabaseException {
+    public void addBook(Book book) throws BookyDatabaseException, SQLException {
 
         Connection connection = this.getDataBaseConneection();
 
@@ -225,10 +236,12 @@ public class JDBCBookRepository  extends JDBCRepository{
 
         } catch (SQLException throwable) {
             throw  new BookyDatabaseException("Cannot create new book.", throwable);
+        }finally {
+            if (connection != null) connection.close();
         }
     }
 
-    public Book getBookById(int id) throws BookyDatabaseException{
+    public Book getBookById(int id) throws BookyDatabaseException, SQLException {
 
         JDBCLanguageRepository languageRepository = new JDBCLanguageRepository();
 
@@ -257,11 +270,13 @@ public class JDBCBookRepository  extends JDBCRepository{
             }
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read books from the database.",throwable);
+        }finally {
+            if (connection != null) connection.close();
         }
 
     }
 
-    public void updateBook(int id, Book book) throws BookyDatabaseException {
+    public void updateBook(int id, Book book) throws BookyDatabaseException, SQLException {
 
         Connection connection = this.getDataBaseConneection();
 
@@ -285,10 +300,12 @@ public class JDBCBookRepository  extends JDBCRepository{
 
         } catch (SQLException throwable) {
             throw  new BookyDatabaseException("Cannot update book.", throwable);
+        }finally {
+            if (connection != null) connection.close();
         }
     }
 
-    public void deleteBook(int bId) throws BookyDatabaseException {
+    public void deleteBook(int bId) throws BookyDatabaseException, SQLException {
 
         Connection connection = this.getDataBaseConneection();
 
@@ -302,6 +319,8 @@ public class JDBCBookRepository  extends JDBCRepository{
         }
         catch (SQLException throwable){
             throw  new BookyDatabaseException("Cannot delete book.", throwable);
+        }finally {
+            if (connection != null) connection.close();
         }
 
     }

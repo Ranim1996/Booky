@@ -6,6 +6,7 @@ import service.repository.BookyDatabaseException;
 import service.repository.JDBCBookRepository;
 import service.repository.JDBCLikeRepository;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class DataLikeController {
@@ -23,7 +24,7 @@ public class DataLikeController {
             likeRepository.addLike(like);
             return true;
 
-        } catch (BookyDatabaseException e) {
+        } catch (BookyDatabaseException | SQLException e) {
             e.printStackTrace();
             return false;
         }
@@ -40,7 +41,7 @@ public class DataLikeController {
             List<Book> likedBooks = likeRepository.getLikedBooksByUserId(userId);
             return likedBooks;
         }
-        catch (BookyDatabaseException e) {
+        catch (BookyDatabaseException | SQLException e) {
             e.printStackTrace();
             return null;
         }
@@ -58,7 +59,7 @@ public class DataLikeController {
             likeRepository.deleteBook(id, userId);
             return true;
         }
-        catch (BookyDatabaseException e) {
+        catch (BookyDatabaseException | SQLException e) {
             e.printStackTrace();
             return false;
         }
