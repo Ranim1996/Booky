@@ -69,7 +69,7 @@ public class BookDataTest {
         books.add(b1);
         books.add(b2);
 
-        assertEquals(l1, books.contains(l1));
+        assertEquals(l1.getName(), b1.getLanguage_code().getName());
     }
 
     @Test // test get book by type

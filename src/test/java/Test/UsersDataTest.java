@@ -104,7 +104,7 @@ public class UsersDataTest {
         users.add(u1);
         users.add(u2);
 
-        assertEquals(l1, users.contains(l1));
+        assertEquals(l1.getName(), u1.getLanguage_code().getName());
     }
 
     @Test // test get user by country
@@ -133,7 +133,7 @@ public class UsersDataTest {
         users.add(u1);
         users.add(u2);
 
-        assertEquals(c1, users.contains(c1));
+        assertEquals(c1.getName(), u1.getCountry_code().getName());
     }
 
     @Test // test get user by type

@@ -127,7 +127,7 @@ public class DataUserController {
 
         Users u = getUserByEmail(email);
 
-        if(u.equals(null)){
+        if(u == null){
             return false;
         }
         if(u.getPassword().equals(password)){
