@@ -22,7 +22,6 @@ public class DataUserController {
         try {
             Collection<Users> users = usersRepository.getUsers();
         } catch (BookyDatabaseException | SQLException e) {
-            e.printStackTrace();
         }
     }
 
@@ -34,11 +33,9 @@ public class DataUserController {
         JDBCUserRepository userRepository = new JDBCUserRepository();
 
         try {
-            Users user = userRepository.getUserById(id);
-            return user;
+            return userRepository.getUserById(id);
 
         } catch (BookyDatabaseException | SQLException e) {
-            e.printStackTrace();
             return null;
         }
 
@@ -53,11 +50,9 @@ public class DataUserController {
         JDBCUserRepository userRepository = new JDBCUserRepository();
 
         try {
-            Users user = userRepository.getUsersByType(type);
-            return user;
+            return userRepository.getUsersByType(type);
 
         } catch (BookyDatabaseException | SQLException e) {
-            e.printStackTrace();
             return null;
         }
 
@@ -78,7 +73,6 @@ public class DataUserController {
             return true;
         }
         catch (BookyDatabaseException | SQLException e) {
-            e.printStackTrace();
             return false;
         }
     }
@@ -100,7 +94,6 @@ public class DataUserController {
             }
 
         } catch (BookyDatabaseException | SQLException e) {
-            e.printStackTrace();
         }
         return null;
     }
@@ -161,7 +154,6 @@ public class DataUserController {
             return true;
         }
         catch (BookyDatabaseException | SQLException e) {
-            e.printStackTrace();
             return false;
         }
     }

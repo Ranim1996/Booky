@@ -226,17 +226,6 @@ public class JDBCBookRepository  extends JDBCRepository{
             preparedStatement.executeUpdate();
             connection.commit();
 
-            String sqlID = "SELECT max(id) ID FROM book";
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sqlID);
-            if (resultSet.next()){
-                int bookId = resultSet.getInt("ID");
-                connection.commit();
-                connection.close();
-            } else {
-                throw  new BookyDatabaseException("Cannot get the id of the new book.");
-            }
-
         } catch (SQLException throwable) {
             throw  new BookyDatabaseException("Cannot create new book.", throwable);
         }finally {

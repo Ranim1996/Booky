@@ -25,7 +25,6 @@ public class DataLikeController {
             return true;
 
         } catch (BookyDatabaseException | SQLException e) {
-            e.printStackTrace();
             return false;
         }
     }
@@ -58,7 +57,6 @@ public class DataLikeController {
             return true;
         }
         catch (BookyDatabaseException | SQLException e) {
-            e.printStackTrace();
             return false;
         }
     }
