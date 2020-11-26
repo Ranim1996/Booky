@@ -112,7 +112,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
     // check the user is allowed
     private boolean isUserAllowed(Set<String> rolesSet) {
-        if (rolesSet.contains("READER") || rolesSet.contains("ADMIN")){
+        if (rolesSet.contains("Reader") || rolesSet.contains("Admin")){
             return true;
         }
         return false;

@@ -3,7 +3,6 @@ package service.repository;
 import service.model.*;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.*;
 
 public class JDBCUserRepository extends JDBCRepository {
@@ -51,8 +50,8 @@ public class JDBCUserRepository extends JDBCRepository {
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read users from the database.",throwable);
         }finally {
-            if (connection != null) connection.close();
-            if (statement != null) statement.close();
+            connection.close();
+            statement.close();
         }
         return users;
     }
@@ -81,8 +80,8 @@ public class JDBCUserRepository extends JDBCRepository {
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read countries from the database.",throwable);
         }finally {
-            if (connection != null) connection.close();
-            if (statement != null) statement.close();
+            connection.close();
+            statement.close();
         }
         return  countries;
     }
@@ -112,8 +111,8 @@ public class JDBCUserRepository extends JDBCRepository {
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read languages from the database.",throwable);
         }finally {
-            if (connection != null) connection.close();
-            if (statement != null) statement.close();
+            connection.close();
+            statement.close();
         }
         return  languages;
     }
@@ -155,8 +154,8 @@ public class JDBCUserRepository extends JDBCRepository {
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read users from the database.",throwable);
         }finally {
-            if (connection != null) connection.close();
-            if (statement != null) statement.close();
+            connection.close();
+            statement.close();
         }
     }
 
@@ -192,8 +191,8 @@ public class JDBCUserRepository extends JDBCRepository {
         } catch (SQLException throwable) {
             throw  new BookyDatabaseException("Cannot update user information.", throwable);
         }finally {
-            if (connection != null) connection.close();
-            if (preparedStatement != null) preparedStatement.close();
+            connection.close();
+            preparedStatement.close();
         }
     }
 
@@ -234,8 +233,8 @@ public class JDBCUserRepository extends JDBCRepository {
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read users from the database.",throwable);
         }finally {
-            if (connection != null) connection.close();
-            if (statement != null) statement.close();
+            connection.close();
+            statement.close();
         }
     }
 
@@ -268,8 +267,8 @@ public class JDBCUserRepository extends JDBCRepository {
         } catch (SQLException throwable) {
             throw  new BookyDatabaseException("Cannot create new user.", throwable);
         }finally {
-            if (connection != null) connection.close();
-            if (preparedStatement != null) preparedStatement.close();
+            connection.close();
+            preparedStatement.close();
         }
     }
 

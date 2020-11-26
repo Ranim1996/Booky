@@ -3,10 +3,10 @@ package service.ControllerPersistance;
 import service.model.Book;
 import service.model.Like;
 import service.repository.BookyDatabaseException;
-import service.repository.JDBCBookRepository;
 import service.repository.JDBCLikeRepository;
 
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 public class DataLikeController {
@@ -35,15 +35,13 @@ public class DataLikeController {
      * @param userId
      */
     //show books added to my favorite list
-    public List<Book> LikedBooksByUser(int userId){
+    public List<Book> likedBooksByUser(int userId){
 
         try {
-            List<Book> likedBooks = likeRepository.getLikedBooksByUserId(userId);
-            return likedBooks;
+            return likeRepository.getLikedBooksByUserId(userId);
         }
         catch (BookyDatabaseException | SQLException e) {
-            e.printStackTrace();
-            return null;
+            return Collections.emptyList();
         }
     }
 
@@ -53,7 +51,7 @@ public class DataLikeController {
      * @param userId of the book who should be deleted from the DB
      * @throws BookyDatabaseException
      */
-    public boolean DeleteBook(int id, int userId){
+    public boolean deleteBook(int id, int userId){
 
         try{
             likeRepository.deleteBook(id, userId);

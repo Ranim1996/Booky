@@ -37,8 +37,8 @@ public class JDBCLanguageRepository extends JDBCRepository{
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read Language from the database.",throwable);
         }finally {
-            if (connection != null) connection.close();
-            if (statement != null) statement.close();
+            connection.close();
+            statement.close();
         }
     }
 
@@ -66,8 +66,8 @@ public class JDBCLanguageRepository extends JDBCRepository{
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read languages from the database.",throwable);
         }finally {
-            if (connection != null) connection.close();
-            if (statement != null) statement.close();
+            connection.close();
+            statement.close();
         }
         return languages;
     }

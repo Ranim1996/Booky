@@ -1,8 +1,6 @@
 package service.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.Objects;
 
 @SuppressWarnings("WeakerAccess")
@@ -21,7 +19,6 @@ public class Users {
     private String dateOfBirth; // user's date of birth
 
 //    private String image;
-    private static int idSeeder = 1;
 
 
     //constractures
@@ -29,7 +26,6 @@ public class Users {
                  String email, String password,
                  String phoneNumbar, Country country, Language language) {
         this.id = id;
-//        idSeeder++;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;

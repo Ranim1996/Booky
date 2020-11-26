@@ -6,7 +6,6 @@ import service.model.Like;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class JDBCLikeRepository extends JDBCRepository {
@@ -41,8 +40,8 @@ public class JDBCLikeRepository extends JDBCRepository {
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read likes from the database.",throwable);
         }finally {
-            if (connection != null) connection.close();
-            if (statement != null) statement.close();
+            connection.close();
+            statement.close();
         }
         return likes;
     }
@@ -83,8 +82,8 @@ public class JDBCLikeRepository extends JDBCRepository {
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read likes from the database.",throwable);
         }finally {
-            if (connection != null) connection.close();
-            if (statement != null) statement.close();
+            connection.close();
+            statement.close();
         }
     }
 
@@ -111,8 +110,8 @@ public class JDBCLikeRepository extends JDBCRepository {
        } catch (SQLException throwable) {
             throw  new BookyDatabaseException("Cannot add like.", throwable);
         }finally {
-           if (connection != null) connection.close();
-           if (preparedStatement != null) preparedStatement.close();
+           connection.close();
+           preparedStatement.close();
        }
     }
 
@@ -136,8 +135,8 @@ public class JDBCLikeRepository extends JDBCRepository {
         catch (SQLException throwable){
             throw  new BookyDatabaseException("Cannot delete book.", throwable);
         }finally {
-            if (connection != null) connection.close();
-            if (preparedStatement != null) preparedStatement.close();
+            connection.close();
+            preparedStatement.close();
         }
     }
 

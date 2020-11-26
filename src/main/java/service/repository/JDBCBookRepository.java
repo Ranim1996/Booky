@@ -1,12 +1,10 @@
 package service.repository;
 
-import com.sun.xml.bind.util.Which;
 import service.model.Book;
 import service.model.BookType;
 import service.model.Language;
 
 import java.sql.*;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -48,8 +46,8 @@ public class JDBCBookRepository  extends JDBCRepository{
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read books from the database.",throwable);
         }finally {
-            if (connection != null) connection.close();
-            if (statement != null) statement.close();
+            connection.close();
+            statement.close();
         }
         return books;
     }
@@ -92,8 +90,8 @@ public class JDBCBookRepository  extends JDBCRepository{
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read books from the database.",throwable);
         }finally {
-            if (connection != null) connection.close();
-            if (statement != null) statement.close();
+            connection.close();
+            statement.close();
         }
 
         return filtered;
@@ -185,8 +183,8 @@ public class JDBCBookRepository  extends JDBCRepository{
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read books from the database.",throwable);
         }finally {
-            if (connection != null) connection.close();
-            if (statement != null) statement.close();
+            connection.close();
+            statement.close();
         }
         return filtered;
     }
@@ -220,8 +218,8 @@ public class JDBCBookRepository  extends JDBCRepository{
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read languages from the database.",throwable);
         }finally {
-            if (connection != null) connection.close();
-            if (statement != null) connection.close();
+            connection.close();
+            connection.close();
         }
         return  languages;
     }
@@ -261,8 +259,8 @@ public class JDBCBookRepository  extends JDBCRepository{
         } catch (SQLException throwable) {
             throw  new BookyDatabaseException("Cannot create new book.", throwable);
         }finally {
-            if (connection != null) connection.close();
-            if (preparedStatement != null) preparedStatement.close();
+            connection.close();
+            preparedStatement.close();
         }
     }
 
@@ -297,8 +295,8 @@ public class JDBCBookRepository  extends JDBCRepository{
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read books from the database.",throwable);
         }finally {
-            if (connection != null) connection.close();
-            if (statement != null) statement.close();
+            connection.close();
+            statement.close();
         }
 
     }
@@ -330,8 +328,8 @@ public class JDBCBookRepository  extends JDBCRepository{
         } catch (SQLException throwable) {
             throw  new BookyDatabaseException("Cannot update book.", throwable);
         }finally {
-            if (connection != null) connection.close();
-            if (preparedStatement != null) preparedStatement.close();
+            connection.close();
+            preparedStatement.close();
         }
     }
 
@@ -352,8 +350,8 @@ public class JDBCBookRepository  extends JDBCRepository{
         catch (SQLException throwable){
             throw  new BookyDatabaseException("Cannot delete book.", throwable);
         }finally {
-            if (connection != null) connection.close();
-            if (preparedStatement != null) preparedStatement.close();
+            connection.close();
+            preparedStatement.close();
         }
 
     }

@@ -141,7 +141,7 @@ public class BookResources {
 
         List<Book> books;
 
-        books = likeController.LikedBooksByUser(userId);
+        books = likeController.likedBooksByUser(userId);
 
         GenericEntity<List<Book>> entity = new GenericEntity<>(books) {};
         return Response.ok(entity).build();
@@ -153,11 +153,8 @@ public class BookResources {
     @Produces(MediaType.APPLICATION_JSON)
     @PermitAll
     public Response removeBook(@PathParam("id") int bId, @PathParam("uId") int uId) {
-
-        System.out.println("resources");
-        DataLikeController likeController = new DataLikeController();
-        System.out.println("ids: " + bId + uId);
-        likeController.DeleteBook(bId, uId);
+        
+        likeController.deleteBook(bId, uId);
 
         return Response.noContent().build();
     }

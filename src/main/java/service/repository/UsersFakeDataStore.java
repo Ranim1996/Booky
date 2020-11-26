@@ -2,9 +2,7 @@ package service.repository;
 
 import service.model.*;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class UsersFakeDataStore {
@@ -106,7 +104,6 @@ public class UsersFakeDataStore {
         if (old == null) {
             return false;
         }
-//        u.setId(id);
         old.setFirstName(u.getFirstName());
         old.setLastName(u.getLastName());
         old.setDateOfBirth(u.getDateOfBirth());
@@ -115,7 +112,6 @@ public class UsersFakeDataStore {
         old.setPassword(u.getPassword());
         old.setPhoneNumber(u.getPhoneNumber());
         old.setLanguage_code(u.getLanguage_code());
-//        usersList.add(u);
         return true;
     }
 

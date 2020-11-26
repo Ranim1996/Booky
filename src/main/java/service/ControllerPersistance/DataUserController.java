@@ -2,11 +2,9 @@ package service.ControllerPersistance;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import service.model.Book;
 import service.model.UserType;
 import service.model.Users;
 import service.repository.BookyDatabaseException;
-import service.repository.JDBCBookRepository;
 import service.repository.JDBCUserRepository;
 
 import java.sql.SQLException;
@@ -17,7 +15,6 @@ import java.util.StringTokenizer;
 
 public class DataUserController {
 
-    final Logger logger = LoggerFactory.getLogger(DataUserController.class);
 
     /**
      * Show/print all users.
@@ -26,10 +23,6 @@ public class DataUserController {
         JDBCUserRepository usersRepository = new JDBCUserRepository();
         try {
             Collection<Users> users = usersRepository.getUsers();
-            for (Users user : users) {
-                logger.info(user.toString());
-
-            }
         } catch (BookyDatabaseException | SQLException e) {
             e.printStackTrace();
         }
@@ -39,12 +32,11 @@ public class DataUserController {
      * Show/print the user with given id
      * @param id of the user to be shown.
      */
-    public Users ShowUserById(int id){
+    public Users showUserById(int id){
         JDBCUserRepository userRepository = new JDBCUserRepository();
 
         try {
             Users user = userRepository.getUserById(id);
-            System.out.println("In user controller" + user);
             return user;
 
         } catch (BookyDatabaseException | SQLException e) {
@@ -58,13 +50,12 @@ public class DataUserController {
      * Show/print the user with given user type
      * @param type of the user to be shown.
      */
-    public Users ShowUserByType(UserType type){
+    public Users showUserByType(UserType type){
 
         JDBCUserRepository userRepository = new JDBCUserRepository();
 
         try {
             Users user = userRepository.getUsersByType(type);
-            System.out.println("In user controller" + user);
             return user;
 
         } catch (BookyDatabaseException | SQLException e) {
@@ -103,7 +94,6 @@ public class DataUserController {
         JDBCUserRepository userRepository = new JDBCUserRepository();
 
         try{
-            Users u = null;
             List<Users> users = userRepository.getUsers();
             for (Users p : users){
                 if(p.getEmail().equals(email)){
@@ -131,7 +121,6 @@ public class DataUserController {
             return false;
         }
         if(u.getPassword().equals(password)){
-            System.out.println("login is done" + u);
             return true;
         }
         return false;
@@ -148,14 +137,10 @@ public class DataUserController {
         String encodedCredentials = auth.replaceFirst("Basic ", "");
         String credentials = new String(Base64.getDecoder().decode(encodedCredentials.getBytes()));
 
-        System.out.println(credentials);
-
         final StringTokenizer tokenizer = new StringTokenizer(credentials, ":");
         final String email = tokenizer.nextToken();
 
-        System.out.println(email);
-
-        Users user = ShowUserById(id);
+        Users user = showUserById(id);
 
         if (!user.getEmail().equals(email)) {
             return false;

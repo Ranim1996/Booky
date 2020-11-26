@@ -20,9 +20,6 @@ class Publisher {
         try {
             CustomApplicationConfig customApplicationConfig = new CustomApplicationConfig();
             // create and start a grizzly server
-            HttpServer server = GrizzlyHttpServerFactory.createHttpServer(BASE_URI, customApplicationConfig, true);
-
-            System.out.println("Hosting resources at " + BASE_URI.toURL());
 
             //books get URLs
             String[] getOperations = {

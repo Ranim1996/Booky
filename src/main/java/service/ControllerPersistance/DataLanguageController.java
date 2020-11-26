@@ -11,7 +11,6 @@ import java.util.Collection;
 
 public class DataLanguageController {
 
-    final Logger logger = LoggerFactory.getLogger(DataLanguageController.class);
     JDBCLanguageRepository languagesRepository = new JDBCLanguageRepository();
 
     //show all languages
@@ -19,9 +18,6 @@ public class DataLanguageController {
 
         try {
             Collection<Language> languages = languagesRepository.getLanguages();
-            for (Language language : languages) {
-                logger.info(language.toString());
-            }
         }
         catch (BookyDatabaseException | SQLException e) {
             e.printStackTrace();
@@ -36,9 +32,7 @@ public class DataLanguageController {
     public Language showLanguageByCode(String code){
 
         try {
-            Language language = languagesRepository.getLanguageByCode(code);
-            logger.info(language.toString());
-            return language;
+            return languagesRepository.getLanguageByCode(code);
         }
         catch (BookyDatabaseException | SQLException e) {
             e.printStackTrace();

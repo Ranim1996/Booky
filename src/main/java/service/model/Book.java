@@ -15,13 +15,11 @@ public class Book {
     private String describtion; // short describtion about the content of the book
     LocalDate time = LocalDate.now(); //the time when the admin publish info about a book
     private Language language_code; // book's language
-    private static int idSeeder = 1;
 
     //constractures
     public Book(int id, String bookName, String authorName, BookType type, String describtion,
                 LocalDate time, Language language) {
         this.id = id;
-//        idSeeder++;
         this.bookName = bookName;
         this.authorName = authorName;
         this.time = time;

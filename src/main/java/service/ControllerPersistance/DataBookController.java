@@ -9,11 +9,11 @@ import service.repository.BookyDatabaseException;
 import service.repository.JDBCBookRepository;
 
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 public class DataBookController {
 
-    final Logger logger = LoggerFactory.getLogger(DataBookController.class);
     JDBCBookRepository bookRepository = new JDBCBookRepository();
 
     //show all books
@@ -21,14 +21,10 @@ public class DataBookController {
 
         try {
             List<Book> books = bookRepository.getBooks();
-            for (Book book : books) {
-                logger.info(book.toString());
-            }
             return books;
         }
         catch (BookyDatabaseException | SQLException e) {
-//            e.printStackTrace();
-            return null;
+            return Collections.emptyList();
         }
     }
 
@@ -40,12 +36,10 @@ public class DataBookController {
     public List<Book> bookFilteredWithLanguage(Language language){
 
         try {
-            List<Book> books = bookRepository.getBooksByLanguage(language);
-            return books;
+            return bookRepository.getBooksByLanguage(language);
         }
         catch (BookyDatabaseException | SQLException e) {
-//            e.printStackTrace();
-            return null;
+            return Collections.emptyList();
         }
     }
 
@@ -57,12 +51,10 @@ public class DataBookController {
     public List<Book> bookFilteredWithType(BookType type){
 
         try {
-            List<Book> books = bookRepository.getBooksByType(type);
-            return books;
+            return bookRepository.getBooksByType(type);
         }
         catch (BookyDatabaseException | SQLException e) {
-//            e.printStackTrace();
-            return null;
+            return Collections.emptyList();
         }
     }
 
@@ -76,13 +68,10 @@ public class DataBookController {
     public List<Book> bookFilteredWithTypeAndLanguage(BookType type, Language language){
 
         try {
-            List<Book> books = bookRepository.getBooksByTypeAndLanguage(type, language);
-            System.out.println(books);
-            return books;
+            return bookRepository.getBooksByTypeAndLanguage(type, language);
         }
         catch (BookyDatabaseException | SQLException e) {
-//            e.printStackTrace();
-            return null;
+            return Collections.emptyList();
         }
     }
 
@@ -98,7 +87,6 @@ public class DataBookController {
             return true;
         }
         catch (BookyDatabaseException | SQLException e) {
-//            e.printStackTrace();
             return false;
         }
     }
@@ -116,7 +104,6 @@ public class DataBookController {
             return true;
         }
         catch (BookyDatabaseException | SQLException e) {
-            e.printStackTrace();
             return false;
         }
     }
@@ -128,11 +115,9 @@ public class DataBookController {
     public Book showBookById(int id){
 
         try {
-            Book book = bookRepository.getBookById(id);
-            return book;
+            return bookRepository.getBookById(id);
 
         } catch (BookyDatabaseException | SQLException e) {
-//            e.printStackTrace();
             return null;
         }
     }
@@ -149,7 +134,6 @@ public class DataBookController {
             return true;
         }
         catch (BookyDatabaseException | SQLException e) {
-//            e.printStackTrace();
             return false;
         }
     }

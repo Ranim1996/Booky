@@ -12,7 +12,6 @@ import java.util.Collection;
 
 public class DataCountryController {
 
-    final Logger logger = LoggerFactory.getLogger(DataCountryController.class);
     JDBCCountryRepository countriesRepository = new JDBCCountryRepository();
 
     //show all countries
@@ -20,9 +19,6 @@ public class DataCountryController {
 
         try {
             Collection<Country> countries = countriesRepository.getCountries();
-            for (Country country : countries) {
-                logger.info(country.toString());
-            }
         }
         catch (BookyDatabaseException | SQLException e) {
             e.printStackTrace();
@@ -38,7 +34,6 @@ public class DataCountryController {
 
         try {
             Country country = countriesRepository.getCountryByCode("USA");
-            logger.info(country.toString());
         }
         catch (BookyDatabaseException | SQLException e) {
             e.printStackTrace();
