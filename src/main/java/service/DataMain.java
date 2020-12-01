@@ -2,6 +2,7 @@ package service;
 
 
 import service.ControllerPersistance.DataBookController;
+import service.model.BookType;
 
 /**
  * This class deploys CustomApplicationConfig on a Grizzly server
@@ -13,6 +14,6 @@ class DataMain {
     // this java class is created to test everything in the controller
         DataBookController controller = new DataBookController();
 
-        controller.bookFilterByFirstNameChars("sw");
+        controller.getMajority(BookType.Fantasy);
     }
 }

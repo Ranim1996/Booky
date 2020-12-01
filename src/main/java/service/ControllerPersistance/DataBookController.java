@@ -145,12 +145,29 @@ public class DataBookController {
 
         try {
             List<Book> books = bookRepository.getBooksByName(chars);
-            System.out.println(books);
             return books;
         }
-        catch (BookyDatabaseException e) {
+        catch (BookyDatabaseException | SQLException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    /**
+     * Show/print how many books are posted for specific type
+     * @param type
+     */
+    //count books
+    public int getMajority(BookType type){
+
+        try {
+            int num = bookRepository.getBookMajority(type);
+            System.out.println("count = "+ num);
+            return num;
+        }
+        catch (BookyDatabaseException | SQLException e) {
+            e.printStackTrace();
+            return 0;
         }
     }
 

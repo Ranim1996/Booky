@@ -319,7 +319,7 @@ public class JDBCBookRepository  extends JDBCRepository{
     }
 
     //get all books with the given name chars
-    public List<Book> getBooksByName(String chars) throws BookyDatabaseException {
+    public List<Book> getBooksByName(String chars) throws BookyDatabaseException, SQLException {
 
         Map<String, Language> languages = new HashMap<>();
 
@@ -328,28 +328,19 @@ public class JDBCBookRepository  extends JDBCRepository{
         Connection connection = this.getDataBaseConneection();
         String sql = "SELECT * FROM book WHERE bookName LIKE CONCAT ('%', ? ,'%') GROUP BY id";
 
-        System.out.println("hi jdbc");
-        try {
-            System.out.println("try");
-            PreparedStatement statement = connection.prepareStatement(sql);
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+
             statement.setString(1, chars); // set characters
 
             ResultSet resultSet = statement.executeQuery();
 
-            System.out.println("befor whilw");
             while (resultSet.next()){
                 int id = resultSet.getInt("id");
-                System.out.println("1");
                 String bookName = resultSet.getString("bookName");
-                System.out.println("2");
                 String authorName = resultSet.getString("authorName");
-                System.out.println("3");
                 BookType bType =  BookType.valueOf(resultSet.getString("bookType"));
-                System.out.println("4");
                 String describtion = resultSet.getString("describtion");
-                System.out.println("5");
                 LocalDate time = resultSet.getDate("time").toLocalDate();
-                System.out.println("6");
 
                 String code = resultSet.getString("language_code");
 
@@ -359,16 +350,45 @@ public class JDBCBookRepository  extends JDBCRepository{
                 filtered.add(book);
 
             }
-
-            System.out.println("after while");
-
             connection.close();
 
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read books from the database.",throwable);
         }
+        finally {
+            connection.close();
+        }
         return filtered;
+    }
+
+    //count posted books for specific book type
+    public int getBookMajority(BookType type) throws BookyDatabaseException, SQLException {
+
+        int count = 0;
+
+        Connection connection = this.getDataBaseConneection();
+        String sql = "SELECT COUNT(id) AS id FROM book WHERE bookType = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, type.name());
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                count = resultSet.getInt("id");
+            }
+            connection.close();
+
+
+        } catch (SQLException throwable) {
+            throw new BookyDatabaseException("Cannot count books from the database.",throwable);
+        }
+        finally {
+            connection.close();
+        }
+        return count;
     }
 
 
