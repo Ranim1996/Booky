@@ -41,7 +41,8 @@ public class BookResources {
     @GET //GET at http://localhost:9090/booky/books?language= OR ?type=
     @Produces(MediaType.APPLICATION_JSON)
     @PermitAll
-    public Response getBooks(@QueryParam("language") String languageCode, @QueryParam("type") BookType type) {
+    public Response getBooks(@QueryParam("language") String languageCode, @QueryParam("type") BookType type
+            , @QueryParam("bookName") String name) {
 
         List<Book> books;
 
@@ -58,6 +59,10 @@ public class BookResources {
         }
         else if (uriInfo.getQueryParameters().containsKey("type")){
             books = bookController.bookFilteredWithType(type);
+        }
+        else if (uriInfo.getQueryParameters().containsKey("bookName")){
+            System.out.println("hi");
+            books = bookController.bookFilterByFirstNameChars(name);
         }
         else{
             books = bookController.showAllBooks();

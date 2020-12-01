@@ -318,5 +318,59 @@ public class JDBCBookRepository  extends JDBCRepository{
 
     }
 
+    //get all books with the given name chars
+    public List<Book> getBooksByName(String chars) throws BookyDatabaseException {
+
+        Map<String, Language> languages = new HashMap<>();
+
+        List<Book> filtered = new ArrayList<>();
+
+        Connection connection = this.getDataBaseConneection();
+        String sql = "SELECT * FROM book WHERE bookName LIKE CONCAT ('%', ? ,'%') GROUP BY id";
+
+        System.out.println("hi jdbc");
+        try {
+            System.out.println("try");
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, chars); // set characters
+
+            ResultSet resultSet = statement.executeQuery();
+
+            System.out.println("befor whilw");
+            while (resultSet.next()){
+                int id = resultSet.getInt("id");
+                System.out.println("1");
+                String bookName = resultSet.getString("bookName");
+                System.out.println("2");
+                String authorName = resultSet.getString("authorName");
+                System.out.println("3");
+                BookType bType =  BookType.valueOf(resultSet.getString("bookType"));
+                System.out.println("4");
+                String describtion = resultSet.getString("describtion");
+                System.out.println("5");
+                LocalDate time = resultSet.getDate("time").toLocalDate();
+                System.out.println("6");
+
+                String code = resultSet.getString("language_code");
+
+                Language bLanguage = languages.get(code);
+
+                Book book = new Book(id,bookName,authorName,bType, describtion, time, bLanguage);
+                filtered.add(book);
+
+            }
+
+            System.out.println("after while");
+
+            connection.close();
+
+
+        } catch (SQLException throwable) {
+            throw new BookyDatabaseException("Cannot read books from the database.",throwable);
+        }
+        return filtered;
+    }
+
+
 
 }

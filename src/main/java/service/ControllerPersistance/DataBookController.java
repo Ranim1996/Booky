@@ -136,4 +136,23 @@ public class DataBookController {
         }
     }
 
+    /**
+     * Show/print the book with the chars/letters
+     * @param chars
+     */
+    //show books by given chars
+    public List<Book> bookFilterByFirstNameChars(String chars){
+
+        try {
+            List<Book> books = bookRepository.getBooksByName(chars);
+            System.out.println(books);
+            return books;
+        }
+        catch (BookyDatabaseException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
 }
