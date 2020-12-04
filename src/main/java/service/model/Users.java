@@ -23,8 +23,7 @@ public class Users {
 
     //constractures
     public Users(int id, String firstName, String lastName, String dateOfBirth, UserType type,
-                 String email, String password,
-                 String phoneNumbar, Country country, Language language) {
+                 String email, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -32,9 +31,9 @@ public class Users {
         this.usertype = type;
         this.email = email;
         this.password = password;
-        this.phoneNumber = phoneNumbar;
-        this.language_code = language;
-        this.country_code = country;
+//        this.phoneNumber = phoneNumbar;
+//        this.language_code = language;
+//        this.country_code = country;
     }
 
     public Users() {
@@ -84,26 +83,26 @@ public class Users {
         this.password = password;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public Language getLanguage_code() {
-        return language_code;
-    }
-    public void setLanguage_code(Language language_code) {
-        this.language_code = language_code;
-    }
-
-    public Country getCountry_code() {
-        return country_code;
-    }
-    public void setCountry_code(Country country_code) {
-        this.country_code = country_code;
-    }
+//    public String getPhoneNumber() {
+//        return phoneNumber;
+//    }
+//    public void setPhoneNumber(String phoneNumber) {
+//        this.phoneNumber = phoneNumber;
+//    }
+//
+//    public Language getLanguage_code() {
+//        return language_code;
+//    }
+//    public void setLanguage_code(Language language_code) {
+//        this.language_code = language_code;
+//    }
+//
+//    public Country getCountry_code() {
+//        return country_code;
+//    }
+//    public void setCountry_code(Country country_code) {
+//        this.country_code = country_code;
+//    }
 
     public String getDateOfBirth() {
         return dateOfBirth;

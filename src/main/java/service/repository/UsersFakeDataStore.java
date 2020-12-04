@@ -34,11 +34,11 @@ public class UsersFakeDataStore {
 
         //Users lists for now there are 4 different users
         usersList.add(new Users(1, "Ranim", "Alayoubi", "06/06/1996" , UserType.Admin,
-                "ranim@gmail.com","password199","0684567447", syria, arabic));
+                "ranim@gmail.com","password199"));
         usersList.add(new Users(2, "Obaida", "Bulbul", "29/01/1994" , UserType.Reader,
-                "obaida@gmail.com","password123","0689754567", america, english));
+                "obaida@gmail.com","password123"));
         usersList.add(new Users(3, "Jwana", "Alayoubi", "23/03/2000" , UserType.Reader,
-                "jwana@gmail.com","password100","0689754987", france, french));
+                "jwana@gmail.com","password100"));
 
     }
 
@@ -50,26 +50,26 @@ public class UsersFakeDataStore {
     //methods
 
     //get user by language good to practice with filter here
-    public List<Users> getUsers(Language language) {
-        List<Users> filetered = new ArrayList<>();
-        for (Users u : usersList) {
-            if (u.getLanguage_code().equals(language)) {
-                filetered.add(u);
-            }
-        }
-        return filetered;
-    }
+//    public List<Users> getUsers(Language language) {
+//        List<Users> filetered = new ArrayList<>();
+//        for (Users u : usersList) {
+//            if (u.getLanguage_code().equals(language)) {
+//                filetered.add(u);
+//            }
+//        }
+//        return filetered;
+//    }
 
     //get user by country good to practice with filter here
-    public List<Users> getUsers(Country country) {
-        List<Users> filetered = new ArrayList<>();
-        for (Users u : usersList) {
-            if (u.getCountry_code().equals(country)) {
-                filetered.add(u);
-            }
-        }
-        return filetered;
-    }
+//    public List<Users> getUsers(Country country) {
+//        List<Users> filetered = new ArrayList<>();
+//        for (Users u : usersList) {
+//            if (u.getCountry_code().equals(country)) {
+//                filetered.add(u);
+//            }
+//        }
+//        return filetered;
+//    }
 
     //get user by his id
     public Users getUser(int id) {
@@ -107,11 +107,11 @@ public class UsersFakeDataStore {
         old.setFirstName(u.getFirstName());
         old.setLastName(u.getLastName());
         old.setDateOfBirth(u.getDateOfBirth());
-        old.setCountry_code(u.getCountry_code());
+//        old.setCountry_code(u.getCountry_code());
         old.setEmail(u.getEmail());
         old.setPassword(u.getPassword());
-        old.setPhoneNumber(u.getPhoneNumber());
-        old.setLanguage_code(u.getLanguage_code());
+//        old.setPhoneNumber(u.getPhoneNumber());
+//        old.setLanguage_code(u.getLanguage_code());
         return true;
     }
 

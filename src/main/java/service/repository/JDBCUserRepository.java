@@ -13,8 +13,8 @@ public class JDBCUserRepository extends JDBCRepository {
     //get all users from data base
     public List<Users> getUsers() throws BookyDatabaseException, SQLException {
 
-        Map<String, Country> countries = this.getUsedCountries();
-        Map<String, Language> languages = this.getUsedLanguages();
+//        Map<String, Country> countries = this.getUsedCountries();
+//        Map<String, Language> languages = this.getUsedLanguages();
 
         List<Users> users = new ArrayList<>();
 
@@ -31,16 +31,16 @@ public class JDBCUserRepository extends JDBCRepository {
                 UserType type = UserType.valueOf(resultSet.getString("userType"));
                 String email = resultSet.getString("email");
                 String password = resultSet.getString("password");
-                String phoneNumber = resultSet.getString("phoneNumber");
+//                String phoneNumber = resultSet.getString("phoneNumber");
                 String dateOfBirth = resultSet.getString("dateOfBirth");
 
-                String languageCode = resultSet.getString("language_code");
-                Language language = languages.get(languageCode);
-                String countryCode = resultSet.getString("country_code");
-                Country country = countries.get(countryCode);
+//                String languageCode = resultSet.getString("language_code");
+//                Language language = languages.get(languageCode);
+//                String countryCode = resultSet.getString("country_code");
+//                Country country = countries.get(countryCode);
 
 
-                Users user = new Users(id, firstName, lastName, dateOfBirth, type,email,password,phoneNumber,country,language);
+                Users user = new Users(id, firstName, lastName, dateOfBirth, type,email,password);
                 users.add(user);
             }
             connection.close();
@@ -54,59 +54,59 @@ public class JDBCUserRepository extends JDBCRepository {
     }
 
     //get used countries in the db
-    private Map<String, Country> getUsedCountries() throws BookyDatabaseException, SQLException {
-        Map<String, Country> countries = new HashMap<>();
-
-        Connection connection = this.getDataBaseConneection();
-
-        String sql = "SELECT * FROM country WHERE code in (select country_code from users)";
-
-        try (Statement statement = connection.createStatement()){
-            ResultSet resultSet = statement.executeQuery(sql);
-            while (resultSet.next()) {
-                String name = resultSet.getString("name");
-                String code = resultSet.getString("code");
-                Country country = new Country(code, name);
-                countries.put(code, country);
-            }
-            connection.commit();
-            connection.close();
-
-        } catch (SQLException throwable) {
-            throw new BookyDatabaseException("Cannot read countries from the database.",throwable);
-        }finally {
-            connection.close();
-        }
-        return  countries;
-    }
-
-    //get used languages in the db
-    private Map<String, Language> getUsedLanguages() throws BookyDatabaseException, SQLException {
-
-        Map<String, Language> languages = new HashMap<>();
-
-        Connection connection = this.getDataBaseConneection();
-
-        String sql = "SELECT * FROM language WHERE code in (select language_code from users)";
-
-        try (Statement statement = connection.createStatement()){
-            ResultSet resultSet = statement.executeQuery(sql);
-            while (resultSet.next()) {
-                String name = resultSet.getString("name");
-                String code = resultSet.getString("code");
-                Language language = new Language(code, name);
-                languages.put(code, language);
-            }
-            connection.commit();
-            connection.close();
-
-        } catch (SQLException throwable) {
-            throw new BookyDatabaseException("Cannot read languages from the database.",throwable);
-        }finally {
-            connection.close();
-        }
-        return  languages;
-    }
+//    private Map<String, Country> getUsedCountries() throws BookyDatabaseException, SQLException {
+//        Map<String, Country> countries = new HashMap<>();
+//
+//        Connection connection = this.getDataBaseConneection();
+//
+//        String sql = "SELECT * FROM country WHERE code in (select country_code from users)";
+//
+//        try (Statement statement = connection.createStatement()){
+//            ResultSet resultSet = statement.executeQuery(sql);
+//            while (resultSet.next()) {
+//                String name = resultSet.getString("name");
+//                String code = resultSet.getString("code");
+//                Country country = new Country(code, name);
+//                countries.put(code, country);
+//            }
+//            connection.commit();
+//            connection.close();
+//
+//        } catch (SQLException throwable) {
+//            throw new BookyDatabaseException("Cannot read countries from the database.",throwable);
+//        }finally {
+//            connection.close();
+//        }
+//        return  countries;
+//    }
+//
+//    //get used languages in the db
+//    private Map<String, Language> getUsedLanguages() throws BookyDatabaseException, SQLException {
+//
+//        Map<String, Language> languages = new HashMap<>();
+//
+//        Connection connection = this.getDataBaseConneection();
+//
+//        String sql = "SELECT * FROM language WHERE code in (select language_code from users)";
+//
+//        try (Statement statement = connection.createStatement()){
+//            ResultSet resultSet = statement.executeQuery(sql);
+//            while (resultSet.next()) {
+//                String name = resultSet.getString("name");
+//                String code = resultSet.getString("code");
+//                Language language = new Language(code, name);
+//                languages.put(code, language);
+//            }
+//            connection.commit();
+//            connection.close();
+//
+//        } catch (SQLException throwable) {
+//            throw new BookyDatabaseException("Cannot read languages from the database.",throwable);
+//        }finally {
+//            connection.close();
+//        }
+//        return  languages;
+//    }
 
     //get user by id
     public Users getUserById(int id) throws BookyDatabaseException, SQLException {
@@ -128,17 +128,17 @@ public class JDBCUserRepository extends JDBCRepository {
                 UserType type = UserType.valueOf(resultSet.getString("userType"));
                 String email = resultSet.getString("email");
                 String password = resultSet.getString("password");
-                String phoneNumber = resultSet.getString("phoneNumber");
+//                String phoneNumber = resultSet.getString("phoneNumber");
                 String dateOfBirth = resultSet.getString("dateOfBirth");
-                String languageCode = resultSet.getString("language_code");
-                String countryCode = resultSet.getString("country_code");
+//                String languageCode = resultSet.getString("language_code");
+//                String countryCode = resultSet.getString("country_code");
 
                 connection.close();
 
-                Language language = languageRepository.getLanguageByCode(languageCode);
-                Country country = countryRepository.getCountryByCode(countryCode);
+//                Language language = languageRepository.getLanguageByCode(languageCode);
+//                Country country = countryRepository.getCountryByCode(countryCode);
 
-                return new Users(UId,firstName, lastName, dateOfBirth, type,email,password,phoneNumber,country,language);
+                return new Users(UId,firstName, lastName, dateOfBirth, type,email,password);
             }
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read users from the database.",throwable);
@@ -153,8 +153,7 @@ public class JDBCUserRepository extends JDBCRepository {
         Connection connection = this.getDataBaseConneection();
 
         String sql = "UPDATE users SET firstName = ? ,lastName = ? , userType = ?," +
-                "email = ? ,password = ?, phoneNumber = ?, country_code = ?, language_code = ?, " +
-                "dateOfBirth = ? WHERE id = ?";
+                "email = ? ,password = ?, dateOfBirth = ? WHERE id = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             preparedStatement.setString(1, user.getFirstName());
@@ -162,13 +161,13 @@ public class JDBCUserRepository extends JDBCRepository {
             preparedStatement.setString(3, user.getUsertype().name());
             preparedStatement.setString(4, user.getEmail());
             preparedStatement.setString(5, user.getPassword());
-            preparedStatement.setString(6, user.getPhoneNumber());
-            preparedStatement.setString(7, user.getCountry_code().getCode());
-            preparedStatement.setString(8, user.getLanguage_code().getCode());
-            preparedStatement.setString(9, user.getDateOfBirth());
+//            preparedStatement.setString(6, user.getPhoneNumber());
+//            preparedStatement.setString(7, user.getCountry_code().getCode());
+//            preparedStatement.setString(8, user.getLanguage_code().getCode());
+            preparedStatement.setString(6, user.getDateOfBirth());
 
 
-            preparedStatement.setInt(10, id);
+            preparedStatement.setInt(7, id);
 
             preparedStatement.executeUpdate();
             connection.commit();
@@ -201,17 +200,17 @@ public class JDBCUserRepository extends JDBCRepository {
                 UserType type = UserType.valueOf(resultSet.getString("userType"));
                 String email = resultSet.getString("email");
                 String password = resultSet.getString("password");
-                String phoneNumber = resultSet.getString("phoneNumber");
+//                String phoneNumber = resultSet.getString("phoneNumber");
                 String dateOfBirth = resultSet.getString("dateOfBirth");
-                String languageCode = resultSet.getString("language_code");
-                String countryCode = resultSet.getString("country_code");
+//                String languageCode = resultSet.getString("language_code");
+//                String countryCode = resultSet.getString("country_code");
 
                 connection.close();
 
-                Language language = languageRepository.getLanguageByCode(languageCode);
-                Country country = countryRepository.getCountryByCode(countryCode);
+//                Language language = languageRepository.getLanguageByCode(languageCode);
+//                Country country = countryRepository.getCountryByCode(countryCode);
 
-                return new Users(UId,firstName, lastName, dateOfBirth, type,email,password,phoneNumber,country,language);
+                return new Users(UId,firstName, lastName, dateOfBirth, type,email,password);
             }
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read users from the database.",throwable);
@@ -226,8 +225,7 @@ public class JDBCUserRepository extends JDBCRepository {
 
         Connection connection = this.getDataBaseConneection();
 
-        String sql = "INSERT INTO users ( firstName, lastName, userType, email, password, phoneNumber, country_code, " +
-                "language_code, dateOfBirth) VALUES (?,?,?,?,?,?,?,?,?) ";
+        String sql = "INSERT INTO users ( firstName, lastName, userType, email, password, dateOfBirth) VALUES (?,?,?,?,?,?) ";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             preparedStatement.setString(1, user.getFirstName());
@@ -235,10 +233,10 @@ public class JDBCUserRepository extends JDBCRepository {
             preparedStatement.setString(3, type);
             preparedStatement.setString(4, user.getEmail());
             preparedStatement.setString(5, user.getPassword());
-            preparedStatement.setString(6, user.getPhoneNumber());
-            preparedStatement.setString(7, user.getCountry_code().getCode());
-            preparedStatement.setString(8, user.getLanguage_code().getCode());
-            preparedStatement.setString(9, user.getDateOfBirth());
+//            preparedStatement.setString(6, user.getPhoneNumber());
+//            preparedStatement.setString(7, user.getCountry_code().getCode());
+//            preparedStatement.setString(8, user.getLanguage_code().getCode());
+            preparedStatement.setString(6, user.getDateOfBirth());
 
             preparedStatement.executeUpdate();
             connection.commit();

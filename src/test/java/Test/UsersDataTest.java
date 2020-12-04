@@ -65,9 +65,9 @@ public class UsersDataTest {
         countries.add(c2);
 
         Users u1 = new Users(1, "Ranim", "Alayoubi", "06/06/1996", UserType.Admin,
-                "ranim@gmail.com", "password199", "0684567447", c1, l2);
+                "ranim@gmail.com", "password199");
         Users u2 = new Users(2, "Obaida", "Bulbul", "29/01/1994", UserType.Reader,
-                "obaida@gmail.com", "password123", "0689754567", c2, l2);
+                "obaida@gmail.com", "password123");
 
         users.add(u1);
         users.add(u2);
@@ -97,9 +97,9 @@ public class UsersDataTest {
         countries.add(c2);
 
         Users u1 = new Users(1, "Ranim", "Alayoubi", "06/06/1996", UserType.Admin,
-                "ranim@gmail.com", "password199", "0684567447", c1, l2);
+                "ranim@gmail.com", "password199");
         Users u2 = new Users(2, "Obaida", "Bulbul", "29/01/1994", UserType.Reader,
-                "obaida@gmail.com", "password123", "0689754567", c2, l2);
+                "obaida@gmail.com", "password123");
 
         users.add(u1);
         users.add(u2);
@@ -126,9 +126,9 @@ public class UsersDataTest {
         countries.add(c2);
 
         Users u1 = new Users(1, "Ranim", "Alayoubi", "06/06/1996", UserType.Admin,
-                "ranim@gmail.com", "password199", "0684567447", c1, l2);
+                "ranim@gmail.com", "password199");
         Users u2 = new Users(2, "Obaida", "Bulbul", "29/01/1994", UserType.Reader,
-                "obaida@gmail.com", "password123", "0689754567", c2, l2);
+                "obaida@gmail.com", "password123");
 
         users.add(u1);
         users.add(u2);
@@ -155,9 +155,9 @@ public class UsersDataTest {
         countries.add(c2);
 
         Users u1 = new Users(1, "Ranim", "Alayoubi", "06/06/1996", UserType.Admin,
-                "ranim@gmail.com", "password199", "0684567447", c1, l2);
+                "ranim@gmail.com", "password199");
         Users u2 = new Users(2, "Obaida", "Bulbul", "29/01/1994", UserType.Reader,
-                "obaida@gmail.com", "password123", "0689754567", c2, l2);
+                "obaida@gmail.com", "password123");
 
         users.add(u1);
         users.add(u2);
@@ -184,9 +184,9 @@ public class UsersDataTest {
         countries.add(c2);
 
         Users u1 = new Users(1, "Ranim", "Alayoubi", "06/06/1996", UserType.Admin,
-                "ranim@gmail.com", "password199", "0684567447", c1, l2);
+                "ranim@gmail.com", "password199");
         Users u2 = new Users(2, "Obaida", "Bulbul", "29/01/1994", UserType.Reader,
-                "obaida@gmail.com", "password123", "0689754567", c2, l2);
+                "obaida@gmail.com", "password123");
 
         users.add(u1);
         users.add(u2);
@@ -213,9 +213,9 @@ public class UsersDataTest {
         countries.add(c2);
 
         Users u1 = new Users(1, "Ranim", "Alayoubi", "06/06/1996", UserType.Admin,
-                "ranim@gmail.com", "password199", "0684567447", c1, l2);
+                "ranim@gmail.com", "password199");
         Users u2 = new Users(2, "Obaida", "Bulbul", "29/01/1994", UserType.Reader,
-                "obaida@gmail.com", "password123", "0689754567", c2, l2);
+                "obaida@gmail.com", "password123");
 
         users.add(u1);
         users.add(u2);
