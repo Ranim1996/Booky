@@ -21,7 +21,7 @@ public class UsersTest {
 
 
         Users u = new Users(1, "Ranim", "Alayoubi", "06/06/1996" , UserType.Admin,
-                "ranim@gmail.com","password199","0684567447", syria, arabic);
+                "ranim@gmail.com","password199");
         assertEquals(1, u.getId());
         assertEquals("Ranim", u.getFirstName());
         assertEquals("Alayoubi", u.getLastName());
@@ -29,9 +29,9 @@ public class UsersTest {
         assertEquals(UserType.Admin, u.getUsertype());
         assertEquals("ranim@gmail.com", u.getEmail());
         assertEquals("password199", u.getPassword());
-        assertEquals("0684567447", u.getPhoneNumber());
-        assertEquals(syria, u.getCountry_code());
-        assertEquals(arabic, u.getLanguage_code());
+//        assertEquals("0684567447", u.getPhoneNumber());
+//        assertEquals(syria, u.getCountry_code());
+//        assertEquals(arabic, u.getLanguage_code());
     }
 
     @Rule // this rule is added to throw exceptions when its needed
@@ -142,7 +142,7 @@ public class UsersTest {
         thrown.expectMessage("Phone number must not be null");
 
         Users u= new Users();
-        u.setPhoneNumber(null);
+//        u.setPhoneNumber(null);
     }
 
     @Test // user phone number string is empty
@@ -151,7 +151,7 @@ public class UsersTest {
         thrown.expectMessage("Phone number must not be empty");
 
         Users u= new Users();
-        u.setPhoneNumber(" ");
+//        u.setPhoneNumber(" ");
     }
 
     @Test // user language null
@@ -159,7 +159,7 @@ public class UsersTest {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("User language must not be null");
         Users u= new Users();
-        u.setLanguage_code(null);
+//        u.setLanguage_code(null);
     }
 
     @Test // user country null
@@ -167,7 +167,7 @@ public class UsersTest {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("User country must not be null");
         Users u= new Users();
-        u.setCountry_code(null);
+//        u.setCountry_code(null);
     }
 
 
