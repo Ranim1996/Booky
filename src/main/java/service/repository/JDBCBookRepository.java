@@ -391,6 +391,4 @@ public class JDBCBookRepository  extends JDBCRepository{
         return count;
     }
 
-
-
 }

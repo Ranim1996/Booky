@@ -7,8 +7,8 @@ import java.util.*;
 
 public class JDBCUserRepository extends JDBCRepository {
 
-    JDBCLanguageRepository languageRepository = new JDBCLanguageRepository();
-    JDBCCountryRepository countryRepository = new JDBCCountryRepository();
+//    JDBCLanguageRepository languageRepository = new JDBCLanguageRepository();
+//    JDBCCountryRepository countryRepository = new JDBCCountryRepository();
 
     //get all users from data base
     public List<Users> getUsers() throws BookyDatabaseException, SQLException {
@@ -223,6 +223,8 @@ public class JDBCUserRepository extends JDBCRepository {
 
         String type = UserType.Reader.name();
 
+        MD5Hash md = new MD5Hash();
+
         Connection connection = this.getDataBaseConneection();
 
         String sql = "INSERT INTO users ( firstName, lastName, userType, email, password, dateOfBirth) VALUES (?,?,?,?,?,?) ";
@@ -232,7 +234,7 @@ public class JDBCUserRepository extends JDBCRepository {
             preparedStatement.setString(2, user.getLastName());
             preparedStatement.setString(3, type);
             preparedStatement.setString(4, user.getEmail());
-            preparedStatement.setString(5, user.getPassword());
+            preparedStatement.setString(5, md.oneWayHashing(user.getPassword()));
 //            preparedStatement.setString(6, user.getPhoneNumber());
 //            preparedStatement.setString(7, user.getCountry_code().getCode());
 //            preparedStatement.setString(8, user.getLanguage_code().getCode());

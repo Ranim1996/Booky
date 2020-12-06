@@ -14,6 +14,6 @@ class DataMain {
     // this java class is created to test everything in the controller
         DataBookController controller = new DataBookController();
 
-        controller.getMajority(BookType.Fantasy);
+        controller.getMajority(BookType.LitraryFiction);
     }
 }

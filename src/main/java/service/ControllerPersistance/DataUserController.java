@@ -4,6 +4,7 @@ import service.model.UserType;
 import service.model.Users;
 import service.repository.BookyDatabaseException;
 import service.repository.JDBCUserRepository;
+import service.repository.MD5Hash;
 
 import java.sql.SQLException;
 import java.util.Base64;
@@ -106,12 +107,13 @@ public class DataUserController {
      */
     public boolean login(String email, String password){
 
+        MD5Hash md = new MD5Hash();
         Users u = getUserByEmail(email);
 
         if(u == null){
             return false;
         }
-        if(u.getPassword().equals(password)){
+        if(u.getPassword().equals(md.oneWayHashing(password))){
             return true;
         }
         return false;
