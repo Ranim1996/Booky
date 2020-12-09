@@ -128,8 +128,9 @@ public class DataBookController {
     public boolean deleteBook(int id){
 
         try{
-            System.out.println("delete controller");
+            System.out.println("in book controller");
             bookRepository.deleteBook(id);
+            System.out.println("isdeleted");
             return true;
         }
         catch (BookyDatabaseException | SQLException e) {
@@ -163,7 +164,7 @@ public class DataBookController {
 
         try {
             int num = bookRepository.getBookMajority(type);
-            System.out.println("count = "+ num);
+            System.out.println("count controller= "+ num);
             return num;
         }
         catch (BookyDatabaseException | SQLException e) {

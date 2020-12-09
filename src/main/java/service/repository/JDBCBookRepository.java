@@ -300,14 +300,23 @@ public class JDBCBookRepository  extends JDBCRepository{
 
     public void deleteBook(int bId) throws BookyDatabaseException, SQLException {
 
+        System.out.println("in book repo");
+
         Connection connection = this.getDataBaseConneection();
 
-        String sql = "UPDATE book b INNER JOIN likes l ON (l.bookId = b.id) " +
-                "SET b.isDeleted = 1, l.status = 1 WHERE b.id = ?";
+        String sql = "UPDATE book b LEFT JOIN likes l ON (l.bookId = b.id) SET b.isDeleted = 1, l.status = 1 WHERE b.id = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            System.out.println("in book repo try");
+
             preparedStatement.setInt(1,bId);
+
+            System.out.println("in book repo after book id" + bId);
+
             preparedStatement.executeUpdate();
+
+            System.out.println("in book repo after execute");
+
             connection.commit();
             connection.close();
         }

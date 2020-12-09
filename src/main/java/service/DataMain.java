@@ -16,6 +16,6 @@ class DataMain {
         DataBookController controller = new DataBookController();
         controller.getMajority(BookType.LitraryFiction);
 
-        controller.deleteBook(14);
+//        controller.deleteBook(15);
     }
 }

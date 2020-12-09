@@ -75,13 +75,13 @@ public class BookResources {
     @GET //GET at http://localhost:9090/booky/books/Majority
     @Produces(MediaType.APPLICATION_JSON)
     @Path("Majority/{type}")
-    @RolesAllowed("Admin")
-    public Response getBooks(@QueryParam("type") BookType type) {
+    @PermitAll
+    public Response getBooksMajority(@PathParam("type") BookType type) {
 
         int number;
 
         number = bookController.getMajority(type);
-        System.out.println("count: "+ number);
+        System.out.println("count resources: "+ number);
 
         return Response.ok().build();
     }
@@ -89,9 +89,10 @@ public class BookResources {
     //delete book with specific id
     @DELETE //DELETE at http://localhost:9090/booky/books/3
     @Path("{id}")
-    @RolesAllowed("Admin")
+    @PermitAll
     public Response deleteBook(@PathParam("id") int bID) {
 
+        System.out.println("in book resources");
         bookController.deleteBook(bID);
 
         return Response.noContent().build();
@@ -155,7 +156,7 @@ public class BookResources {
     @GET //GET at http://localhost:9090/booky/books/MyList
     @Path("MyList")
     @Produces(MediaType.APPLICATION_JSON)
-    @RolesAllowed("Reader")
+    @PermitAll
     public Response getLikedBooksByUser(@QueryParam("id") int userId) {
 
         List<Book> books;
@@ -170,7 +171,7 @@ public class BookResources {
     @DELETE //GET at http://localhost:9090/booky/books/MyList
     @Path("MyList/{id}/user/{uId}")
     @Produces(MediaType.APPLICATION_JSON)
-    @RolesAllowed("Reader")
+    @PermitAll
     public Response removeBook(@PathParam("id") int bId, @PathParam("uId") int uId) {
         
         likeController.deleteBook(bId, uId);
