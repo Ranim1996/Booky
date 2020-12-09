@@ -128,6 +128,7 @@ public class DataBookController {
     public boolean deleteBook(int id){
 
         try{
+            System.out.println("delete controller");
             bookRepository.deleteBook(id);
             return true;
         }

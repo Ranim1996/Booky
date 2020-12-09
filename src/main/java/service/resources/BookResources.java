@@ -72,19 +72,19 @@ public class BookResources {
     }
 
     //get all books
-//    @GET //GET at http://localhost:9090/booky/books/Majority
-//    @Produces(MediaType.APPLICATION_JSON)
-//    @Path("Majority/{type}")
-//    @RolesAllowed("Admin")
-//    public Response getBooks(@QueryParam("type") BookType type) {
-//
-//        int number;
-//
-//        number = bookController.getMajority(type);
-//        System.out.println("count: "+ number);
-//
-//        return Response.ok().build();
-//    }
+    @GET //GET at http://localhost:9090/booky/books/Majority
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("Majority/{type}")
+    @RolesAllowed("Admin")
+    public Response getBooks(@QueryParam("type") BookType type) {
+
+        int number;
+
+        number = bookController.getMajority(type);
+        System.out.println("count: "+ number);
+
+        return Response.ok().build();
+    }
 
     //delete book with specific id
     @DELETE //DELETE at http://localhost:9090/booky/books/3

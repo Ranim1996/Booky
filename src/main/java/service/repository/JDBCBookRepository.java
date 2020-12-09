@@ -18,7 +18,7 @@ public class JDBCBookRepository  extends JDBCRepository{
 
         Connection connection = this.getDataBaseConneection();
 
-        String sql = "SELECT * FROM book";
+        String sql = "SELECT * FROM book WHERE isDeleted = 0";
 
         try (Statement statement = connection.createStatement()){
             ResultSet resultSet = statement.executeQuery(sql);
@@ -57,7 +57,7 @@ public class JDBCBookRepository  extends JDBCRepository{
 
         Connection connection = this.getDataBaseConneection();
 
-        String sql = "SELECT * FROM book WHERE language_code = ?";
+        String sql = "SELECT * FROM book WHERE language_code = ? AND isDeleted = 0";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, language.getCode()); // set language_code parameter
@@ -98,7 +98,7 @@ public class JDBCBookRepository  extends JDBCRepository{
 
         Connection connection = this.getDataBaseConneection();
 
-        String sql = "SELECT * FROM book WHERE bookType = ?";
+        String sql = "SELECT * FROM book WHERE bookType = ? AND isDeleted = 0";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, type.name()); // set type parameter
@@ -140,7 +140,7 @@ public class JDBCBookRepository  extends JDBCRepository{
 
         Connection connection = this.getDataBaseConneection();
 
-        String sql = "SELECT * FROM book WHERE bookType = ? AND language_code = ?";
+        String sql = "SELECT * FROM book WHERE bookType = ? AND language_code = ? AND isDeleted = 0";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setString(1, type.name()); // set type parameter
@@ -302,7 +302,8 @@ public class JDBCBookRepository  extends JDBCRepository{
 
         Connection connection = this.getDataBaseConneection();
 
-        String sql = "Delete FROM book where id = ?";
+        String sql = "UPDATE book b INNER JOIN likes l ON (l.bookId = b.id) " +
+                "SET b.isDeleted = 1, l.status = 1 WHERE b.id = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)){
             preparedStatement.setInt(1,bId);
@@ -326,7 +327,7 @@ public class JDBCBookRepository  extends JDBCRepository{
         List<Book> filtered = new ArrayList<>();
 
         Connection connection = this.getDataBaseConneection();
-        String sql = "SELECT * FROM book WHERE bookName LIKE CONCAT ('%', ? ,'%') GROUP BY id";
+        String sql = "SELECT * FROM book WHERE bookName LIKE CONCAT ('%', ? ,'%') AND isDeleted = 0 GROUP BY id";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
 
@@ -368,7 +369,7 @@ public class JDBCBookRepository  extends JDBCRepository{
         int count = 0;
 
         Connection connection = this.getDataBaseConneection();
-        String sql = "SELECT COUNT(id) AS id FROM book WHERE bookType = ?";
+        String sql = "SELECT COUNT(id) AS id FROM book WHERE bookType = ? AND isDeleted = 0";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
 
