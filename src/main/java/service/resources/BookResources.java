@@ -4,6 +4,7 @@ import service.ControllerPersistance.DataBookController;
 import service.ControllerPersistance.DataLanguageController;
 import service.ControllerPersistance.DataLikeController;
 import service.model.*;
+import service.model.DTO.BookDTO;
 import service.repository.*;
 
 import javax.annotation.security.PermitAll;
@@ -78,10 +79,10 @@ public class BookResources {
     @PermitAll
     public Response getBooksMajority(@PathParam("type") BookType type) {
 
-        int number;
+//        List<BookDTO> myList;
 
-        number = bookController.getMajority(type);
-        System.out.println("count resources: "+ number);
+        BookDTO bookDTO = bookController.getMajority(type);
+        System.out.println("count resources: "+ bookDTO);
 
         return Response.ok().build();
     }

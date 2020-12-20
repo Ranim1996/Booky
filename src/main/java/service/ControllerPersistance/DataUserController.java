@@ -1,16 +1,24 @@
 package service.ControllerPersistance;
 
-import service.model.UserType;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;import service.model.UserType;
 import service.model.Users;
 import service.repository.BookyDatabaseException;
 import service.repository.JDBCUserRepository;
 import service.repository.MD5Hash;
 
+import javax.crypto.spec.SecretKeySpec;
+import javax.xml.bind.DatatypeConverter;
+import java.net.URISyntaxException;
+import java.security.Key;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
-import java.util.Base64;
-import java.util.Collection;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.util.*;
+
+import static java.lang.Integer.parseInt;
 
 public class DataUserController {
 
@@ -99,6 +107,21 @@ public class DataUserController {
         return null;
     }
 
+    public Users getUser(int userId){
+
+        JDBCUserRepository userRepository = new JDBCUserRepository();
+        try {
+            Users user = userRepository.getUserById(userId);
+
+            System.out.println("ok");
+
+            return user;
+        } catch (SQLException | BookyDatabaseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     /**
      * log into account
      * @param email
@@ -108,54 +131,89 @@ public class DataUserController {
     public boolean login(String email, String password){
 
         MD5Hash md = new MD5Hash();
-        Users u = getUserByEmail(email);
 
-        if(u == null){
+        Users u = getUserByEmail(email);
+        if(u.equals(null)){
             return false;
         }
-        if(u.getPassword().equals(md.oneWayHashing(password))){
+
+        System.out.println("User: " + u);
+
+        System.out.println("given password: " + password);
+        String encryptedPassword = md.oneWayHashing(password);
+
+        System.out.println("encrypted password: " + encryptedPassword );
+
+        if(u.getPassword().equals(encryptedPassword)){
             return true;
         }
         return false;
     }
 
-    /**
-     * log into account
-     * @param id
-     * @param auth
-     * log in with email and password
-     */
-    public boolean isIdAndAuthSame(int id, String auth) {
+    public Users getUserFromToken(String token) {
+        Claims decoded = decodeJWT(token);
 
-        String encodedCredentials = auth.replaceFirst("Basic ", "");
-        String credentials = new String(Base64.getDecoder().decode(encodedCredentials.getBytes()));
+        String id = decoded.getId();
 
-        final StringTokenizer tokenizer = new StringTokenizer(credentials, ":");
-        final String email = tokenizer.nextToken();
+        Users u = getUser(parseInt(id));
 
-        Users user = showUserById(id);
+        return u;
+    }
 
-        if (!user.getEmail().equals(email)) {
-            return false;
-        } else {
-            return true;
-        }
+    public static String SECRET_KEY = "oeRaYY";
+
+    //Sample method to construct a JWT
+    public String createJWT(String id, String issuer, String subject, long ttlMillis) {
+
+        //The JWT signature algorithm we will be using to sign the token
+        SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+
+        long nowMillis = System.currentTimeMillis();
+        Date now = new Date(nowMillis);
+
+        //We will sign our JWT with our ApiKey secret
+        byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(SECRET_KEY);
+        Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
+
+        //Let's set the JWT Claims
+        JwtBuilder builder = Jwts.builder().setId(id)
+                .setIssuedAt(now)
+                .setSubject(subject)
+                .setIssuer(issuer)
+                .signWith(signatureAlgorithm, signingKey);
+
+        //Builds the JWT and serializes it to a compact, URL-safe string
+        return builder.compact();
+    }
+
+    public  Claims decodeJWT(String jwt) {
+
+        //This line will throw an exception if it is not a signed JWS (as expected)
+        Claims claims = Jwts.parser()
+                .setSigningKey(DatatypeConverter.parseBase64Binary(SECRET_KEY))
+                .parseClaimsJws(jwt).getBody();
+        return claims;
     }
 
     /**
      * Add/create a new book.
      * @param user should be inserted into the DB.
      */
-    public boolean addUser(Users user){
+    public boolean addUser(Users user) {
 
         JDBCUserRepository userRepository = new JDBCUserRepository();
 
-
         try {
-            userRepository.addUser(user);
-            return true;
-        }
-        catch (BookyDatabaseException | SQLException e) {
+            if(userRepository.addUser(user)) {
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        } catch (SQLException | BookyDatabaseException e) {
+            e.printStackTrace();
             return false;
         }
     }

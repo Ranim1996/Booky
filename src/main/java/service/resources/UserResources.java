@@ -30,21 +30,14 @@ public class UserResources {
     @Path("{id}")
     @PermitAll
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getUserPath(@PathParam("id") int id, @HeaderParam("Authorization") String auth) {
+    public Response getUserPath(@PathParam("id") int id) {
+        Users user = userController.getUser(id);
 
-        System.out.println("Authentication get User Path: " + auth);
-
-        if (!userController.isIdAndAuthSame(id, auth)){
-            return Response.status(Response.Status.UNAUTHORIZED).entity("Invalid email and/or password.").build();
+        if(user == null ){
+            return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid about id.").build();
         }
         else{
-            Users u = userController.showUserById(id);
-            if(userController.showUserById(id) != null){
-                return Response.ok(u).build();
-            }
-            else {
-                return Response.status(Response.Status.BAD_REQUEST).entity("Please provide a valid id.").build();
-            }
+            return Response.ok(user).build();
         }
     }
 
@@ -64,24 +57,24 @@ public class UserResources {
 
     //log into the web application using email and password
 
-    //http headers like the demo implement it with the headers
-    @POST
+    @POST //POST at http://localhost:XXXX/users/
     @Path("login")
     @PermitAll
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response LoginUser(String body, @HeaderParam("Authorization") String auth) {
+    @Produces("text/plain")
+    public Response LoginUser(String body) {
 
         final StringTokenizer tokenizer = new StringTokenizer(body, ":");
-
         final String email = tokenizer.nextToken();
         final String password = tokenizer.nextToken();
 
         Users user = userController.getUserByEmail(email);
 
         if (userController.login(email, password)) {
-            return Response.ok(user).build();
+            String userId = Integer.toString(user.getId());
+            String token = userController.createJWT(userId, user.getFirstName(),user.getUsertype().name(), -1);
+            return Response.ok(token).build();
         } else {
-            return Response.status(Response.Status.NOT_FOUND).entity("Please provide a valid email/Password.").build();
+            return Response.status(Response.Status.NOT_FOUND).entity("Please provide a valid email.").build();
         }
     }
 
@@ -96,6 +89,7 @@ public class UserResources {
             return Response.status(Response.Status.CONFLICT).entity(entity).build();
         }
         else {
+            System.out.println("User: " + user + user.getPassword());
             String url = uriInfo.getAbsolutePath() + "/" + user.getId(); // url of the posted user
             URI uri = URI.create(url);
             return Response.created(uri).build();

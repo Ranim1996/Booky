@@ -2,6 +2,7 @@ package service.repository;
 
 import service.model.Book;
 import service.model.BookType;
+import service.model.DTO.BookDTO;
 import service.model.Language;
 
 import java.sql.*;
@@ -300,22 +301,15 @@ public class JDBCBookRepository  extends JDBCRepository{
 
     public void deleteBook(int bId) throws BookyDatabaseException, SQLException {
 
-        System.out.println("in book repo");
-
         Connection connection = this.getDataBaseConneection();
 
         String sql = "UPDATE book b LEFT JOIN likes l ON (l.bookId = b.id) SET b.isDeleted = 1, l.status = 1 WHERE b.id = ?";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)){
-            System.out.println("in book repo try");
 
             preparedStatement.setInt(1,bId);
 
-            System.out.println("in book repo after book id" + bId);
-
             preparedStatement.executeUpdate();
-
-            System.out.println("in book repo after execute");
 
             connection.commit();
             connection.close();
@@ -373,7 +367,7 @@ public class JDBCBookRepository  extends JDBCRepository{
     }
 
     //count posted books for specific book type
-    public int getBookMajority(BookType type) throws BookyDatabaseException, SQLException {
+    public BookDTO getBookMajority(BookType type) throws BookyDatabaseException, SQLException {
 
         int count = 0;
 
@@ -386,11 +380,13 @@ public class JDBCBookRepository  extends JDBCRepository{
 
             ResultSet resultSet = statement.executeQuery();
 
-            if (resultSet.next()) {
+            while (resultSet.next()) {
                 count = resultSet.getInt("id");
             }
+
             connection.close();
 
+            return new BookDTO(type, count);
 
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot count books from the database.",throwable);
@@ -398,7 +394,6 @@ public class JDBCBookRepository  extends JDBCRepository{
         finally {
             connection.close();
         }
-        return count;
     }
 
 }

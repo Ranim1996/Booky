@@ -219,7 +219,7 @@ public class JDBCUserRepository extends JDBCRepository {
         }
     }
 
-    public void addUser(Users user) throws BookyDatabaseException, SQLException {
+    public boolean addUser(Users user) throws BookyDatabaseException, SQLException {
 
         String type = UserType.Reader.name();
 
@@ -244,11 +244,14 @@ public class JDBCUserRepository extends JDBCRepository {
             connection.commit();
             connection.close();
 
+            return true;
+
         } catch (SQLException throwable) {
             throw  new BookyDatabaseException("Cannot create new user.", throwable);
         }finally {
             connection.close();
         }
+
     }
 
 }
