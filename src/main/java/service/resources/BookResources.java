@@ -3,9 +3,10 @@ package service.resources;
 import service.ControllerPersistance.DataBookController;
 import service.ControllerPersistance.DataLanguageController;
 import service.ControllerPersistance.DataLikeController;
+import service.ControllerPersistance.DataStatisticsController;
 import service.model.*;
-import service.model.DTO.BookDTO;
-import service.repository.*;
+import service.model.DTO.StatisticsLanguage;
+import service.model.DTO.StatisticsType;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
@@ -19,6 +20,7 @@ public class BookResources {
 
     DataBookController bookController = new DataBookController();
     DataLikeController likeController = new DataLikeController();
+    DataStatisticsController statisticsController = new DataStatisticsController();
 
     @Context
     private UriInfo uriInfo;
@@ -70,21 +72,6 @@ public class BookResources {
 
         GenericEntity<List<Book>> entity = new GenericEntity<>(books) {  };
         return Response.ok(entity).build();
-    }
-
-    //get all books
-    @GET //GET at http://localhost:9090/booky/books/Majority
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("Majority/{type}")
-    @PermitAll
-    public Response getBooksMajority(@PathParam("type") BookType type) {
-
-//        List<BookDTO> myList;
-
-        BookDTO bookDTO = bookController.getMajority(type);
-        System.out.println("count resources: "+ bookDTO);
-
-        return Response.ok().build();
     }
 
     //delete book with specific id
@@ -178,6 +165,31 @@ public class BookResources {
         likeController.deleteBook(bId, uId);
 
         return Response.noContent().build();
+    }
+
+    /*******************************Statistics**************************************/
+    @GET //GET at http://localhost:9090/booky/books/Majority/Type
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("Majority/Type")
+    @PermitAll
+    public Response countStatisticsPerType() {
+
+        List<StatisticsType> statistics = statisticsController.staisticsPerType();
+        System.out.println("count resources statistics: "+ statistics);
+
+        return Response.ok(statistics).build();
+    }
+
+    @GET //GET at http://localhost:9090/booky/books/Majority/Language
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("Majority/Language")
+    @PermitAll
+    public Response countStatisticsPerLanguage() {
+
+        List<StatisticsLanguage> statistics = statisticsController.statisticsPerLanguage();
+        System.out.println("count resources statistics: "+ statistics);
+
+        return Response.ok(statistics).build();
     }
 
 

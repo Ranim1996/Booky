@@ -14,6 +14,10 @@ public class BookDTO {
         this.number = number;
     }
 
+    public BookDTO(int number) {
+        this.number = number;
+    }
+
     public BookDTO() {
     }
 

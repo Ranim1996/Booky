@@ -2,7 +2,6 @@ package service.ControllerPersistance;
 
 import service.model.Book;
 import service.model.BookType;
-import service.model.DTO.BookDTO;
 import service.model.Language;
 import service.repository.BookyDatabaseException;
 import service.repository.JDBCBookRepository;
@@ -156,23 +155,25 @@ public class DataBookController {
         }
     }
 
+
+    /*******************************************Statistics******************************************************/
     /**
      * Show/print how many books are posted for specific type
      * @param type
      */
     //count books
-    public BookDTO getMajority(BookType type){
+    public int getMajority(BookType type){
+
+        int found = 0;
 
         try {
-            BookDTO found = bookRepository.getBookMajority(type);
+            found = bookRepository.getBookMajority(type);
             System.out.println("count controller= "+ found);
             return found;
         }
         catch (BookyDatabaseException | SQLException e) {
             e.printStackTrace();
-            return null;
         }
+        return found;
     }
-
-
 }

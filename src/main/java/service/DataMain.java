@@ -1,8 +1,7 @@
 package service;
 
-
 import service.ControllerPersistance.DataBookController;
-import service.ControllerPersistance.DataLikeController;
+import service.ControllerPersistance.DataStatisticsController;
 import service.model.BookType;
 
 /**
@@ -12,10 +11,9 @@ class DataMain {
 
     public static void main(String[] args) {
 
-    // this java class is created to test everything in the controller
-        DataBookController controller = new DataBookController();
-        controller.getMajority(BookType.LitraryFiction);
+        DataStatisticsController statisticsController = new DataStatisticsController();
 
-//        controller.deleteBook(15);
+        statisticsController.statisticsPerLanguage();
+
     }
 }

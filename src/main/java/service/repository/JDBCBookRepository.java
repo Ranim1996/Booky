@@ -2,7 +2,6 @@ package service.repository;
 
 import service.model.Book;
 import service.model.BookType;
-import service.model.DTO.BookDTO;
 import service.model.Language;
 
 import java.sql.*;
@@ -367,7 +366,7 @@ public class JDBCBookRepository  extends JDBCRepository{
     }
 
     //count posted books for specific book type
-    public BookDTO getBookMajority(BookType type) throws BookyDatabaseException, SQLException {
+    public int getBookMajority(BookType type) throws BookyDatabaseException, SQLException {
 
         int count = 0;
 
@@ -386,8 +385,7 @@ public class JDBCBookRepository  extends JDBCRepository{
 
             connection.close();
 
-            return new BookDTO(type, count);
-
+            return count;
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot count books from the database.",throwable);
         }

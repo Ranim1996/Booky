@@ -1,20 +1,12 @@
 package service.resources;
 
-import service.ControllerPersistance.DataBookController;
 import service.ControllerPersistance.DataUserController;
-import service.model.Book;
-import service.model.UserType;
 import service.model.Users;
-import service.model.Language;
-import service.repository.*;
 
 import javax.annotation.security.PermitAll;
-import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
-import java.util.Base64;
-import java.util.List;
 import java.util.StringTokenizer;
 
 @Path("/users")
