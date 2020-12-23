@@ -1,7 +1,6 @@
-package Test;
+package Test.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.Rule;
 import org.junit.jupiter.api.Test;
@@ -11,7 +10,7 @@ import service.model.Language;
 public class LanguageTest {
 
     @Test //check whether language info are correct
-    void NewCountryTest()
+    void NewLanguageTest()
     {
         Language l = new Language("AR", "Arabic");
 
