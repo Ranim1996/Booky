@@ -114,7 +114,6 @@ public class DataUserController {
 
             return user;
         } catch (SQLException | BookyDatabaseException e) {
-            e.printStackTrace();
         }
         return null;
     }
@@ -210,7 +209,6 @@ public class DataUserController {
                 return false;
             }
         } catch (SQLException | BookyDatabaseException e) {
-            e.printStackTrace();
             return false;
         }
     }

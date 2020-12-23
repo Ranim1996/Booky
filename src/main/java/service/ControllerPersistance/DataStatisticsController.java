@@ -28,7 +28,6 @@ public class DataStatisticsController {
             return statisticsTypeArrayList;
         }
         catch (BookyDatabaseException | SQLException e) {
-            e.printStackTrace();
         }
         return null;
     }
@@ -47,7 +46,6 @@ public class DataStatisticsController {
             return statisticsLanguageArrayList;
         }
         catch (BookyDatabaseException | SQLException e) {
-            e.printStackTrace();
         }
         return null;
     }

@@ -150,7 +150,6 @@ public class DataBookController {
             return books;
         }
         catch (BookyDatabaseException | SQLException e) {
-            e.printStackTrace();
             return null;
         }
     }
