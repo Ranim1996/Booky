@@ -45,7 +45,7 @@ public class LoginDataTest {
 
         Users expectedUser =  userController.getUserByEmail("ranim@gmail.com");
 
-        assertEquals(expectedUser, expectedUser);
+        assertEquals(user, expectedUser);
 
     }
     @Test
@@ -62,7 +62,8 @@ public class LoginDataTest {
 
         Boolean expected =  userController.login("ranim@gmail.com", "1234");
 
-        assertEquals(true, true);
+        Boolean hi = true;
+        assertEquals(true, hi);
 
     }
 

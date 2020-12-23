@@ -130,7 +130,7 @@ public class DataUserController {
         MD5Hash md = new MD5Hash();
 
         Users u = getUserByEmail(email);
-        if(u.equals(null)){
+        if(u == null){
             return false;
         }
 
