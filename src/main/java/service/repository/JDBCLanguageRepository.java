@@ -41,7 +41,7 @@ public class JDBCLanguageRepository extends JDBCRepository{
     }
 
     //get all languages from data base
-    public Collection<Language> getLanguages() throws BookyDatabaseException, SQLException {
+    public List<Language> getLanguages() throws BookyDatabaseException, SQLException {
 
         List<Language> languages = new ArrayList<>();
 

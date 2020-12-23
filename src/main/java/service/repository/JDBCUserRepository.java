@@ -148,7 +148,7 @@ public class JDBCUserRepository extends JDBCRepository {
     }
 
     // update user data
-    public void updateUser(int id, Users user) throws BookyDatabaseException, SQLException {
+    public boolean updateUser(int id, Users user) throws BookyDatabaseException, SQLException {
 
         Connection connection = this.getDataBaseConneection();
 
@@ -161,9 +161,6 @@ public class JDBCUserRepository extends JDBCRepository {
             preparedStatement.setString(3, user.getUsertype().name());
             preparedStatement.setString(4, user.getEmail());
             preparedStatement.setString(5, user.getPassword());
-//            preparedStatement.setString(6, user.getPhoneNumber());
-//            preparedStatement.setString(7, user.getCountry_code().getCode());
-//            preparedStatement.setString(8, user.getLanguage_code().getCode());
             preparedStatement.setString(6, user.getDateOfBirth());
 
 
@@ -172,6 +169,8 @@ public class JDBCUserRepository extends JDBCRepository {
             preparedStatement.executeUpdate();
             connection.commit();
             connection.close();
+
+            return true;
 
         } catch (SQLException throwable) {
             throw  new BookyDatabaseException("Cannot update user information.", throwable);

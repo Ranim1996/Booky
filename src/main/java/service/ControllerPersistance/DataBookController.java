@@ -154,26 +154,4 @@ public class DataBookController {
             return null;
         }
     }
-
-
-    /*******************************************Statistics******************************************************/
-    /**
-     * Show/print how many books are posted for specific type
-     * @param type
-     */
-    //count books
-    public int getMajority(BookType type){
-
-        int found = 0;
-
-        try {
-            found = bookRepository.getBookMajority(type);
-            System.out.println("count controller= "+ found);
-            return found;
-        }
-        catch (BookyDatabaseException | SQLException e) {
-            e.printStackTrace();
-        }
-        return found;
-    }
 }

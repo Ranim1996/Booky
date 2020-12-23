@@ -5,20 +5,26 @@ import service.repository.BookyDatabaseException;
 import service.repository.JDBCLanguageRepository;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class DataLanguageController {
 
     JDBCLanguageRepository languagesRepository = new JDBCLanguageRepository();
 
     //show all languages
-    void showAllLanguages(){
+    public List<Language> showAllLanguages(){
+
+        List<Language> languages = new ArrayList<>();
 
         try {
-            Collection<Language> languages = languagesRepository.getLanguages();
+            languages = languagesRepository.getLanguages();
+            return languages;
         }
         catch (BookyDatabaseException | SQLException e) {
         }
+        return languages;
     }
 
     /**

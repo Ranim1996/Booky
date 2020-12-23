@@ -41,7 +41,7 @@ public class JDBCCountryRepository extends JDBCRepository{
     }
 
     //get all countries from data base
-    public Collection<Country> getCountries() throws BookyDatabaseException, SQLException {
+    public List<Country> getCountries() throws BookyDatabaseException, SQLException {
         List<Country> countries = new ArrayList<>();
 
         Connection connection = this.getDataBaseConneection();

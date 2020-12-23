@@ -81,7 +81,7 @@ public class JDBCLikeRepository extends JDBCRepository {
     }
 
     //add like
-   public void addLike(Like like) throws BookyDatabaseException, SQLException {
+   public boolean addLike(Like like) throws BookyDatabaseException, SQLException {
 
        Connection connection = this.getDataBaseConneection();
 
@@ -98,6 +98,7 @@ public class JDBCLikeRepository extends JDBCRepository {
             connection.commit();
             connection.close();
 
+            return true;
        } catch (SQLException throwable) {
             throw  new BookyDatabaseException("Cannot add like.", throwable);
         }finally {
@@ -106,7 +107,7 @@ public class JDBCLikeRepository extends JDBCRepository {
     }
 
     //remove book from my list
-    public void deleteBook(int bId, int uId) throws BookyDatabaseException, SQLException {
+    public boolean deleteBook(int bId, int uId) throws BookyDatabaseException, SQLException {
 
         Connection connection = this.getDataBaseConneection();
 
@@ -119,6 +120,8 @@ public class JDBCLikeRepository extends JDBCRepository {
             preparedStatement.executeUpdate();
             connection.commit();
             connection.close();
+
+            return true;
         }
         catch (SQLException throwable){
             throw  new BookyDatabaseException("Cannot delete book.", throwable);
