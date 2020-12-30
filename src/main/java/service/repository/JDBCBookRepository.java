@@ -215,18 +215,19 @@ public class JDBCBookRepository  extends JDBCRepository{
 
         Connection connection = this.getDataBaseConneection();
 
-        String sql = "INSERT INTO book ( bookName, authorName, bookType, describtion, time, language_code) " +
-                "VALUES (?,?,?,?,?,?) ";
+        String sql = "INSERT INTO book ( bookName, authorName, bookType, image, describtion, time, language_code) " +
+                "VALUES (?,?,?,?,?,?,?) ";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setString(1, book.getBookName());
             preparedStatement.setString(2, book.getAuthorName());
             preparedStatement.setString(3, book.getBookType().name());
-            preparedStatement.setString(4, book.getDescribtion());
-            preparedStatement.setDate(5, new java.sql.Date(System.currentTimeMillis()));
+            preparedStatement.setString(4, book.getImage());
+            preparedStatement.setString(5, book.getDescribtion());
+            preparedStatement.setDate(6, new java.sql.Date(System.currentTimeMillis()));
 
-            preparedStatement.setString(6, book.getLanguage_code().getCode());
+            preparedStatement.setString(7, book.getLanguage_code().getCode());
             preparedStatement.executeUpdate();
             connection.commit();
 
