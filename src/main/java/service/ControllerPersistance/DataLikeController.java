@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
 
-public class DataLikeController {
+public class DataLikeController extends JDBCLikeRepository {
 
     JDBCLikeRepository likeRepository = new JDBCLikeRepository();
 

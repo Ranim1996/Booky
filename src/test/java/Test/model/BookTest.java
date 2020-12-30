@@ -18,7 +18,7 @@ public class BookTest {
     {
         Language arabic = new Language("AR", "Arabic");
 
-        Book b = new Book(1, "BookName1","Author1", BookType.Classics, "Info", LocalDate.now(), arabic);
+        Book b = new Book(1, "BookName1","Author1", BookType.Classics, "Info", LocalDate.now(), arabic,"");
 
         assertEquals(1, b.getId());
         assertEquals("BookName1", b.getBookName());

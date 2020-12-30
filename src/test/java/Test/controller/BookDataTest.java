@@ -37,8 +37,8 @@ public class BookDataTest {
         Language language = new Language("Fr","French");
         List<Book> books = new ArrayList<>();
 
-        Book book1 = new Book(1,"book1","author1",BookType.LitraryFiction,"info",date,language);
-        Book book2 = new Book(2,"book2","author2",BookType.Classics,"info",date,language);
+        Book book1 = new Book(1,"book1","author1",BookType.LitraryFiction,"info",date,language,"");
+        Book book2 = new Book(2,"book2","author2",BookType.Classics,"info",date,language,"");
 
         books.add(book1);
         books.add(book2);
@@ -56,7 +56,7 @@ public class BookDataTest {
         Language language = new Language("Fr","French");
         List<Book> books = new ArrayList<>();
 
-        Book book = new Book(1,"book1","author1",BookType.LitraryFiction,"info",date,language);
+        Book book = new Book(1,"book1","author1",BookType.LitraryFiction,"info",date,language,"");
         books.add(book);
 
         when(bookRepository.getBooksByType(BookType.LitraryFiction)).thenReturn(books);
@@ -72,7 +72,7 @@ public class BookDataTest {
         Language language = new Language("Fr","French");
         List<Book> books = new ArrayList<>();
 
-        Book book = new Book(1,"book1","author1",BookType.LitraryFiction,"info",date,language);
+        Book book = new Book(1,"book1","author1",BookType.LitraryFiction,"info",date,language,"");
         books.add(book);
 
         when(bookRepository.getBooksByLanguage(language)).thenReturn(books);
@@ -88,7 +88,7 @@ public class BookDataTest {
         Language language = new Language("Fr","French");
         List<Book> books = new ArrayList<>();
 
-        Book book = new Book(1,"book1","author1",BookType.LitraryFiction,"info",date,language);
+        Book book = new Book(1,"book1","author1",BookType.LitraryFiction,"info",date,language,"");
         books.add(book);
 
         when(bookRepository.getBooksByTypeAndLanguage(BookType.LitraryFiction,language)).thenReturn(books);
@@ -103,7 +103,7 @@ public class BookDataTest {
         LocalDate date = LocalDate.now();
         Language language = new Language("Fr","French");
 
-        Book book = new Book(1,"book1","author1",BookType.LitraryFiction,"info",date,language);
+        Book book = new Book(1,"book1","author1",BookType.LitraryFiction,"info",date,language,"");
 
         when(bookRepository.addBook(book)).thenReturn(true);
 
@@ -117,7 +117,7 @@ public class BookDataTest {
         LocalDate date = LocalDate.now();
         Language language = new Language("Fr","French");
 
-        Book book = new Book(1,"book1","author1",BookType.LitraryFiction,"info",date,language);
+        Book book = new Book(1,"book1","author1",BookType.LitraryFiction,"info",date,language,"");
 
         when(bookRepository.updateBook(1,book)).thenReturn(true);
 
@@ -131,7 +131,7 @@ public class BookDataTest {
         LocalDate date = LocalDate.now();
         Language language = new Language("Fr","French");
 
-        Book book = new Book(1,"book1","author1",BookType.LitraryFiction,"info",date,language);
+        Book book = new Book(1,"book1","author1",BookType.LitraryFiction,"info",date,language,"");
 
         when(bookRepository.deleteBook(1)).thenReturn(true);
 
@@ -146,7 +146,7 @@ public class BookDataTest {
         Language language = new Language("Fr","French");
         List<Book> books = new ArrayList<>();
 
-        Book book = new Book(1,"book1","author1",BookType.LitraryFiction,"info",date,language);
+        Book book = new Book(1,"book1","author1",BookType.LitraryFiction,"info",date,language,"");
         books.add(book);
 
         when(bookRepository.getBooksByName("oo")).thenReturn(books);

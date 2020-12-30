@@ -17,7 +17,7 @@ import java.util.*;
 
 import static java.lang.Integer.parseInt;
 
-public class DataUserController {
+public class DataUserController extends JDBCUserRepository {
 
 
     /**

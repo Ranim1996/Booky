@@ -45,7 +45,7 @@ public class LikeDataTest {
         LocalDate date = LocalDate.now();
         Language language = new Language("Fr","French");
 
-        Book book = new Book(1,"book","author", BookType.Classics,"info",date, language);
+        Book book = new Book(1,"book","author", BookType.Classics,"info",date, language,"");
 
         books.add(book);
 
@@ -62,7 +62,7 @@ public class LikeDataTest {
         Language language = new Language("Fr","French");
 
         Users user = new Users(1,"Ranim","Alayoubi","06/06/1996", UserType.Admin,"email@gmail.com","password");
-        Book book = new Book(1,"book1","author1",BookType.LitraryFiction,"info",date,language);
+        Book book = new Book(1,"book1","author1",BookType.LitraryFiction,"info",date,language,"");
 
         when(likeRepository.deleteBook(book.getId(),user.getId())).thenReturn(true);
 

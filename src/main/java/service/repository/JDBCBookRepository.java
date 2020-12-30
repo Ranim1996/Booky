@@ -30,12 +30,13 @@ public class JDBCBookRepository  extends JDBCRepository{
                 BookType type =  BookType.valueOf(resultSet.getString("bookType"));
                 String describtion = resultSet.getString("describtion");
                 LocalDate time = resultSet.getDate("time").toLocalDate();
+                String image = resultSet.getString("image");
 
                 String code = resultSet.getString("language_code");
 
                 Language language = languages.get(code);
 
-                Book book = new Book(id,bookName,authorName,type, describtion, time, language);
+                Book book = new Book(id,bookName,authorName,type, describtion, time, language, image);
                 books.add(book);
             }
 
@@ -70,12 +71,13 @@ public class JDBCBookRepository  extends JDBCRepository{
                 BookType type =  BookType.valueOf(resultSet.getString("bookType"));
                 String describtion = resultSet.getString("describtion");
                 LocalDate time = resultSet.getDate("time").toLocalDate();
+                String image = resultSet.getString("image");
 
                 String code = resultSet.getString("language_code");
 
                 Language bLanguage = languages.get(code);
 
-                Book book = new Book(id,bookName,authorName,type, describtion, time, bLanguage);
+                Book book = new Book(id,bookName,authorName,type, describtion, time, bLanguage, image);
                 filtered.add(book);
 
             }
@@ -111,12 +113,13 @@ public class JDBCBookRepository  extends JDBCRepository{
                 BookType bType =  BookType.valueOf(resultSet.getString("bookType"));
                 String describtion = resultSet.getString("describtion");
                 LocalDate time = resultSet.getDate("time").toLocalDate();
+                String image = resultSet.getString("image");
 
                 String code = resultSet.getString("language_code");
 
                 Language bLanguage = languages.get(code);
 
-                Book book = new Book(id,bookName,authorName,bType, describtion, time, bLanguage);
+                Book book = new Book(id,bookName,authorName,bType, describtion, time, bLanguage,image);
                 filtered.add(book);
 
             }
@@ -156,12 +159,13 @@ public class JDBCBookRepository  extends JDBCRepository{
                 BookType bType =  BookType.valueOf(resultSet.getString("bookType"));
                 String describtion = resultSet.getString("describtion");
                 LocalDate time = resultSet.getDate("time").toLocalDate();
+                String image = resultSet.getString("image");
 
                 String code = resultSet.getString("language_code");
 
                 Language bLanguage = languages.get(code);
 
-                Book book = new Book(id,bookName,authorName,bType, describtion, time, bLanguage);
+                Book book = new Book(id,bookName,authorName,bType, describtion, time, bLanguage, image);
                 filtered.add(book);
 
             }
@@ -255,11 +259,12 @@ public class JDBCBookRepository  extends JDBCRepository{
                 String describtion = resultSet.getString("describtion");
                 LocalDate time = resultSet.getDate("time").toLocalDate();
                 String languageCode = resultSet.getString("language_code");
+                String image = resultSet.getString("image");
 
                 connection.close();
 
                 Language language = languageRepository.getLanguageByCode(languageCode);
-                return new Book(0,bookName,authorName,type, describtion, time, language);
+                return new Book(0,bookName,authorName,type, describtion, time, language, image);
             }
         } catch (SQLException throwable) {
             throw new BookyDatabaseException("Cannot read books from the database.",throwable);
@@ -348,12 +353,13 @@ public class JDBCBookRepository  extends JDBCRepository{
                 BookType bType =  BookType.valueOf(resultSet.getString("bookType"));
                 String describtion = resultSet.getString("describtion");
                 LocalDate time = resultSet.getDate("time").toLocalDate();
+                String image = resultSet.getString("image");
 
                 String code = resultSet.getString("language_code");
 
                 Language bLanguage = languages.get(code);
 
-                Book book = new Book(id,bookName,authorName,bType, describtion, time, bLanguage);
+                Book book = new Book(id,bookName,authorName,bType, describtion, time, bLanguage,image);
                 filtered.add(book);
 
             }

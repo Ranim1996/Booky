@@ -50,7 +50,7 @@ public class JDBCLikeRepository extends JDBCRepository {
 
         Connection connection = this.getDataBaseConneection();
 
-        String sql = "SELECT b.id, b.bookName, b.authorName, b.bookType, b.describtion, b.language_code, l.id AS likeId " +
+        String sql = "SELECT b.id, b.bookName, b.authorName, b.bookType, b.describtion,  b.image, b.language_code, l.id AS likeId " +
                 "FROM ((users INNER JOIN likes l ON users.id = l.userId) INNER JOIN book b ON l.bookId = b.id) " +
                 "WHERE users.id = ? AND status = 0 GROUP BY l.id";
 
@@ -65,8 +65,10 @@ public class JDBCLikeRepository extends JDBCRepository {
                 String name = resultSet.getString("bookName");
                 String author = resultSet.getString("authorName");
                 BookType type =  BookType.valueOf(resultSet.getString("bookType"));
+                String image = resultSet.getString("image");
 
-                Book book = new Book(Id, name, author,type);
+
+                Book book = new Book(Id, name, author,type,image);
 
                 books.add(book);
             }

@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class MD5Hash {
+public class MD5Hash extends JDBCUserRepository {
 
     public static String getMd5(String input)
     {

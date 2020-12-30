@@ -25,10 +25,10 @@ public class BookFakeDataStore {
         languagesList.add(french);
 
         //book lists for now there are 4 different books
-        bookList.add(new Book(1, "Name1","Author1", BookType.Classics, "Info", LocalDate.now(), arabic));
-        bookList.add(new Book(2, "Name2","Author2", BookType.Fantasy, "Info",LocalDate.now(), french));
-        bookList.add(new Book(3, "Name3","Author3", BookType.DetectiveandMystery, "Info", LocalDate.now(),english));
-        bookList.add(new Book(4, "Name4","Author4", BookType.LitraryFiction, "Info",LocalDate.now(), english));
+        bookList.add(new Book(1, "Name1","Author1", BookType.Classics, "Info", LocalDate.now(), arabic, ""));
+        bookList.add(new Book(2, "Name2","Author2", BookType.Fantasy, "Info",LocalDate.now(), french, ""));
+        bookList.add(new Book(3, "Name3","Author3", BookType.DetectiveandMystery, "Info", LocalDate.now(),english, ""));
+        bookList.add(new Book(4, "Name4","Author4", BookType.LitraryFiction, "Info",LocalDate.now(), english,""));
 
     }
 

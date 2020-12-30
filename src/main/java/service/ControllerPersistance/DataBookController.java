@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
 
-public class DataBookController {
+public class DataBookController extends JDBCBookRepository {
 
     JDBCBookRepository bookRepository = new JDBCBookRepository();
 

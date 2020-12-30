@@ -15,10 +15,11 @@ public class Book {
     private String describtion; // short describtion about the content of the book
     LocalDate time = LocalDate.now(); //the time when the admin publish info about a book
     private Language language_code; // book's language
+    private String image;
 
     //constractures
     public Book(int id, String bookName, String authorName, BookType type, String describtion,
-                LocalDate time, Language language) {
+                LocalDate time, Language language, String image) {
         this.id = id;
         this.bookName = bookName;
         this.authorName = authorName;
@@ -26,13 +27,15 @@ public class Book {
         this.describtion = describtion;
         this.bookType = type;
         this.language_code = language;
+        this.image = image;
     }
 
-    public Book(int id, String bookName, String authorName, BookType type){
+    public Book(int id, String bookName, String authorName, BookType type, String image){
         this.id = id;
         this.bookName = bookName;
         this.authorName = authorName;
         this.bookType = type;
+        this.image = image;
     }
 
     public Book() {
@@ -96,6 +99,14 @@ public class Book {
 
     public void setLanguage_code(Language language_code) {
         this.language_code = language_code;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     //methods
