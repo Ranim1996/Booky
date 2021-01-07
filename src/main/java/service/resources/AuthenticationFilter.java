@@ -5,6 +5,7 @@ import service.ControllerPersistance.DataUserController;
 
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.ResourceInfo;
@@ -118,7 +119,6 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 //        return false;
 //    }
 
-
     @Context
     private ResourceInfo resourceInfo;
     // requestContext contains information about the HTTP request message
@@ -130,13 +130,14 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
         Method method = resourceInfo.getResourceMethod();
 
+        // if access is allowed for all -> do not check anything further : access is approved for all
         if (method.isAnnotationPresent(PermitAll.class)) {
             return;
         }
 
         // if access is denied for all: deny access
         if (method.isAnnotationPresent(DenyAll.class)) {
-            Response response = Response.status(Response.Status.FORBIDDEN).entity("You are not allowed to perform this action").build();
+            Response response = Response.status(Response.Status.FORBIDDEN).build();
             requestContext.abortWith(response);
             return;
         }
@@ -153,6 +154,32 @@ public class AuthenticationFilter implements ContainerRequestFilter {
                     entity("Missing username and/or password.").build();
             requestContext.abortWith(response);
             return;
+        }
+
+                 /* here you do
+        1. the AUTHENTICATION first (as explained in previous sections), and
+        2. if AUTHENTICATION succeeds, you do the authorization like this:
+        */
+        if (method.isAnnotationPresent(RolesAllowed.class)) {
+            System.out.println("in if roles allowed");
+            // get allowed roles for this method
+            RolesAllowed rolesAnnotation = method.getAnnotation(RolesAllowed.class);
+            System.out.println("roles annon" + rolesAnnotation);
+            Set<String> rolesSet = new
+                    HashSet<String>(Arrays.asList(rolesAnnotation.value()));
+            System.out.println("role set "+rolesSet);
+             /* isUserAllowed : implement this method to check if this user has any of
+             the roles in the rolesSet
+             if not isUserAllowed abort the requestContext with FORBIDDEN response*/
+            if (rolesSet.contains("Reader") || rolesSet.contains("Admin")) {
+                return;
+            }
+            else{
+                Response response = Response.status(Response.Status.FORBIDDEN).build();
+                requestContext.abortWith(response);
+                return;
+            }
+
         }
 
 

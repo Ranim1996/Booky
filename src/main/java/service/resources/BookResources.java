@@ -77,7 +77,7 @@ public class BookResources {
     //delete book with specific id
     @DELETE //DELETE at http://localhost:9090/booky/books/3
     @Path("{id}")
-    @PermitAll
+    @RolesAllowed("Admin")
     public Response deleteBook(@PathParam("id") int bID) {
 
         System.out.println("in book resources");
@@ -90,7 +90,6 @@ public class BookResources {
     //add book with book object
     @POST //POST at http://localhost:9090/booky/books/
     @Consumes(MediaType.APPLICATION_JSON)
-    @PermitAll
     @RolesAllowed("Admin")
     public Response createBook(Book b) {
 
@@ -109,7 +108,6 @@ public class BookResources {
     @PUT //PUT at http://localhost:9090/booky/books/{id}
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("{id}")
-    @PermitAll
     @RolesAllowed("Admin")
     public Response updateBook(@PathParam("id") int id,  Book b) {
 
@@ -125,8 +123,8 @@ public class BookResources {
 
     //add like with like object
     @POST //POST at http://localhost:9090/booky/books/like
-    @Consumes(MediaType.APPLICATION_JSON)
     @Path("like")
+    @Consumes(MediaType.APPLICATION_JSON)
     @PermitAll
     public Response addLikeToBook(Like like) {
 
@@ -144,7 +142,7 @@ public class BookResources {
     @GET //GET at http://localhost:9090/booky/books/MyList
     @Path("MyList")
     @Produces(MediaType.APPLICATION_JSON)
-    @PermitAll
+    @RolesAllowed("Reader")
     public Response getLikedBooksByUser(@QueryParam("id") int userId) {
 
         List<Book> books;
@@ -159,7 +157,7 @@ public class BookResources {
     @DELETE //GET at http://localhost:9090/booky/books/MyList
     @Path("MyList/{id}/user/{uId}")
     @Produces(MediaType.APPLICATION_JSON)
-    @PermitAll
+    @RolesAllowed("Reader")
     public Response removeBook(@PathParam("id") int bId, @PathParam("uId") int uId) {
         
         likeController.deleteBook(bId, uId);
@@ -171,7 +169,7 @@ public class BookResources {
     @GET //GET at http://localhost:9090/booky/books/Majority/Type
     @Produces(MediaType.APPLICATION_JSON)
     @Path("Majority/Type")
-    @PermitAll
+    @RolesAllowed("Admin")
     public Response countStatisticsPerType() {
 
         List<StatisticsType> statistics = statisticsController.staisticsPerType();
@@ -183,7 +181,7 @@ public class BookResources {
     @GET //GET at http://localhost:9090/booky/books/Majority/Language
     @Produces(MediaType.APPLICATION_JSON)
     @Path("Majority/Language")
-    @PermitAll
+    @RolesAllowed("Admin")
     public Response countStatisticsPerLanguage() {
 
         List<StatisticsLanguage> statistics = statisticsController.statisticsPerLanguage();
