@@ -192,7 +192,7 @@ public class DataUserController extends JDBCUserRepository {
     }
 
     /**
-     * Add/create a new book.
+     * Add/create a new user.
      * @param user should be inserted into the DB.
      */
     public boolean addUser(Users user) {
