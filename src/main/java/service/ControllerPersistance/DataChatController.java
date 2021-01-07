@@ -1,11 +1,8 @@
 package service.ControllerPersistance;
 
-import service.model.Book;
 import service.model.Chat;
-import service.model.Users;
 import service.repository.BookyDatabaseException;
 import service.repository.JDBCChatRepository;
-import service.repository.JDBCUserRepository;
 
 import java.sql.SQLException;
 import java.util.Collections;

@@ -3,10 +3,8 @@ package service.repository;
 import service.model.*;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class JDBCChatRepository extends JDBCRepository{
 

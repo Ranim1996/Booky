@@ -15,9 +15,6 @@ public class Users {
     private String password; // user's password
     private String dateOfBirth; // user's date of birth
 
-//    private String image;
-
-
     //constractures
     public Users(int id, String firstName, String lastName, String dateOfBirth, UserType type,
                  String email, String password) {

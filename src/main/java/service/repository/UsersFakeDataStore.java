@@ -9,7 +9,6 @@ public class UsersFakeDataStore {
     //fields
     private final List<Users> usersList = new ArrayList<>();
     private final List<Language> languagesList = new ArrayList<>();
-    private final List<Country> countriesList = new ArrayList<>();
 
     //constracture "Some fake data are added here"
     public UsersFakeDataStore() {
@@ -22,15 +21,6 @@ public class UsersFakeDataStore {
         languagesList.add(arabic);
         languagesList.add(english);
         languagesList.add(french);
-
-        //adding to country list
-        Country syria = new Country("SY", "Syria");
-        Country america = new Country("USA", "America");
-        Country france = new Country("FR", "France");
-
-        countriesList.add(syria);
-        countriesList.add(america);
-        countriesList.add(france);
 
         //Users lists for now there are 4 different users
         usersList.add(new Users(1, "Ranim", "Alayoubi", "06/06/1996" , UserType.Admin,
