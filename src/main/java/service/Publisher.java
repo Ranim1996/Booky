@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  */
 class Publisher {
 
-    private static final URI BASE_URI = URI.create("http://localhost:9090/booky/");
+    private static final URI BASE_URI = URI.create("http://0.0.0.0:9090/booky/");
 
     public static void main(String[] args) throws IOException {
 

@@ -1,6 +1,8 @@
 plugins {
     id 'java'
     id "org.sonarqube" version "3.0"
+    id'com.github.johnrengelman.shadow'version'6.1.0'
+    id 'jacoco'
 }
 
 group 'org.example'
@@ -48,4 +50,20 @@ dependencies {
     // websocket
     compile group: 'org.glassfish.grizzly', name: 'grizzly-websockets', version: '2.4.4'
     compile group: 'org.glassfish.grizzly', name: 'grizzly-http-servlet-server', version: '2.4.4'
+
+    // Fatjar
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
 }
+
+// shadowJar task
+shadowJar {
+
+    mergeServiceFiles()
+
+    manifest {
+        attributes 'Main-Class': 'service.Publisher'
+    }
+}
+
+
