@@ -19,51 +19,6 @@ import static java.lang.Integer.parseInt;
 
 public class DataUserController extends JDBCUserRepository {
 
-
-    /**
-     * Show/print all users.
-     */
-    void showAllUsers(){
-        JDBCUserRepository usersRepository = new JDBCUserRepository();
-        try {
-            Collection<Users> users = usersRepository.getUsers();
-        } catch (BookyDatabaseException | SQLException e) {
-        }
-    }
-
-    /**
-     * Show/print the user with given id
-     * @param id of the user to be shown.
-     */
-    public Users showUserById(int id){
-        JDBCUserRepository userRepository = new JDBCUserRepository();
-
-        try {
-            return userRepository.getUserById(id);
-
-        } catch (BookyDatabaseException | SQLException e) {
-            return null;
-        }
-
-    }
-
-    /**
-     * Show/print the user with given user type
-     * @param type of the user to be shown.
-     */
-    public Users showUserByType(UserType type){
-
-        JDBCUserRepository userRepository = new JDBCUserRepository();
-
-        try {
-            return userRepository.getUsersByType(type);
-
-        } catch (BookyDatabaseException | SQLException e) {
-            return null;
-        }
-
-    }
-
     /**
      * Update a new user.
      * @param id

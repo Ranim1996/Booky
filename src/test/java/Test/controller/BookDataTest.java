@@ -10,11 +10,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import service.ControllerPersistance.DataBookController;
-import service.model.Book;
-import service.model.BookType;
-import service.model.Language;
+import service.ControllerPersistance.DataUserController;
+import service.model.*;
 import service.repository.BookyDatabaseException;
 import service.repository.JDBCBookRepository;
+import service.repository.JDBCUserRepository;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
