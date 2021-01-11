@@ -13,10 +13,10 @@ public class JDBCRepository{
         String url = "jdbc:mysql://studmysql01.fhict.local:3306/dbi344446";
 
         String username = "dbi344446";
-        String password = "1996";
+        String pass = "1996";
 
         try {
-            Connection connection = (Connection) DriverManager.getConnection(url, username, password);
+            Connection connection = (Connection) DriverManager.getConnection(url, username, pass);
             connection.setAutoCommit(false);
             return connection;
         }
