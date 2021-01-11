@@ -16,6 +16,7 @@ import service.repository.BookyDatabaseException;
 import service.repository.JDBCBookRepository;
 import service.repository.JDBCUserRepository;
 
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class BookDataTest {
     JDBCBookRepository bookRepository;
 
     @Test // test the size of the array
-    void ShowAllBooks() throws BookyDatabaseException, SQLException {
+    void ShowAllBooks() throws BookyDatabaseException, SQLException, URISyntaxException {
 
         LocalDate date = LocalDate.now();
         Language language = new Language("Fr","French");
@@ -51,7 +52,7 @@ public class BookDataTest {
     }
 
     @Test
-    void GetBooksByType() throws BookyDatabaseException, SQLException {
+    void GetBooksByType() throws BookyDatabaseException, SQLException, URISyntaxException {
         LocalDate date = LocalDate.now();
         Language language = new Language("Fr","French");
         List<Book> books = new ArrayList<>();
@@ -67,7 +68,7 @@ public class BookDataTest {
     }
 
     @Test
-    void GetBooksByLanguage() throws BookyDatabaseException, SQLException {
+    void GetBooksByLanguage() throws BookyDatabaseException, SQLException, URISyntaxException {
         LocalDate date = LocalDate.now();
         Language language = new Language("Fr","French");
         List<Book> books = new ArrayList<>();
@@ -83,7 +84,7 @@ public class BookDataTest {
     }
 
     @Test
-    void GetBooksByTypeAndLanguage() throws BookyDatabaseException, SQLException {
+    void GetBooksByTypeAndLanguage() throws BookyDatabaseException, SQLException, URISyntaxException {
         LocalDate date = LocalDate.now();
         Language language = new Language("Fr","French");
         List<Book> books = new ArrayList<>();
@@ -99,7 +100,7 @@ public class BookDataTest {
     }
 
     @Test
-    public void addBook() throws BookyDatabaseException, SQLException {
+    public void addBook() throws BookyDatabaseException, SQLException, URISyntaxException {
         LocalDate date = LocalDate.now();
         Language language = new Language("Fr","French");
 
@@ -113,7 +114,7 @@ public class BookDataTest {
     }
 
     @Test
-    public void updateBook() throws BookyDatabaseException, SQLException{
+    public void updateBook() throws BookyDatabaseException, SQLException, URISyntaxException {
         LocalDate date = LocalDate.now();
         Language language = new Language("Fr","French");
 
@@ -127,7 +128,7 @@ public class BookDataTest {
     }
 
     @Test
-    public void deleteBook() throws BookyDatabaseException, SQLException {
+    public void deleteBook() throws BookyDatabaseException, SQLException, URISyntaxException {
         LocalDate date = LocalDate.now();
         Language language = new Language("Fr","French");
 
@@ -141,7 +142,7 @@ public class BookDataTest {
     }
 
     @Test
-    void GetBooksByName() throws BookyDatabaseException, SQLException {
+    void GetBooksByName() throws BookyDatabaseException, SQLException, URISyntaxException {
         LocalDate date = LocalDate.now();
         Language language = new Language("Fr","French");
         List<Book> books = new ArrayList<>();

@@ -4,6 +4,7 @@ import service.model.Book;
 import service.model.BookType;
 import service.model.Like;
 
+import java.net.URISyntaxException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 public class JDBCLikeRepository extends JDBCRepository {
 
     //get all likes
-    public List<Like> getLikes() throws BookyDatabaseException, SQLException {
+    public List<Like> getLikes() throws BookyDatabaseException, SQLException, URISyntaxException {
 
         List<Like> likes = new ArrayList<>();
 
@@ -44,7 +45,7 @@ public class JDBCLikeRepository extends JDBCRepository {
     }
 
     //get likes by user id and book id
-    public List<Book> getLikedBooksByUserId(int uId) throws BookyDatabaseException, SQLException {
+    public List<Book> getLikedBooksByUserId(int uId) throws BookyDatabaseException, SQLException, URISyntaxException {
 
         List<Book> books = new ArrayList<>();
 
@@ -83,7 +84,7 @@ public class JDBCLikeRepository extends JDBCRepository {
     }
 
     //add like
-   public boolean addLike(Like like) throws BookyDatabaseException, SQLException {
+   public boolean addLike(Like like) throws BookyDatabaseException, SQLException, URISyntaxException {
 
        Connection connection = this.getDataBaseConneection();
 
@@ -109,7 +110,7 @@ public class JDBCLikeRepository extends JDBCRepository {
     }
 
     //remove book from my list
-    public boolean deleteBook(int bId, int uId) throws BookyDatabaseException, SQLException {
+    public boolean deleteBook(int bId, int uId) throws BookyDatabaseException, SQLException, URISyntaxException {
 
         Connection connection = this.getDataBaseConneection();
 

@@ -5,6 +5,7 @@ import service.model.Like;
 import service.repository.BookyDatabaseException;
 import service.repository.JDBCLikeRepository;
 
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
@@ -24,7 +25,7 @@ public class DataLikeController extends JDBCLikeRepository {
             likeRepository.addLike(like);
             return true;
 
-        } catch (BookyDatabaseException | SQLException e) {
+        } catch (BookyDatabaseException | SQLException | URISyntaxException e) {
             return false;
         }
     }
@@ -39,7 +40,7 @@ public class DataLikeController extends JDBCLikeRepository {
         try {
             return likeRepository.getLikedBooksByUserId(userId);
         }
-        catch (BookyDatabaseException | SQLException e) {
+        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
             return Collections.emptyList();
         }
     }
@@ -56,7 +57,7 @@ public class DataLikeController extends JDBCLikeRepository {
             likeRepository.deleteBook(id, userId);
             return true;
         }
-        catch (BookyDatabaseException | SQLException e) {
+        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
             return false;
         }
     }

@@ -5,6 +5,7 @@ import service.model.DTO.StatisticsType;
 import service.repository.BookyDatabaseException;
 import service.repository.JDBCStatisticsRepository;
 
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ public class DataStatisticsController extends JDBCStatisticsRepository {
             System.out.println("total controller= "+ statisticsTypeArrayList);
             return statisticsTypeArrayList;
         }
-        catch (BookyDatabaseException | SQLException e) {
+        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
         }
         return null;
     }
@@ -45,7 +46,7 @@ public class DataStatisticsController extends JDBCStatisticsRepository {
             System.out.println("total controller= "+ statisticsLanguageArrayList);
             return statisticsLanguageArrayList;
         }
-        catch (BookyDatabaseException | SQLException e) {
+        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
         }
         return null;
     }

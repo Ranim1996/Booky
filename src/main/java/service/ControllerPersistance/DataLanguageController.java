@@ -4,6 +4,7 @@ import service.model.Language;
 import service.repository.BookyDatabaseException;
 import service.repository.JDBCLanguageRepository;
 
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ public class DataLanguageController extends JDBCLanguageRepository {
             languages = languagesRepository.getLanguages();
             return languages;
         }
-        catch (BookyDatabaseException | SQLException e) {
+        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
         }
         return languages;
     }
@@ -36,7 +37,7 @@ public class DataLanguageController extends JDBCLanguageRepository {
         try {
             return languagesRepository.getLanguageByCode(code);
         }
-        catch (BookyDatabaseException | SQLException e) {
+        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
             return null;
         }
     }

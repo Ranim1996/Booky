@@ -14,6 +14,7 @@ import service.model.DTO.StatisticsType;
 import service.repository.BookyDatabaseException;
 import service.repository.JDBCStatisticsRepository;
 
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,7 @@ public class StatisticsDataTest {
     JDBCStatisticsRepository statisticsRepository;
 
     @Test
-    void ShowStaisticsPerType() throws BookyDatabaseException, SQLException {
+    void ShowStaisticsPerType() throws BookyDatabaseException, SQLException, URISyntaxException {
 
         List<StatisticsType> statisticsTypes = new ArrayList<>();
         StatisticsType statisticsType = new StatisticsType(BookType.DetectiveandMystery.name(), 4);
@@ -47,7 +48,7 @@ public class StatisticsDataTest {
     }
 
     @Test
-    void ShowStatisticsPerLanguage() throws BookyDatabaseException, SQLException {
+    void ShowStatisticsPerLanguage() throws BookyDatabaseException, SQLException, URISyntaxException {
 
         List<StatisticsLanguage> statisticsLanguages = new ArrayList<>();
         StatisticsLanguage statisticsLanguage = new StatisticsLanguage("FR", 4);

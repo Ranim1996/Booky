@@ -2,13 +2,14 @@ package service.repository;
 
 import service.model.*;
 
+import java.net.URISyntaxException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class JDBCChatRepository extends JDBCRepository{
 
-    public boolean addMessage(String text) throws BookyDatabaseException, SQLException {
+    public boolean addMessage(String text) throws BookyDatabaseException, SQLException, URISyntaxException {
 
         MD5Hash md = new MD5Hash();
 
@@ -34,7 +35,7 @@ public class JDBCChatRepository extends JDBCRepository{
     }
 
     //get all messages from data base
-    public List<Chat> getMessages() throws BookyDatabaseException, SQLException {
+    public List<Chat> getMessages() throws BookyDatabaseException, SQLException, URISyntaxException {
 
         List<Chat> chats = new ArrayList<>();
 

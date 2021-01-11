@@ -2,6 +2,7 @@ package service.repository;
 
 import service.model.Language;
 
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +15,7 @@ import java.util.List;
 public class JDBCLanguageRepository extends JDBCRepository{
 
     //get language from data base by code
-    public Language getLanguageByCode(String languageCode) throws BookyDatabaseException, SQLException {
+    public Language getLanguageByCode(String languageCode) throws BookyDatabaseException, SQLException, URISyntaxException {
 
         Connection connection = this.getDataBaseConneection();
 
@@ -40,7 +41,7 @@ public class JDBCLanguageRepository extends JDBCRepository{
     }
 
     //get all languages from data base
-    public List<Language> getLanguages() throws BookyDatabaseException, SQLException {
+    public List<Language> getLanguages() throws BookyDatabaseException, SQLException, URISyntaxException {
 
         List<Language> languages = new ArrayList<>();
 

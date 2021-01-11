@@ -6,6 +6,7 @@ import service.model.Language;
 import service.repository.BookyDatabaseException;
 import service.repository.JDBCBookRepository;
 
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
@@ -21,7 +22,7 @@ public class DataBookController extends JDBCBookRepository {
             List<Book> books = bookRepository.getBooks();
             return books;
         }
-        catch (BookyDatabaseException | SQLException e) {
+        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
             return Collections.emptyList();
         }
     }
@@ -36,7 +37,7 @@ public class DataBookController extends JDBCBookRepository {
         try {
             return bookRepository.getBooksByLanguage(language);
         }
-        catch (BookyDatabaseException | SQLException e) {
+        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
             return Collections.emptyList();
         }
     }
@@ -51,7 +52,7 @@ public class DataBookController extends JDBCBookRepository {
         try {
             return bookRepository.getBooksByType(type);
         }
-        catch (BookyDatabaseException | SQLException e) {
+        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
             return Collections.emptyList();
         }
     }
@@ -68,7 +69,7 @@ public class DataBookController extends JDBCBookRepository {
         try {
             return bookRepository.getBooksByTypeAndLanguage(type, language);
         }
-        catch (BookyDatabaseException | SQLException e) {
+        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
             return Collections.emptyList();
         }
     }
@@ -84,7 +85,7 @@ public class DataBookController extends JDBCBookRepository {
             bookRepository.addBook(book);
             return true;
         }
-        catch (BookyDatabaseException | SQLException e) {
+        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
             return false;
         }
     }
@@ -101,7 +102,7 @@ public class DataBookController extends JDBCBookRepository {
             bookRepository.updateBook(id, book);
             return true;
         }
-        catch (BookyDatabaseException | SQLException e) {
+        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
             return false;
         }
     }
@@ -115,7 +116,7 @@ public class DataBookController extends JDBCBookRepository {
         try {
             return bookRepository.getBookById(id);
 
-        } catch (BookyDatabaseException | SQLException e) {
+        } catch (BookyDatabaseException | SQLException | URISyntaxException e) {
             return null;
         }
     }
@@ -133,7 +134,7 @@ public class DataBookController extends JDBCBookRepository {
             System.out.println("isdeleted");
             return true;
         }
-        catch (BookyDatabaseException | SQLException e) {
+        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
             return false;
         }
     }
@@ -149,7 +150,7 @@ public class DataBookController extends JDBCBookRepository {
             List<Book> books = bookRepository.getBooksByName(chars);
             return books;
         }
-        catch (BookyDatabaseException | SQLException e) {
+        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
             return null;
         }
     }

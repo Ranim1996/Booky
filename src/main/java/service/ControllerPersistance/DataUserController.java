@@ -11,6 +11,7 @@ import service.repository.MD5Hash;
 
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
+import java.net.URISyntaxException;
 import java.security.Key;
 import java.sql.SQLException;
 import java.util.*;
@@ -33,7 +34,7 @@ public class DataUserController extends JDBCUserRepository {
             userRepository.updateUser(id, user);
             return true;
         }
-        catch (BookyDatabaseException | SQLException e) {
+        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
             return false;
         }
     }
@@ -54,7 +55,7 @@ public class DataUserController extends JDBCUserRepository {
                 }
             }
 
-        } catch (BookyDatabaseException | SQLException e) {
+        } catch (BookyDatabaseException | SQLException | URISyntaxException e) {
         }
         return null;
     }
@@ -68,7 +69,7 @@ public class DataUserController extends JDBCUserRepository {
             System.out.println("ok");
 
             return user;
-        } catch (SQLException | BookyDatabaseException e) {
+        } catch (SQLException | BookyDatabaseException | URISyntaxException e) {
         }
         return null;
     }
@@ -163,7 +164,7 @@ public class DataUserController extends JDBCUserRepository {
             {
                 return false;
             }
-        } catch (SQLException | BookyDatabaseException e) {
+        } catch (SQLException | BookyDatabaseException | URISyntaxException e) {
             return false;
         }
     }

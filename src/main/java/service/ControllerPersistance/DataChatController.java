@@ -4,6 +4,7 @@ import service.model.Chat;
 import service.repository.BookyDatabaseException;
 import service.repository.JDBCChatRepository;
 
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +28,7 @@ public class DataChatController {
             {
                 return false;
             }
-        } catch (SQLException | BookyDatabaseException e) {
+        } catch (SQLException | BookyDatabaseException | URISyntaxException e) {
             return false;
         }
     }
@@ -38,7 +39,7 @@ public class DataChatController {
             List<Chat> chats = chatRepository.getMessages();
             return chats;
         }
-        catch (BookyDatabaseException | SQLException e) {
+        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
             return Collections.emptyList();
         }
     }

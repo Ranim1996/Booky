@@ -12,6 +12,7 @@ import service.model.Language;
 import service.repository.BookyDatabaseException;
 import service.repository.JDBCLanguageRepository;
 
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,7 @@ public class LanguageDataTest {
     JDBCLanguageRepository languageRepository;
 
     @Test
-    void showAllLanguages() throws BookyDatabaseException, SQLException {
+    void showAllLanguages() throws BookyDatabaseException, SQLException, URISyntaxException {
 
         List<Language> languages = new ArrayList<>();
         Language language = new Language("FR","French");
@@ -45,7 +46,7 @@ public class LanguageDataTest {
     }
 
     @Test
-    void getLanguageByCode() throws BookyDatabaseException, SQLException {
+    void getLanguageByCode() throws BookyDatabaseException, SQLException, URISyntaxException {
 
         Language language = new Language("FR","French");
 

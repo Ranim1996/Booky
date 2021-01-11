@@ -2,13 +2,14 @@ package service.repository;
 
 import service.model.*;
 
+import java.net.URISyntaxException;
 import java.sql.*;
 import java.util.*;
 
 public class JDBCUserRepository extends JDBCRepository {
 
     //get all users from data base
-    public List<Users> getUsers() throws BookyDatabaseException, SQLException {
+    public List<Users> getUsers() throws BookyDatabaseException, SQLException, URISyntaxException {
 
         List<Users> users = new ArrayList<>();
 
@@ -41,7 +42,7 @@ public class JDBCUserRepository extends JDBCRepository {
     }
 
     //get user by id
-    public Users getUserById(int id) throws BookyDatabaseException, SQLException {
+    public Users getUserById(int id) throws BookyDatabaseException, SQLException, URISyntaxException {
 
         Connection connection = this.getDataBaseConneection();
 
@@ -74,7 +75,7 @@ public class JDBCUserRepository extends JDBCRepository {
     }
 
     // update user data
-    public boolean updateUser(int id, Users user) throws BookyDatabaseException, SQLException {
+    public boolean updateUser(int id, Users user) throws BookyDatabaseException, SQLException, URISyntaxException {
 
         Connection connection = this.getDataBaseConneection();
 
@@ -106,7 +107,7 @@ public class JDBCUserRepository extends JDBCRepository {
     }
 
     //get user by type
-    public Users getUsersByType(UserType userType) throws BookyDatabaseException, SQLException {
+    public Users getUsersByType(UserType userType) throws BookyDatabaseException, SQLException, URISyntaxException {
 
         Connection connection = this.getDataBaseConneection();
 
@@ -138,7 +139,7 @@ public class JDBCUserRepository extends JDBCRepository {
         }
     }
 
-    public boolean addUser(Users user) throws BookyDatabaseException, SQLException {
+    public boolean addUser(Users user) throws BookyDatabaseException, SQLException, URISyntaxException {
 
         String type = UserType.Reader.name();
 

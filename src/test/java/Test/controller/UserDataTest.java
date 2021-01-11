@@ -30,7 +30,7 @@ public class UserDataTest {
     JDBCUserRepository userRepository;
 
     @Test
-    public void getUserByID() throws BookyDatabaseException, SQLException {
+    public void getUserByID() throws BookyDatabaseException, SQLException, URISyntaxException {
         Users user = new Users(1,"Ranim", "Alayoubi","1/1/1",UserType.Reader,"email","12");
 
         when(userRepository.getUserById(1)).thenReturn(user);
@@ -41,7 +41,7 @@ public class UserDataTest {
     }
 
     @Test
-    public void addUser() throws BookyDatabaseException, SQLException {
+    public void addUser() throws BookyDatabaseException, SQLException, URISyntaxException {
         Users user = new Users(1,"Ranim", "Alayoubi","1/1/1",UserType.Reader,"email","12");
 
         when(userRepository.addUser(user)).thenReturn(true);
@@ -52,7 +52,7 @@ public class UserDataTest {
     }
 
     @Test
-    public void getUserByEmail() throws BookyDatabaseException, SQLException {
+    public void getUserByEmail() throws BookyDatabaseException, SQLException, URISyntaxException {
         Users user = new Users(1,"Ranim", "Alayoubi","1/1/1",UserType.Reader,"email","12");
 
         when(userRepository.getUsers()).thenReturn(Arrays.asList(user));
@@ -64,7 +64,7 @@ public class UserDataTest {
     }
 
     @Test
-    public void loginAndHashingTest() throws BookyDatabaseException, SQLException {
+    public void loginAndHashingTest() throws BookyDatabaseException, SQLException, URISyntaxException {
         MD5Hash md = new MD5Hash();
         String password = md.oneWayHashing("1234");
 
@@ -80,7 +80,7 @@ public class UserDataTest {
     }
 
     @Test
-    public void getUserFromToken() throws BookyDatabaseException, SQLException {
+    public void getUserFromToken() throws BookyDatabaseException, SQLException, URISyntaxException {
 
         Users user = new Users(1,"Ranim", "Alayoubi","1/1/1",UserType.Reader,"email","12");
 
@@ -93,6 +93,17 @@ public class UserDataTest {
 
         assertEquals(user, expected);
 
+    }
+
+    @Test
+    public void updateUser() throws BookyDatabaseException, SQLException, URISyntaxException {
+        Users user = new Users(1,"Ranim", "Alayoubi","1/1/1",UserType.Reader,"email","12");
+
+        when(userRepository.updateUser(1,user)).thenReturn(true);
+
+        boolean updatedUser = userController.updateUser(1,user);
+
+        Assert.assertEquals(true, updatedUser);
     }
 
 }

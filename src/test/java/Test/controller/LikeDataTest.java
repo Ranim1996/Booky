@@ -11,6 +11,7 @@ import service.model.*;
 import service.repository.BookyDatabaseException;
 import service.repository.JDBCLikeRepository;
 
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class LikeDataTest {
     JDBCLikeRepository likeRepository;
 
     @Test
-    void likebook() throws BookyDatabaseException, SQLException {
+    void likebook() throws BookyDatabaseException, SQLException, URISyntaxException {
         Like like = new Like(1,2,3);
 
         when(likeRepository.addLike(like)).thenReturn(true);
@@ -40,7 +41,7 @@ public class LikeDataTest {
     }
 
     @Test
-    void getLikedBooksByUser() throws BookyDatabaseException, SQLException {
+    void getLikedBooksByUser() throws BookyDatabaseException, SQLException, URISyntaxException {
         List<Book> books = new ArrayList<>();
         LocalDate date = LocalDate.now();
         Language language = new Language("Fr","French");
@@ -57,7 +58,7 @@ public class LikeDataTest {
     }
 
     @Test
-    public void deleteBook() throws BookyDatabaseException, SQLException {
+    public void deleteBook() throws BookyDatabaseException, SQLException, URISyntaxException {
         LocalDate date = LocalDate.now();
         Language language = new Language("Fr","French");
 

@@ -4,6 +4,7 @@ import service.model.Book;
 import service.model.BookType;
 import service.model.Language;
 
+import java.net.URISyntaxException;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.*;
@@ -11,7 +12,7 @@ import java.util.*;
 public class JDBCBookRepository  extends JDBCRepository{
 
     //get all books from data base
-    public List<Book> getBooks() throws BookyDatabaseException, SQLException {
+    public List<Book> getBooks() throws BookyDatabaseException, SQLException, URISyntaxException {
 
         Map<String, Language> languages = this.getUsedLanguages();
         List<Book> books = new ArrayList<>();
@@ -51,7 +52,7 @@ public class JDBCBookRepository  extends JDBCRepository{
     }
 
     //get all books with the given language from data base
-    public List<Book> getBooksByLanguage(Language language) throws BookyDatabaseException, SQLException {
+    public List<Book> getBooksByLanguage(Language language) throws BookyDatabaseException, SQLException, URISyntaxException {
 
         Map<String, Language> languages = this.getUsedLanguages();
         List<Book> filtered = new ArrayList<>();
@@ -93,7 +94,7 @@ public class JDBCBookRepository  extends JDBCRepository{
     }
 
     //get all books with the given type from data base
-    public List<Book> getBooksByType(BookType type) throws BookyDatabaseException, SQLException {
+    public List<Book> getBooksByType(BookType type) throws BookyDatabaseException, SQLException, URISyntaxException {
 
         Map<String, Language> languages = this.getUsedLanguages();
         List<Book> filtered = new ArrayList<>();
@@ -136,7 +137,7 @@ public class JDBCBookRepository  extends JDBCRepository{
 
 
     //get all books with the given type and language from data base
-    public List<Book> getBooksByTypeAndLanguage(BookType type, Language language) throws BookyDatabaseException, SQLException {
+    public List<Book> getBooksByTypeAndLanguage(BookType type, Language language) throws BookyDatabaseException, SQLException, URISyntaxException {
 
         Map<String, Language> languages = this.getUsedLanguages();
         List<Book> filtered = new ArrayList<>();
@@ -183,7 +184,7 @@ public class JDBCBookRepository  extends JDBCRepository{
 
 
     //mapping the languages
-    private Map<String, Language> getUsedLanguages() throws BookyDatabaseException, SQLException {
+    private Map<String, Language> getUsedLanguages() throws BookyDatabaseException, SQLException, URISyntaxException {
 
         Map<String, Language> languages = new HashMap<>();
 
@@ -211,7 +212,7 @@ public class JDBCBookRepository  extends JDBCRepository{
         return  languages;
     }
 
-    public boolean addBook(Book book) throws BookyDatabaseException, SQLException {
+    public boolean addBook(Book book) throws BookyDatabaseException, SQLException, URISyntaxException {
 
         Connection connection = this.getDataBaseConneection();
 
@@ -239,7 +240,7 @@ public class JDBCBookRepository  extends JDBCRepository{
         }
     }
 
-    public Book getBookById(int id) throws BookyDatabaseException, SQLException {
+    public Book getBookById(int id) throws BookyDatabaseException, SQLException, URISyntaxException {
 
         JDBCLanguageRepository languageRepository = new JDBCLanguageRepository();
 
@@ -275,7 +276,7 @@ public class JDBCBookRepository  extends JDBCRepository{
 
     }
 
-    public boolean updateBook(int id, Book book) throws BookyDatabaseException, SQLException {
+    public boolean updateBook(int id, Book book) throws BookyDatabaseException, SQLException, URISyntaxException {
 
         Connection connection = this.getDataBaseConneection();
 
@@ -306,7 +307,7 @@ public class JDBCBookRepository  extends JDBCRepository{
         }
     }
 
-    public boolean deleteBook(int bId) throws BookyDatabaseException, SQLException {
+    public boolean deleteBook(int bId) throws BookyDatabaseException, SQLException, URISyntaxException {
 
         Connection connection = this.getDataBaseConneection();
 
@@ -332,7 +333,7 @@ public class JDBCBookRepository  extends JDBCRepository{
     }
 
     //get all books with the given name chars
-    public List<Book> getBooksByName(String chars) throws BookyDatabaseException, SQLException {
+    public List<Book> getBooksByName(String chars) throws BookyDatabaseException, SQLException, URISyntaxException {
 
         Map<String, Language> languages = new HashMap<>();
 
@@ -377,7 +378,7 @@ public class JDBCBookRepository  extends JDBCRepository{
     }
 
     //count posted books for specific book type
-    public int getBookMajority(BookType type) throws BookyDatabaseException, SQLException {
+    public int getBookMajority(BookType type) throws BookyDatabaseException, SQLException, URISyntaxException {
 
         int count = 0;
 
