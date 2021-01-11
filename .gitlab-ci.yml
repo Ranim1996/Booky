@@ -27,6 +27,7 @@ sonarqube:
 deploy:
   stage: deploy
   script:
+    - "./gradlew shadowJar"
     - "docker build -t bookyapp:5.0 ."
   dependencies:
     - sonarqube
