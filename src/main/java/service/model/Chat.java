@@ -10,6 +10,10 @@ public class Chat
         this.message = message;
     }
 
+    public Chat() {
+
+    }
+
     public String getMessage() {
         return message;
     }

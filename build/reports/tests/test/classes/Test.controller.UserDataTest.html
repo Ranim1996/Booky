@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">4.210s</div>
+<div class="counter">4.794s</div>
 <p>duration</p>
 </div>
 </td>
@@ -66,6 +66,9 @@
 <li>
 <a href="#tab1">Tests</a>
 </li>
+<li>
+<a href="#tab2">Standard output</a>
+</li>
 </ul>
 <div id="tab0" class="tab">
 <h2>Failed tests</h2>
@@ -73,23 +76,20 @@
 <a name="addUser()"></a>
 <h3 class="failures">addUser()</h3>
 <span class="code">
-<pre>java.lang.IllegalStateException: JDBC driver failed to connect to the server jdbc:mysql://studmysql01.fhict.local:3306/dbi344446com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
-
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-	at service.repository.JDBCRepository.getDataBaseConneection(JDBCRepository.java:24)
-	at service.repository.JDBCUserRepository.addUser(JDBCUserRepository.java:147)
-	at service.ControllerPersistance.DataUserController.addUser(DataUserController.java:158)
-	at Test.controller.UserDataTest.addUser(UserDataTest.java:49)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:628)
-	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:117)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:184)
+<pre>org.mockito.exceptions.misusing.UnnecessaryStubbingException: 
+Unnecessary stubbings detected.
+Clean &amp; maintainable test code requires zero unnecessary code.
+Following stubbings are unnecessary (click to navigate to relevant line of code):
+  1. -&gt; at Test.controller.UserDataTest.addUser(UserDataTest.java:47)
+Please remove unnecessary stubbings or use 'lenient' strictness. More info: javadoc for UnnecessaryStubbingException class.
+	at org.mockito.junit.jupiter.MockitoExtension.afterEach(MockitoExtension.java:214)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAfterEachCallbacks$12(TestMethodTestDescriptor.java:233)
 	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:180)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:127)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAllAfterMethodsOrCallbacks$14(TestMethodTestDescriptor.java:245)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeAllAfterMethodsOrCallbacks(TestMethodTestDescriptor.java:243)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeAfterEachCallbacks(TestMethodTestDescriptor.java:232)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:133)
 	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
 	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:135)
 	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
@@ -163,23 +163,20 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 <a name="getUserByEmail()"></a>
 <h3 class="failures">getUserByEmail()</h3>
 <span class="code">
-<pre>java.lang.IllegalStateException: JDBC driver failed to connect to the server jdbc:mysql://studmysql01.fhict.local:3306/dbi344446com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
-
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-	at service.repository.JDBCRepository.getDataBaseConneection(JDBCRepository.java:24)
-	at service.repository.JDBCUserRepository.getUsers(JDBCUserRepository.java:15)
-	at service.ControllerPersistance.DataUserController.getUserByEmail(DataUserController.java:50)
-	at Test.controller.UserDataTest.getUserByEmail(UserDataTest.java:60)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:628)
-	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:117)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:184)
+<pre>org.mockito.exceptions.misusing.UnnecessaryStubbingException: 
+Unnecessary stubbings detected.
+Clean &amp; maintainable test code requires zero unnecessary code.
+Following stubbings are unnecessary (click to navigate to relevant line of code):
+  1. -&gt; at Test.controller.UserDataTest.getUserByEmail(UserDataTest.java:58)
+Please remove unnecessary stubbings or use 'lenient' strictness. More info: javadoc for UnnecessaryStubbingException class.
+	at org.mockito.junit.jupiter.MockitoExtension.afterEach(MockitoExtension.java:214)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAfterEachCallbacks$12(TestMethodTestDescriptor.java:233)
 	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:180)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:127)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAllAfterMethodsOrCallbacks$14(TestMethodTestDescriptor.java:245)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeAllAfterMethodsOrCallbacks(TestMethodTestDescriptor.java:243)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeAfterEachCallbacks(TestMethodTestDescriptor.java:232)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:133)
 	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
 	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:135)
 	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
@@ -253,23 +250,20 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 <a name="getUserByID()"></a>
 <h3 class="failures">getUserByID()</h3>
 <span class="code">
-<pre>java.lang.IllegalStateException: JDBC driver failed to connect to the server jdbc:mysql://studmysql01.fhict.local:3306/dbi344446com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
-
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-	at service.repository.JDBCRepository.getDataBaseConneection(JDBCRepository.java:24)
-	at service.repository.JDBCUserRepository.getUserById(JDBCUserRepository.java:46)
-	at service.ControllerPersistance.DataUserController.getUser(DataUserController.java:66)
-	at Test.controller.UserDataTest.getUserByID(UserDataTest.java:38)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:628)
-	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:117)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:184)
+<pre>org.mockito.exceptions.misusing.UnnecessaryStubbingException: 
+Unnecessary stubbings detected.
+Clean &amp; maintainable test code requires zero unnecessary code.
+Following stubbings are unnecessary (click to navigate to relevant line of code):
+  1. -&gt; at Test.controller.UserDataTest.getUserByID(UserDataTest.java:36)
+Please remove unnecessary stubbings or use 'lenient' strictness. More info: javadoc for UnnecessaryStubbingException class.
+	at org.mockito.junit.jupiter.MockitoExtension.afterEach(MockitoExtension.java:214)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAfterEachCallbacks$12(TestMethodTestDescriptor.java:233)
 	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:180)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:127)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAllAfterMethodsOrCallbacks$14(TestMethodTestDescriptor.java:245)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeAllAfterMethodsOrCallbacks(TestMethodTestDescriptor.java:243)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeAfterEachCallbacks(TestMethodTestDescriptor.java:232)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:133)
 	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
 	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:135)
 	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
@@ -343,24 +337,20 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 <a name="getUserFromToken()"></a>
 <h3 class="failures">getUserFromToken()</h3>
 <span class="code">
-<pre>java.lang.IllegalStateException: JDBC driver failed to connect to the server jdbc:mysql://studmysql01.fhict.local:3306/dbi344446com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
-
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-	at service.repository.JDBCRepository.getDataBaseConneection(JDBCRepository.java:24)
-	at service.repository.JDBCUserRepository.getUserById(JDBCUserRepository.java:46)
-	at service.ControllerPersistance.DataUserController.getUser(DataUserController.java:66)
-	at service.ControllerPersistance.DataUserController.getUserFromToken(DataUserController.java:109)
-	at Test.controller.UserDataTest.getUserFromToken(UserDataTest.java:92)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:628)
-	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:117)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:184)
+<pre>org.mockito.exceptions.misusing.UnnecessaryStubbingException: 
+Unnecessary stubbings detected.
+Clean &amp; maintainable test code requires zero unnecessary code.
+Following stubbings are unnecessary (click to navigate to relevant line of code):
+  1. -&gt; at Test.controller.UserDataTest.getUserFromToken(UserDataTest.java:87)
+Please remove unnecessary stubbings or use 'lenient' strictness. More info: javadoc for UnnecessaryStubbingException class.
+	at org.mockito.junit.jupiter.MockitoExtension.afterEach(MockitoExtension.java:214)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAfterEachCallbacks$12(TestMethodTestDescriptor.java:233)
 	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:180)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:127)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAllAfterMethodsOrCallbacks$14(TestMethodTestDescriptor.java:245)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeAllAfterMethodsOrCallbacks(TestMethodTestDescriptor.java:243)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeAfterEachCallbacks(TestMethodTestDescriptor.java:232)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:133)
 	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
 	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:135)
 	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
@@ -434,14 +424,12 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 <a name="loginAndHashingTest()"></a>
 <h3 class="failures">loginAndHashingTest()</h3>
 <span class="code">
-<pre>java.lang.IllegalStateException: JDBC driver failed to connect to the server jdbc:mysql://studmysql01.fhict.local:3306/dbi344446com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
-
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-	at service.repository.JDBCRepository.getDataBaseConneection(JDBCRepository.java:24)
-	at service.repository.JDBCUserRepository.getUsers(JDBCUserRepository.java:15)
-	at service.ControllerPersistance.DataUserController.getUserByEmail(DataUserController.java:50)
-	at service.ControllerPersistance.DataUserController.login(DataUserController.java:86)
-	at Test.controller.UserDataTest.loginAndHashingTest(UserDataTest.java:76)
+<pre>java.lang.AssertionError: expected:&lt;true&gt; but was:&lt;false&gt;
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:834)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at Test.controller.UserDataTest.loginAndHashingTest(UserDataTest.java:78)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -525,23 +513,20 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 <a name="updateUser()"></a>
 <h3 class="failures">updateUser()</h3>
 <span class="code">
-<pre>java.lang.IllegalStateException: JDBC driver failed to connect to the server jdbc:mysql://studmysql01.fhict.local:3306/dbi344446com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
-
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-	at service.repository.JDBCRepository.getDataBaseConneection(JDBCRepository.java:24)
-	at service.repository.JDBCUserRepository.updateUser(JDBCUserRepository.java:79)
-	at service.ControllerPersistance.DataUserController.updateUser(DataUserController.java:33)
-	at Test.controller.UserDataTest.updateUser(UserDataTest.java:104)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:628)
-	at org.junit.jupiter.engine.execution.ExecutableInvoker.invoke(ExecutableInvoker.java:117)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:184)
+<pre>org.mockito.exceptions.misusing.UnnecessaryStubbingException: 
+Unnecessary stubbings detected.
+Clean &amp; maintainable test code requires zero unnecessary code.
+Following stubbings are unnecessary (click to navigate to relevant line of code):
+  1. -&gt; at Test.controller.UserDataTest.updateUser(UserDataTest.java:102)
+Please remove unnecessary stubbings or use 'lenient' strictness. More info: javadoc for UnnecessaryStubbingException class.
+	at org.mockito.junit.jupiter.MockitoExtension.afterEach(MockitoExtension.java:214)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAfterEachCallbacks$12(TestMethodTestDescriptor.java:233)
 	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:180)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:127)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAllAfterMethodsOrCallbacks$14(TestMethodTestDescriptor.java:245)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeAllAfterMethodsOrCallbacks(TestMethodTestDescriptor.java:243)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeAfterEachCallbacks(TestMethodTestDescriptor.java:232)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:133)
 	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
 	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$5(NodeTestTask.java:135)
 	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
@@ -624,35 +609,46 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 </thead>
 <tr>
 <td class="failures">addUser()</td>
-<td class="failures">2.109s</td>
+<td class="failures">2.501s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="failures">getUserByEmail()</td>
-<td class="failures">0.005s</td>
+<td class="failures">0.170s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="failures">getUserByID()</td>
-<td class="failures">0.004s</td>
+<td class="failures">0.155s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="failures">getUserFromToken()</td>
-<td class="failures">2.075s</td>
+<td class="failures">1.550s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="failures">loginAndHashingTest()</td>
-<td class="failures">0.008s</td>
+<td class="failures">0.190s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="failures">updateUser()</td>
-<td class="failures">0.009s</td>
+<td class="failures">0.228s</td>
 <td class="failures">failed</td>
 </tr>
 </table>
+</div>
+<div id="tab2" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>User: User{User ID: 1, First Name: 'Ranim', Last Name: 'Alayoubi', Date of Birth: '1/1/1', Email: 'email', Password: '12', User Type: Reader'}
+given password: 1234
+encrypted password: 81dc9bdb52d04dc20036dbd8313ed055
+ok
+ok
+</pre>
+</span>
 </div>
 </div>
 <div id="footer">
@@ -662,7 +658,7 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 6.3</a> at Jan 11, 2021, 7:07:48 PM</p>
+<a href="http://www.gradle.org">Gradle 6.3</a> at Jan 11, 2021, 7:49:12 PM</p>
 </div>
 </div>
 </body>

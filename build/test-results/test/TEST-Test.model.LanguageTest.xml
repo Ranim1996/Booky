@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Test.model.LanguageTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-01-11T18:07:46" hostname="LAPTOP-HQSL2QTD" time="0.013">
+<testsuite name="Test.model.LanguageTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-01-11T18:49:10" hostname="LAPTOP-HQSL2QTD" time="0.005">
   <properties/>
-  <testcase name="getLanguageCodeWithNullValue()" classname="Test.model.LanguageTest" time="0.003"/>
+  <testcase name="getLanguageCodeWithNullValue()" classname="Test.model.LanguageTest" time="0.0"/>
   <testcase name="getLanguageNameWithEmptyValue()" classname="Test.model.LanguageTest" time="0.001"/>
-  <testcase name="getLanguageCodeWithEmptyValue()" classname="Test.model.LanguageTest" time="0.001"/>
+  <testcase name="getLanguageCodeWithEmptyValue()" classname="Test.model.LanguageTest" time="0.0"/>
   <testcase name="NewLanguageTest()" classname="Test.model.LanguageTest" time="0.0"/>
-  <testcase name="getLanguageNameWithNullValue()" classname="Test.model.LanguageTest" time="0.002"/>
+  <testcase name="getLanguageNameWithNullValue()" classname="Test.model.LanguageTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

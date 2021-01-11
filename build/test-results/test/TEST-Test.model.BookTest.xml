@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Test.model.BookTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2021-01-11T18:07:46" hostname="LAPTOP-HQSL2QTD" time="0.038">
+<testsuite name="Test.model.BookTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2021-01-11T18:49:10" hostname="LAPTOP-HQSL2QTD" time="0.015">
   <properties/>
-  <testcase name="getBookNameWithNullValue()" classname="Test.model.BookTest" time="0.024"/>
-  <testcase name="getAuthorNameWithNullValue()" classname="Test.model.BookTest" time="0.001"/>
+  <testcase name="getBookNameWithNullValue()" classname="Test.model.BookTest" time="0.01"/>
+  <testcase name="getAuthorNameWithNullValue()" classname="Test.model.BookTest" time="0.0"/>
   <testcase name="NewBookTest()" classname="Test.model.BookTest" time="0.001"/>
-  <testcase name="getBookLanguageWithNullValue()" classname="Test.model.BookTest" time="0.002"/>
-  <testcase name="getAuthorNameWithEmptyValue()" classname="Test.model.BookTest" time="0.002"/>
-  <testcase name="getBookNameWithEmptyValue()" classname="Test.model.BookTest" time="0.001"/>
+  <testcase name="getBookLanguageWithNullValue()" classname="Test.model.BookTest" time="0.001"/>
+  <testcase name="getAuthorNameWithEmptyValue()" classname="Test.model.BookTest" time="0.001"/>
+  <testcase name="getBookNameWithEmptyValue()" classname="Test.model.BookTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
