@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Test.model.LikeTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2021-01-11T15:17:44" hostname="LAPTOP-HQSL2QTD" time="0.003">
+  <properties/>
+  <testcase name="getBookIdWithZeroValue()" classname="Test.model.LikeTest" time="0.001"/>
+  <testcase name="NewLikeTest()" classname="Test.model.LikeTest" time="0.001"/>
+  <testcase name="getUserIdWithZeroValue()" classname="Test.model.LikeTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

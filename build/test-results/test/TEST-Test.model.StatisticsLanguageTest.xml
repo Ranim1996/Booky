@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Test.model.StatisticsLanguageTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2021-01-11T15:17:44" hostname="LAPTOP-HQSL2QTD" time="0.005">
+  <properties/>
+  <testcase name="NewLanguageStaticTest()" classname="Test.model.StatisticsLanguageTest" time="0.001"/>
+  <testcase name="getStaticNameWithEmptyValue()" classname="Test.model.StatisticsLanguageTest" time="0.001"/>
+  <testcase name="getStaticNameWithNullValue()" classname="Test.model.StatisticsLanguageTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

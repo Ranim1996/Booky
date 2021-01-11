@@ -1,6 +1,8 @@
 package service.repository;
 
 import com.mysql.jdbc.Connection;
+
+import java.net.URISyntaxException;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
