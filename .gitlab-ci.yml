@@ -2,12 +2,12 @@ stages:
   - build
   - test
   - sonarqube
+  - deploy
 
 build:
   stage: build
   script:
     - ./gradlew build
-
 
 test:
   stage: test
@@ -22,5 +22,13 @@ sonarqube:
     - ./gradlew sonarqube
   dependencies:
     - test
+
+
+deploy:
+  stage: deploy
+  script:
+    - "docker build -t bookyapp:5.0 ."
+  dependencies:
+    - sonarqube
 
 
