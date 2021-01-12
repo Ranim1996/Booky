@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Test.controller.UserDataTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2021-01-12T15:43:12" hostname="LAPTOP-HQSL2QTD" time="1.18">
+<testsuite name="Test.controller.UserDataTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2021-01-12T15:48:12" hostname="LAPTOP-HQSL2QTD" time="1.009">
   <properties/>
-  <testcase name="addUser()" classname="Test.controller.UserDataTest" time="0.464"/>
-  <testcase name="getUserByEmail()" classname="Test.controller.UserDataTest" time="0.009"/>
-  <testcase name="updateUser()" classname="Test.controller.UserDataTest" time="0.012"/>
-  <testcase name="loginAndHashingTest()" classname="Test.controller.UserDataTest" time="0.011"/>
-  <testcase name="getUserFromToken()" classname="Test.controller.UserDataTest" time="0.673"/>
-  <testcase name="getUserByID()" classname="Test.controller.UserDataTest" time="0.008"/>
+  <testcase name="addUser()" classname="Test.controller.UserDataTest" time="0.394"/>
+  <testcase name="getUserByEmail()" classname="Test.controller.UserDataTest" time="0.006"/>
+  <testcase name="updateUser()" classname="Test.controller.UserDataTest" time="0.008"/>
+  <testcase name="loginAndHashingTest()" classname="Test.controller.UserDataTest" time="0.008"/>
+  <testcase name="getUserFromToken()" classname="Test.controller.UserDataTest" time="0.585"/>
+  <testcase name="getUserByID()" classname="Test.controller.UserDataTest" time="0.005"/>
   <system-out><![CDATA[jdbc:h2:mem:~/test
 
 

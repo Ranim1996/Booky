@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Test.model.StatisticsTypeTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2021-01-12T15:43:13" hostname="LAPTOP-HQSL2QTD" time="0.01">
+<testsuite name="Test.model.StatisticsTypeTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2021-01-12T15:48:13" hostname="LAPTOP-HQSL2QTD" time="0.002">
   <properties/>
-  <testcase name="NewTypeStaticTest()" classname="Test.model.StatisticsTypeTest" time="0.002"/>
-  <testcase name="getStaticNameWithEmptyValue()" classname="Test.model.StatisticsTypeTest" time="0.003"/>
+  <testcase name="NewTypeStaticTest()" classname="Test.model.StatisticsTypeTest" time="0.0"/>
+  <testcase name="getStaticNameWithEmptyValue()" classname="Test.model.StatisticsTypeTest" time="0.001"/>
   <testcase name="getStaticYWithZeroValue()" classname="Test.model.StatisticsTypeTest" time="0.0"/>
   <testcase name="getStaticNameWithNullValue()" classname="Test.model.StatisticsTypeTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>

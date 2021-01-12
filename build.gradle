@@ -14,17 +14,9 @@ repositories {
 
 test {
     useJUnitPlatform()
-//    finalizedBy jacocoTestReport // report is always generated after tests run
-//    ignoreFailures = true
+    ignoreFailures = true
 }
 
-//jacocoTestReport {
-//    dependsOn test // tests are required to run before generating the report
-//}
-//
-//jacoco {
-//    toolVersion = "0.8.6"
-//}
 
 dependencies {
     // TESTS
