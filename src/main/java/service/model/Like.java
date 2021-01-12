@@ -42,13 +42,4 @@ public class Like {
         this.userId = userId;
     }
 
-    //to string
-    @Override
-    public String toString() {
-        return "Like{" +
-                "id=" + id +
-                ", bookId=" + bookId +
-                ", userId=" + userId +
-                '}';
-    }
 }

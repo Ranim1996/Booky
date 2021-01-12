@@ -41,10 +41,7 @@ public class Book {
     public Book() {
 
     }
-
     //geters and setters
-
-
     public int getId() {
         return id;
     }
@@ -116,22 +113,5 @@ public class Book {
         if (o == null || getClass() != o.getClass()) return false;
         Book b = (Book) o;
         return id == b.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
-    public String toString() {
-        return "Book{" +
-                "Book ID: " + id +
-                ", Book Name: '" + bookName + '\'' +
-                ", Written by: " + authorName +
-                ", Book Type: " + bookType + '\'' +
-                ", Published at: " + time + '\'' +
-                ", Language: " + language_code + '\'' +
-                '}';
     }
 }

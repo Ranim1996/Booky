@@ -4,6 +4,8 @@ import org.glassfish.grizzly.websockets.WebSocket;
 import org.glassfish.grizzly.websockets.WebSocketApplication;
 import service.ControllerPersistance.DataChatController;
 
+import java.net.URISyntaxException;
+import java.sql.SQLException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -33,7 +35,15 @@ public class ChatRoomRepository extends WebSocketApplication {
             });
         }
 
-        chatController.addMessage(text);
+        try {
+            chatController.addMessage(text);
+        } catch (BookyDatabaseException e) {
+            e.printStackTrace();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

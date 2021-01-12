@@ -19,36 +19,24 @@ public class DataStatisticsController extends JDBCStatisticsRepository {
      * Show/print how many books are posted for specific type
      */
     //get books statistics per type
-    public List<StatisticsType> staisticsPerType(){
+    public List<StatisticsType> staisticsPerType() throws BookyDatabaseException, SQLException, URISyntaxException {
 
         List<StatisticsType> statisticsTypeArrayList = new ArrayList<>();
 
-        try {
-            statisticsTypeArrayList = statisticsRepository.getStatisticsPerType();
-            System.out.println("total controller= "+ statisticsTypeArrayList);
-            return statisticsTypeArrayList;
-        }
-        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
-        }
-        return null;
+        statisticsTypeArrayList = statisticsRepository.getStatisticsPerType();
+        return statisticsTypeArrayList;
     }
 
     /**
      * Show/print how many books are posted for specific language
      */
     //get books statistics per language
-    public List<StatisticsLanguage> statisticsPerLanguage(){
+    public List<StatisticsLanguage> statisticsPerLanguage() throws BookyDatabaseException, SQLException, URISyntaxException {
 
         List<StatisticsLanguage> statisticsLanguageArrayList = new ArrayList<>();
 
-        try {
-            statisticsLanguageArrayList = statisticsRepository.getStatisticsPerLanguage();
-            System.out.println("total controller= "+ statisticsLanguageArrayList);
-            return statisticsLanguageArrayList;
-        }
-        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
-        }
-        return null;
+        statisticsLanguageArrayList = statisticsRepository.getStatisticsPerLanguage();
+        return statisticsLanguageArrayList;
     }
 
 }

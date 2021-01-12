@@ -19,15 +19,10 @@ public class DataLikeController extends JDBCLikeRepository {
      * @param like .
      */
     //add like
-    public boolean likeBook(Like like) {
+    public boolean likeBook(Like like) throws BookyDatabaseException, SQLException, URISyntaxException {
 
-        try {
-            likeRepository.addLike(like);
-            return true;
-
-        } catch (BookyDatabaseException | SQLException | URISyntaxException e) {
-            return false;
-        }
+        likeRepository.addLike(like);
+        return true;
     }
 
     /**
@@ -35,14 +30,9 @@ public class DataLikeController extends JDBCLikeRepository {
      * @param userId
      */
     //show books added to my favorite list
-    public List<Book> likedBooksByUser(int userId){
+    public List<Book> likedBooksByUser(int userId) throws BookyDatabaseException, SQLException, URISyntaxException {
 
-        try {
-            return likeRepository.getLikedBooksByUserId(userId);
-        }
-        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
-            return Collections.emptyList();
-        }
+        return likeRepository.getLikedBooksByUserId(userId);
     }
 
     /**
@@ -51,14 +41,9 @@ public class DataLikeController extends JDBCLikeRepository {
      * @param userId of the book who should be deleted from the DB
      * @throws BookyDatabaseException
      */
-    public boolean deleteBook(int id, int userId){
+    public boolean deleteBook(int id, int userId) throws BookyDatabaseException, SQLException, URISyntaxException {
 
-        try{
-            likeRepository.deleteBook(id, userId);
-            return true;
-        }
-        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
-            return false;
-        }
+        likeRepository.deleteBook(id, userId);
+        return true;
     }
 }

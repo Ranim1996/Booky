@@ -66,8 +66,6 @@ public class DataUserController extends JDBCUserRepository {
         try {
             Users user = userRepository.getUserById(userId);
 
-            System.out.println("ok");
-
             return user;
         } catch (SQLException | BookyDatabaseException | URISyntaxException e) {
         }
@@ -89,13 +87,8 @@ public class DataUserController extends JDBCUserRepository {
             return false;
         }
 
-        System.out.println("User: " + u);
-
-        System.out.println("given password: " + password);
         String encryptedPassword = md.oneWayHashing(password);
-
-        System.out.println("encrypted password: " + encryptedPassword );
-
+        
         if(u.getPassword().equals(encryptedPassword)){
             return true;
         }

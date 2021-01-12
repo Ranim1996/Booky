@@ -14,16 +14,11 @@ public class DataLanguageController extends JDBCLanguageRepository {
     JDBCLanguageRepository languagesRepository = new JDBCLanguageRepository();
 
     //show all languages
-    public List<Language> showAllLanguages(){
+    public List<Language> showAllLanguages() throws BookyDatabaseException, SQLException, URISyntaxException {
 
         List<Language> languages = new ArrayList<>();
 
-        try {
-            languages = languagesRepository.getLanguages();
-            return languages;
-        }
-        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
-        }
+        languages = languagesRepository.getLanguages();
         return languages;
     }
 
@@ -32,13 +27,8 @@ public class DataLanguageController extends JDBCLanguageRepository {
      * @param code of the language to be shown.
      */
     //show language by it's code
-    public Language showLanguageByCode(String code){
+    public Language showLanguageByCode(String code) throws BookyDatabaseException, SQLException, URISyntaxException {
 
-        try {
-            return languagesRepository.getLanguageByCode(code);
-        }
-        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
-            return null;
-        }
+        return languagesRepository.getLanguageByCode(code);
     }
 }

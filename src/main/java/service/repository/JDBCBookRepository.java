@@ -377,33 +377,4 @@ public class JDBCBookRepository  extends JDBCRepository{
         return filtered;
     }
 
-    //count posted books for specific book type
-    public int getBookMajority(BookType type) throws BookyDatabaseException, SQLException, URISyntaxException {
-
-        int count = 0;
-
-        Connection connection = this.getDataBaseConneection();
-        String sql = "SELECT COUNT(id) AS id FROM book WHERE bookType = ? AND isDeleted = 0";
-
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            statement.setString(1, type.name());
-
-            ResultSet resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                count = resultSet.getInt("id");
-            }
-
-            connection.close();
-
-            return count;
-        } catch (SQLException throwable) {
-            throw new BookyDatabaseException("Cannot count books from the database.",throwable);
-        }
-        finally {
-            connection.close();
-        }
-    }
-
 }

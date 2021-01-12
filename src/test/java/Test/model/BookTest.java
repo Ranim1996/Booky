@@ -30,6 +30,18 @@ public class BookTest {
         assertEquals("image", b.getImage());
     }
 
+    @Test //check whether book info are correct
+    void NewBook1Test()
+    {
+        Book b = new Book(1, "BookName1","Author1", BookType.Classics, "image");
+
+        assertEquals(1, b.getId());
+        assertEquals("BookName1", b.getBookName());
+        assertEquals("Author1", b.getAuthorName());
+        assertEquals(BookType.Classics, b.getBookType());
+        assertEquals("image", b.getImage());
+    }
+
     @Rule // this rule is added to throw exceptions when its needed
     ExpectedException thrown = ExpectedException.none();
 

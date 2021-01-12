@@ -10,9 +10,6 @@ public class StatisticsType {
         this.y = y;
     }
 
-    public StatisticsType() {
-    }
-
     public String getLabel() {
         return label;
     }

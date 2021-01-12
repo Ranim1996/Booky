@@ -38,4 +38,15 @@ public class StatisticsLanguageTest {
         StatisticsLanguage statisticsLanguage = new StatisticsLanguage();
         statisticsLanguage.setName(null);
     }
+
+    @Test // static info is null
+    void getStaticYWithZeroValue() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Static y must not be zero");
+
+        StatisticsLanguage statisticsLanguage = new StatisticsLanguage();
+        statisticsLanguage.setY(0);
+    }
+
+
 }

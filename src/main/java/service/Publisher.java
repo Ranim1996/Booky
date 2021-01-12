@@ -31,15 +31,7 @@ class Publisher {
 
             //books get URLs
             String[] getOperations = {
-                    BASE_URI.toURL() + "books/2", // show book with id 2
-                    BASE_URI.toURL() + "books", // show all books
-                    BASE_URI.toURL() + "books?language=EN", // filter books with language code EN
                     BASE_URI.toURL() + "books?type=Fantasy", // filter books with book type classics
-
-
-                    //users get URLs
-                    BASE_URI.toURL() + "users/3", //show user with id 3
-                    BASE_URI.toURL() + "users", //show all users
                     BASE_URI.toURL() + "users?language=EN", //show user speaks english
 
             };

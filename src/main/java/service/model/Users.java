@@ -81,30 +81,4 @@ public class Users {
         this.dateOfBirth = dateOfBirth;
     }
 
-    //methods
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Users u = (Users) o;
-        return id == u.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "User ID: " + id +
-                ", First Name: '" + firstName + '\'' +
-                ", Last Name: '" +  lastName + '\'' +
-                ", Date of Birth: '" + dateOfBirth + '\'' +
-                ", Email: '" + email + '\'' +
-                ", Password: '" + password + '\'' +
-                ", User Type: " + usertype + '\'' +
-                '}';
-    }
 }

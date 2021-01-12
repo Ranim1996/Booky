@@ -16,15 +16,10 @@ public class DataBookController extends JDBCBookRepository {
     JDBCBookRepository bookRepository = new JDBCBookRepository();
 
     //show all books
-    public List<Book> showAllBooks(){
+    public List<Book> showAllBooks() throws BookyDatabaseException, SQLException, URISyntaxException {
 
-        try {
-            List<Book> books = bookRepository.getBooks();
-            return books;
-        }
-        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
-            return Collections.emptyList();
-        }
+        List<Book> books = bookRepository.getBooks();
+        return books;
     }
 
     /**
@@ -32,14 +27,9 @@ public class DataBookController extends JDBCBookRepository {
      * @param language of the book to be shown.
      */
     //show book by language code
-    public List<Book> bookFilteredWithLanguage(Language language){
+    public List<Book> bookFilteredWithLanguage(Language language) throws BookyDatabaseException, SQLException, URISyntaxException {
 
-        try {
-            return bookRepository.getBooksByLanguage(language);
-        }
-        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
-            return Collections.emptyList();
-        }
+        return bookRepository.getBooksByLanguage(language);
     }
 
     /**
@@ -47,14 +37,9 @@ public class DataBookController extends JDBCBookRepository {
      * @param type of the book to be shown.
      */
     //show book by language code
-    public List<Book> bookFilteredWithType(BookType type){
+    public List<Book> bookFilteredWithType(BookType type) throws BookyDatabaseException, SQLException, URISyntaxException {
 
-        try {
-            return bookRepository.getBooksByType(type);
-        }
-        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
-            return Collections.emptyList();
-        }
+        return bookRepository.getBooksByType(type);
     }
 
     /**
@@ -64,14 +49,10 @@ public class DataBookController extends JDBCBookRepository {
      * of the book to be shown.
      */
     //show book by language code
-    public List<Book> bookFilteredWithTypeAndLanguage(BookType type, Language language){
+    public List<Book> bookFilteredWithTypeAndLanguage(BookType type, Language language) throws BookyDatabaseException, SQLException, URISyntaxException {
 
-        try {
-            return bookRepository.getBooksByTypeAndLanguage(type, language);
-        }
-        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
-            return Collections.emptyList();
-        }
+        return bookRepository.getBooksByTypeAndLanguage(type, language);
+
     }
 
 
@@ -79,15 +60,10 @@ public class DataBookController extends JDBCBookRepository {
      * Add/create a new book.
      * @param book should be inserted into the DB.
      */
-    public boolean addBook(Book book){
+    public boolean addBook(Book book) throws BookyDatabaseException, SQLException, URISyntaxException {
 
-        try {
-            bookRepository.addBook(book);
-            return true;
-        }
-        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
-            return false;
-        }
+        bookRepository.addBook(book);
+        return true;
     }
 
     /**
@@ -96,29 +72,20 @@ public class DataBookController extends JDBCBookRepository {
      * @param book
      * should be updated into the DB.
      */
-    public boolean updateBook(int id, Book book){
+    public boolean updateBook(int id, Book book) throws BookyDatabaseException, SQLException, URISyntaxException {
 
-        try {
-            bookRepository.updateBook(id, book);
-            return true;
-        }
-        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
-            return false;
-        }
+        bookRepository.updateBook(id, book);
+        return true;
     }
 
     /**
      * Show/print the book with given id
      * @param id of the book to be shown.
      */
-    public Book showBookById(int id){
+    public Book showBookById(int id) throws BookyDatabaseException, SQLException, URISyntaxException {
 
-        try {
-            return bookRepository.getBookById(id);
+        return bookRepository.getBookById(id);
 
-        } catch (BookyDatabaseException | SQLException | URISyntaxException e) {
-            return null;
-        }
     }
 
     /**
@@ -126,17 +93,13 @@ public class DataBookController extends JDBCBookRepository {
      * @param id of the book who should be deleted from the DB
      * @throws BookyDatabaseException
      */
-    public boolean deleteBook(int id){
+    public boolean deleteBook(int id) throws BookyDatabaseException, SQLException, URISyntaxException {
 
-        try{
-            System.out.println("in book controller");
-            bookRepository.deleteBook(id);
-            System.out.println("isdeleted");
-            return true;
-        }
-        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
-            return false;
-        }
+        System.out.println("in book controller");
+        bookRepository.deleteBook(id);
+        System.out.println("isdeleted");
+        return true;
+
     }
 
     /**
@@ -144,14 +107,9 @@ public class DataBookController extends JDBCBookRepository {
      * @param chars
      */
     //show books by given chars
-    public List<Book> bookFilterByFirstNameChars(String chars){
+    public List<Book> bookFilterByFirstNameChars(String chars) throws BookyDatabaseException, SQLException, URISyntaxException {
 
-        try {
-            List<Book> books = bookRepository.getBooksByName(chars);
-            return books;
-        }
-        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
-            return null;
-        }
+        List<Book> books = bookRepository.getBooksByName(chars);
+        return books;
     }
 }

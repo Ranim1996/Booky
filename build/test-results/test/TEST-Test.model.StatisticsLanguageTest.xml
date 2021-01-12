@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Test.model.StatisticsLanguageTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2021-01-12T15:48:13" hostname="LAPTOP-HQSL2QTD" time="0.001">
+<testsuite name="Test.model.StatisticsLanguageTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2021-01-12T21:20:36" hostname="LAPTOP-HQSL2QTD" time="0.004">
   <properties/>
-  <testcase name="NewLanguageStaticTest()" classname="Test.model.StatisticsLanguageTest" time="0.0"/>
+  <testcase name="NewLanguageStaticTest()" classname="Test.model.StatisticsLanguageTest" time="0.001"/>
   <testcase name="getStaticNameWithEmptyValue()" classname="Test.model.StatisticsLanguageTest" time="0.001"/>
-  <testcase name="getStaticNameWithNullValue()" classname="Test.model.StatisticsLanguageTest" time="0.0"/>
+  <testcase name="getStaticYWithZeroValue()" classname="Test.model.StatisticsLanguageTest" time="0.001"/>
+  <testcase name="getStaticNameWithNullValue()" classname="Test.model.StatisticsLanguageTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

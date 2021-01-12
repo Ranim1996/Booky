@@ -41,17 +41,4 @@ public class Language {
         Language l = (Language) o;
         return Objects.equals(code, l.code);
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(code);
-    }
-
-    @Override
-    public String toString() {
-        return "Language{" +
-                "language code='" + code + '\'' +
-                ", language name='" + name + '\'' +
-                '}';
-    }
 }

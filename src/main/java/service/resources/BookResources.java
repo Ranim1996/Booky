@@ -7,12 +7,15 @@ import service.ControllerPersistance.DataStatisticsController;
 import service.model.*;
 import service.model.DTO.StatisticsLanguage;
 import service.model.DTO.StatisticsType;
+import service.repository.BookyDatabaseException;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
+import java.net.URISyntaxException;
+import java.sql.SQLException;
 import java.util.List;
 
 @Path("/books")
@@ -29,7 +32,7 @@ public class BookResources {
     @GET //GET at http://localhost:9090/booky/books/3
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getBookPath(@PathParam("id") int id) {
+    public Response getBookPath(@PathParam("id") int id) throws BookyDatabaseException, SQLException, URISyntaxException {
 
         Book book = bookController.showBookById(id);
 
@@ -45,7 +48,7 @@ public class BookResources {
     @Produces(MediaType.APPLICATION_JSON)
     @PermitAll
     public Response getBooks(@QueryParam("language") String languageCode, @QueryParam("type") BookType type
-            , @QueryParam("bookName") String name) {
+            , @QueryParam("bookName") String name) throws BookyDatabaseException, SQLException, URISyntaxException {
 
         List<Book> books;
 
@@ -78,11 +81,9 @@ public class BookResources {
     @DELETE //DELETE at http://localhost:9090/booky/books/3
     @Path("{id}")
     @RolesAllowed("Admin")
-    public Response deleteBook(@PathParam("id") int bID) {
+    public Response deleteBook(@PathParam("id") int bID) throws BookyDatabaseException, SQLException, URISyntaxException {
 
-        System.out.println("in book resources");
         bookController.deleteBook(bID);
-
         return Response.noContent().build();
 
     }
@@ -91,7 +92,7 @@ public class BookResources {
     @POST //POST at http://localhost:9090/booky/books/
     @Consumes(MediaType.APPLICATION_JSON)
     @RolesAllowed("Admin")
-    public Response createBook(Book b) {
+    public Response createBook(Book b) throws BookyDatabaseException, SQLException, URISyntaxException {
 
         if (!bookController.addBook(b)){
             String entity =  "Book with this id is " + b.getId() + " already exists.";
@@ -109,7 +110,7 @@ public class BookResources {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("{id}")
     @RolesAllowed("Admin")
-    public Response updateBook(@PathParam("id") int id,  Book b) {
+    public Response updateBook(@PathParam("id") int id,  Book b) throws BookyDatabaseException, SQLException, URISyntaxException {
 
         if (bookController.updateBook(id, b)){
             System.out.println(id);
@@ -126,7 +127,7 @@ public class BookResources {
     @Path("like")
     @Consumes(MediaType.APPLICATION_JSON)
     @PermitAll
-    public Response addLikeToBook(Like like) {
+    public Response addLikeToBook(Like like) throws BookyDatabaseException, SQLException, URISyntaxException {
 
         if (!likeController.likeBook(like)){
             String entity =  "Like with this id: "  + like.getId() + " already exists.";
@@ -143,7 +144,7 @@ public class BookResources {
     @Path("MyList")
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed("Reader")
-    public Response getLikedBooksByUser(@QueryParam("id") int userId) {
+    public Response getLikedBooksByUser(@QueryParam("id") int userId) throws BookyDatabaseException, SQLException, URISyntaxException {
 
         List<Book> books;
 
@@ -158,7 +159,7 @@ public class BookResources {
     @Path("MyList/{id}/user/{uId}")
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed("Reader")
-    public Response removeBook(@PathParam("id") int bId, @PathParam("uId") int uId) {
+    public Response removeBook(@PathParam("id") int bId, @PathParam("uId") int uId) throws BookyDatabaseException, SQLException, URISyntaxException {
         
         likeController.deleteBook(bId, uId);
 
@@ -170,10 +171,9 @@ public class BookResources {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("Majority/Type")
     @RolesAllowed("Admin")
-    public Response countStatisticsPerType() {
+    public Response countStatisticsPerType() throws BookyDatabaseException, SQLException, URISyntaxException {
 
         List<StatisticsType> statistics = statisticsController.staisticsPerType();
-        System.out.println("count resources statistics: "+ statistics);
 
         return Response.ok(statistics).build();
     }
@@ -182,10 +182,9 @@ public class BookResources {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("Majority/Language")
     @RolesAllowed("Admin")
-    public Response countStatisticsPerLanguage() {
+    public Response countStatisticsPerLanguage() throws BookyDatabaseException, SQLException, URISyntaxException {
 
         List<StatisticsLanguage> statistics = statisticsController.statisticsPerLanguage();
-        System.out.println("count resources statistics: "+ statistics);
 
         return Response.ok(statistics).build();
     }
