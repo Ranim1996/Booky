@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Test.controller.UserDataTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2021-01-12T21:20:34" hostname="LAPTOP-HQSL2QTD" time="2.297">
+<testsuite name="Test.controller.UserDataTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2021-01-12T21:42:46" hostname="LAPTOP-HQSL2QTD" time="1.602">
   <properties/>
-  <testcase name="addUser()" classname="Test.controller.UserDataTest" time="1.096"/>
-  <testcase name="getUserByEmail()" classname="Test.controller.UserDataTest" time="0.009"/>
-  <testcase name="updateUser()" classname="Test.controller.UserDataTest" time="0.008"/>
-  <testcase name="loginAndHashingTest()" classname="Test.controller.UserDataTest" time="0.009"/>
-  <testcase name="getUserFromToken()" classname="Test.controller.UserDataTest" time="1.161"/>
-  <testcase name="getUserByID()" classname="Test.controller.UserDataTest" time="0.01"/>
+  <testcase name="addUser()" classname="Test.controller.UserDataTest" time="0.073"/>
+  <testcase name="getUserByEmail()" classname="Test.controller.UserDataTest" time="0.004"/>
+  <testcase name="updateUser()" classname="Test.controller.UserDataTest" time="0.005"/>
+  <testcase name="loginAndHashingTest()" classname="Test.controller.UserDataTest" time="0.005"/>
+  <testcase name="getUserFromToken()" classname="Test.controller.UserDataTest" time="1.5"/>
+  <testcase name="getUserByID()" classname="Test.controller.UserDataTest" time="0.009"/>
   <system-out><![CDATA[jdbc:h2:mem:~/test
 
 
-conn2: url=jdbc:h2:mem:~/test user=
+conn31: url=jdbc:h2:mem:~/test user=
 jdbc:h2:mem:~/test
 
 
-conn5: url=jdbc:h2:mem:~/test user=
+conn32: url=jdbc:h2:mem:~/test user=
 jdbc:h2:mem:~/test
 
 
-conn8: url=jdbc:h2:mem:~/test user=
+conn33: url=jdbc:h2:mem:~/test user=
 jdbc:h2:mem:~/test
 
 
-conn11: url=jdbc:h2:mem:~/test user=
+conn34: url=jdbc:h2:mem:~/test user=
 jdbc:h2:mem:~/test
 
 
-conn14: url=jdbc:h2:mem:~/test user=
+conn35: url=jdbc:h2:mem:~/test user=
 jdbc:h2:mem:~/test
 
 
-conn17: url=jdbc:h2:mem:~/test user=
+conn38: url=jdbc:h2:mem:~/test user=
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

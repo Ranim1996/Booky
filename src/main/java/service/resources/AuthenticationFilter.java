@@ -161,13 +161,10 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         2. if AUTHENTICATION succeeds, you do the authorization like this:
         */
         if (method.isAnnotationPresent(RolesAllowed.class)) {
-            System.out.println("in if roles allowed");
             // get allowed roles for this method
             RolesAllowed rolesAnnotation = method.getAnnotation(RolesAllowed.class);
-            System.out.println("roles annon" + rolesAnnotation);
             Set<String> rolesSet = new
                     HashSet<String>(Arrays.asList(rolesAnnotation.value()));
-            System.out.println("role set "+rolesSet);
              /* isUserAllowed : implement this method to check if this user has any of
              the roles in the rolesSet
              if not isUserAllowed abort the requestContext with FORBIDDEN response*/
@@ -188,14 +185,11 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         // If i can decode it it is valid
         String id = decoded.getId();
         if(id.isEmpty()){
-            System.out.println("Invalid user");
             Response response = Response.status(Response.Status.UNAUTHORIZED).
                     entity("Invalid email and/or password.").build();
             requestContext.abortWith(response);
             return;
         }
-
-        System.out.println("VALID USER");
     }
 
 

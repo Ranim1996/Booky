@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Test.controller.StatisticsDataTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-01-12T21:20:34" hostname="LAPTOP-HQSL2QTD" time="0.042">
+<testsuite name="Test.controller.StatisticsDataTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-01-12T21:42:46" hostname="LAPTOP-HQSL2QTD" time="0.046">
   <properties/>
-  <testcase name="ShowStaisticsPerType()" classname="Test.controller.StatisticsDataTest" time="0.038"/>
+  <testcase name="ShowStaisticsPerType()" classname="Test.controller.StatisticsDataTest" time="0.042"/>
   <testcase name="ShowStatisticsPerLanguage()" classname="Test.controller.StatisticsDataTest" time="0.003"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

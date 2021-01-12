@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Test.controller.BookDataTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2021-01-12T21:20:32" hostname="LAPTOP-HQSL2QTD" time="1.699">
+<testsuite name="Test.controller.BookDataTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2021-01-12T21:42:45" hostname="LAPTOP-HQSL2QTD" time="0.238">
   <properties/>
-  <testcase name="GetBooksByID()" classname="Test.controller.BookDataTest" time="1.657"/>
-  <testcase name="addBook()" classname="Test.controller.BookDataTest" time="0.01"/>
-  <testcase name="GetBooksByLanguage()" classname="Test.controller.BookDataTest" time="0.003"/>
+  <testcase name="GetBooksByID()" classname="Test.controller.BookDataTest" time="0.205"/>
+  <testcase name="addBook()" classname="Test.controller.BookDataTest" time="0.003"/>
+  <testcase name="GetBooksByLanguage()" classname="Test.controller.BookDataTest" time="0.004"/>
   <testcase name="GetBooksByTypeAndLanguage()" classname="Test.controller.BookDataTest" time="0.003"/>
   <testcase name="updateBook()" classname="Test.controller.BookDataTest" time="0.002"/>
-  <testcase name="ShowAllBooks()" classname="Test.controller.BookDataTest" time="0.002"/>
-  <testcase name="deleteBook()" classname="Test.controller.BookDataTest" time="0.012"/>
+  <testcase name="ShowAllBooks()" classname="Test.controller.BookDataTest" time="0.003"/>
+  <testcase name="deleteBook()" classname="Test.controller.BookDataTest" time="0.004"/>
   <testcase name="GetBooksByName()" classname="Test.controller.BookDataTest" time="0.003"/>
   <testcase name="GetBooksByType()" classname="Test.controller.BookDataTest" time="0.003"/>
   <system-out><![CDATA[in book controller
