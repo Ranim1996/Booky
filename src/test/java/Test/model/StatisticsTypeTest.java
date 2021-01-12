@@ -40,4 +40,13 @@ public class StatisticsTypeTest {
         StatisticsType statisticsType = new StatisticsType(BookType.Classics.name(), 4);
         statisticsType.setLabel(null);
     }
+
+    @Test // static y is null
+    void getStaticYWithZeroValue() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Static y must not be zero");
+
+        StatisticsType statisticsType = new StatisticsType(BookType.Classics.name(), 4);
+        statisticsType.setY(0);
+    }
 }

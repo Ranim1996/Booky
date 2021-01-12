@@ -126,4 +126,13 @@ public class UsersTest {
         u.setUsertype(null);
     }
 
+    @Test // user id zero
+    void getUserIdWithZeroValue() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("User id must not be zero");
+
+        Users u= new Users();
+        u.setId(0);
+    }
+
 }

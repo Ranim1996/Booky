@@ -1,9 +1,28 @@
-êUser: User{User ID: 1, First Name: 'Ranim', Last Name: 'Alayoubi', Date of Birth: '1/1/1', Email: 'email', Password: '12', User Type: Reader'}
-given password: 1234
-6encrypted password: 81dc9bdb52d04dc20036dbd8313ed055
-ok
-ok
-	in book controller
-	isdeleted
-Btotal controller= [Statistics{label='DetectiveandMystery', y=4}]
-8total controller= [StatisticsLanguage{name='FR', y=4}]
+in book controller
+isdeleted
+Btotal controller= [Statistics{label='DetectiveandMystery', y=4}]
+8total controller= [StatisticsLanguage{name='FR', y=4}]
+jdbc:h2:mem:~/test
+
+
+%conn2: url=jdbc:h2:mem:~/test user=
+jdbc:h2:mem:~/test
+
+
+%conn5: url=jdbc:h2:mem:~/test user=
+jdbc:h2:mem:~/test
+
+
+%conn8: url=jdbc:h2:mem:~/test user=
+jdbc:h2:mem:~/test
+
+
+&conn11: url=jdbc:h2:mem:~/test user=
+jdbc:h2:mem:~/test
+
+
+&conn14: url=jdbc:h2:mem:~/test user=
+jdbc:h2:mem:~/test
+
+
+&conn17: url=jdbc:h2:mem:~/test user=

@@ -155,4 +155,18 @@ public class BookDataTest {
         assertEquals(books.size(), bookList.size());
     }
 
+    @Test
+    void GetBooksByID() throws BookyDatabaseException, SQLException, URISyntaxException {
+        LocalDate date = LocalDate.now();
+        Language language = new Language("Fr","French");
+
+        Book book = new Book(1,"book1","author1",BookType.LitraryFiction,"info",date,language,"");
+
+        when(bookRepository.getBookById(1)).thenReturn(book);
+
+        Book book1 = bookController.showBookById(1);
+
+        assertEquals(book, book1);
+    }
+
 }

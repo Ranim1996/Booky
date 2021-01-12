@@ -1,9 +1,8 @@
 package service.repository;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import org.glassfish.jersey.jaxb.internal.XmlRootElementJaxbProvider;
+
+import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Paths;
@@ -14,26 +13,30 @@ import java.util.Properties;
 
 public class JDBCRepository{
 
-    protected Connection getDataBaseConneection () throws URISyntaxException{
-
-        URL res = getClass().getClassLoader().getResource("app.properties");
-        File configFile = Paths.get(res.toURI()).toFile();
+    public Connection getDataBaseConneection () throws URISyntaxException{
 
         String url = "";
         String username = "";
         String pass = "";
         java.sql.Connection connection = null;
 
-        try(FileReader reader = new FileReader(configFile)) {
+        try{
             Properties properties = new Properties();
-            properties.load(reader);
+            properties.load(XmlRootElementJaxbProvider.App.class.getClassLoader().getResourceAsStream("app.properties"));
 
             url = properties.getProperty("host");
             username = properties.getProperty("username");
             pass = properties.getProperty("pass");
 
+            System.out.println(url);
+            System.out.println(username);
+            System.out.println(pass);
+
+
             connection = DriverManager.getConnection(url, username, pass);
             connection.setAutoCommit(false);
+
+            System.out.println(connection);
 
         } catch (SQLException | FileNotFoundException e) {
             throw new IllegalStateException("Driver failed " + url + ".", e);

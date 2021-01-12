@@ -18,7 +18,7 @@ public class BookTest {
     {
         Language arabic = new Language("AR", "Arabic");
 
-        Book b = new Book(1, "BookName1","Author1", BookType.Classics, "Info", LocalDate.now(), arabic,"");
+        Book b = new Book(1, "BookName1","Author1", BookType.Classics, "Info", LocalDate.now(), arabic,"image");
 
         assertEquals(1, b.getId());
         assertEquals("BookName1", b.getBookName());
@@ -27,6 +27,7 @@ public class BookTest {
         assertEquals("Info", b.getDescribtion());
         assertEquals(LocalDate.now(), b.getTime());
         assertEquals(arabic, b.getLanguage_code());
+        assertEquals("image", b.getImage());
     }
 
     @Rule // this rule is added to throw exceptions when its needed
@@ -75,6 +76,51 @@ public class BookTest {
 
         Book b = new Book();
         b.setLanguage_code(null);
+    }
+
+    @Test
+    void getBookIdWithZeroValue(){
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Book id must not be zero required!");
+
+        Book b = new Book();
+        b.setId(0);
+    }
+
+    @Test
+    void getBookTypeWithNullValue(){
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Book type must not be null required!");
+
+        Book b = new Book();
+        b.setBookType(null);
+    }
+
+    @Test
+    void getBookDescWithEmptyValue(){
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Book E=Description must not be empty required!");
+
+        Book b = new Book();
+        b.setDescribtion("");
+    }
+
+    @Test
+    void getBookTimeWithNullValue(){
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Book time must not be null required!");
+
+        Book b = new Book();
+        b.setTime(null);
+    }
+
+    @Test
+    void getBookImageWithNullValue(){
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Book image must not be null required!");
+
+        Book b = new Book();
+        b.setImage(null);
     }
 
 }

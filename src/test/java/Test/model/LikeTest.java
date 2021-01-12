@@ -14,6 +14,7 @@ public class LikeTest {
     {
         Like l = new Like(1,2,3);
 
+        assertEquals(1,l.getId());
         assertEquals(2, l.getBookId());
         assertEquals(3, l.getUserId());
     }
@@ -37,5 +38,14 @@ public class LikeTest {
 
         Like l= new Like();
         l.setUserId(0);
+    }
+
+    @Test // like id zero
+    void getLikeIdWithZeroValue() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Like id must not be zero");
+
+        Like l= new Like();
+        l.setId(0);
     }
 }

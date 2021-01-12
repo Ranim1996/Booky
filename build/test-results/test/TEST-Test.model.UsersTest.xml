@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Test.model.UsersTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2021-01-11T18:49:10" hostname="LAPTOP-HQSL2QTD" time="0.017">
+<testsuite name="Test.model.UsersTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2021-01-12T15:28:12" hostname="LAPTOP-HQSL2QTD" time="0.019">
   <properties/>
-  <testcase name="NewUserTest()" classname="Test.model.UsersTest" time="0.002"/>
-  <testcase name="getUserLastNameWithNullValue()" classname="Test.model.UsersTest" time="0.001"/>
+  <testcase name="NewUserTest()" classname="Test.model.UsersTest" time="0.0"/>
+  <testcase name="getUserLastNameWithNullValue()" classname="Test.model.UsersTest" time="0.0"/>
   <testcase name="getUserFirstNameWithNullValue()" classname="Test.model.UsersTest" time="0.0"/>
   <testcase name="getUserTypeWithNullValue()" classname="Test.model.UsersTest" time="0.001"/>
-  <testcase name="getUserLastNameWithEmptyValue()" classname="Test.model.UsersTest" time="0.001"/>
+  <testcase name="getUserLastNameWithEmptyValue()" classname="Test.model.UsersTest" time="0.0"/>
   <testcase name="getUserDateBirthWithEmptyValue()" classname="Test.model.UsersTest" time="0.0"/>
-  <testcase name="getUserFirstNameWithEmptyValue()" classname="Test.model.UsersTest" time="0.0"/>
+  <testcase name="getUserFirstNameWithEmptyValue()" classname="Test.model.UsersTest" time="0.001"/>
   <testcase name="getUserDateBirthWithNullValue()" classname="Test.model.UsersTest" time="0.0"/>
-  <testcase name="getUserPasswordWithEmptyValue()" classname="Test.model.UsersTest" time="0.0"/>
-  <testcase name="getUserEmailWithNullValue()" classname="Test.model.UsersTest" time="0.001"/>
-  <testcase name="getUserEmailWithEmptyValue()" classname="Test.model.UsersTest" time="0.001"/>
-  <testcase name="getUserPasswordWithNullValue()" classname="Test.model.UsersTest" time="0.001"/>
+  <testcase name="getUserPasswordWithEmptyValue()" classname="Test.model.UsersTest" time="0.001"/>
+  <testcase name="getUserEmailWithNullValue()" classname="Test.model.UsersTest" time="0.0"/>
+  <testcase name="getUserIdWithZeroValue()" classname="Test.model.UsersTest" time="0.0"/>
+  <testcase name="getUserEmailWithEmptyValue()" classname="Test.model.UsersTest" time="0.0"/>
+  <testcase name="getUserPasswordWithNullValue()" classname="Test.model.UsersTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
