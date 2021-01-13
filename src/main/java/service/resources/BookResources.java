@@ -57,7 +57,6 @@ public class BookResources {
         if (uriInfo.getQueryParameters().containsKey("type") && uriInfo.getQueryParameters().containsKey("language")){
             Language l = languageController.showLanguageByCode(languageCode);
             books = bookController.bookFilteredWithTypeAndLanguage(type, l);
-            System.out.println("hi"+ books);
         }
         else if(uriInfo.getQueryParameters().containsKey("language")){
             Language l = languageController.showLanguageByCode(languageCode);
@@ -113,7 +112,6 @@ public class BookResources {
     public Response updateBook(@PathParam("id") int id,  Book b) throws BookyDatabaseException, SQLException, URISyntaxException {
 
         if (bookController.updateBook(id, b)){
-            System.out.println(id);
             return Response.noContent().build();
         }
         else{

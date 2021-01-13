@@ -81,7 +81,6 @@ public class UserResources {
             return Response.status(Response.Status.CONFLICT).entity(entity).build();
         }
         else {
-            System.out.println("User: " + user + user.getPassword());
             String url = uriInfo.getAbsolutePath() + "/" + user.getId(); // url of the posted user
             URI uri = URI.create(url);
             return Response.created(uri).build();

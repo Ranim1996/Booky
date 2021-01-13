@@ -88,11 +88,8 @@ public class DataUserController extends JDBCUserRepository {
         }
 
         String encryptedPassword = md.oneWayHashing(password);
-        
-        if(u.getPassword().equals(encryptedPassword)){
-            return true;
-        }
-        return false;
+
+        return u.getPassword().equals(encryptedPassword);
     }
 
     public Users getUserFromToken(String token) {
@@ -149,14 +146,7 @@ public class DataUserController extends JDBCUserRepository {
         JDBCUserRepository userRepository = new JDBCUserRepository();
 
         try {
-            if(userRepository.addUser(user)) {
-
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return userRepository.addUser(user);
         } catch (SQLException | BookyDatabaseException | URISyntaxException e) {
             return false;
         }
