@@ -6,7 +6,7 @@ import org.glassfish.grizzly.websockets.WebSocketAddOn;
 import org.glassfish.grizzly.websockets.WebSocketEngine;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
-import service.repository.ChatRoomRepository;
+import service.WebSocket.ChatRoom;
 import service.resources.ChatResources;
 
 import javax.ws.rs.core.UriBuilder;
@@ -66,8 +66,8 @@ class Publisher {
         server.getListeners().forEach(listener -> { listener.registerAddOn(webSocketAddOn);});
 
         // register my websocket app
-        ChatRoomRepository chatRoomRepository = new ChatRoomRepository();
-        WebSocketEngine.getEngine().register("/ws", "/project", chatRoomRepository);
+        ChatRoom chatRoom = new ChatRoom();
+        WebSocketEngine.getEngine().register("/ws", "/project", chatRoom);
 
         // Now start the server
         server.start();

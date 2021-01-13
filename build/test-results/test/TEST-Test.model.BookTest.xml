@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Test.model.BookTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2021-01-13T09:15:17" hostname="LAPTOP-HQSL2QTD" time="0.021">
+<testsuite name="Test.model.BookTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2021-01-13T20:41:57" hostname="LAPTOP-HQSL2QTD" time="0.021">
   <properties/>
-  <testcase name="getBookImageWithNullValue()" classname="Test.model.BookTest" time="0.009"/>
-  <testcase name="NewBook1Test()" classname="Test.model.BookTest" time="0.001"/>
+  <testcase name="getBookImageWithNullValue()" classname="Test.model.BookTest" time="0.011"/>
+  <testcase name="NewBook1Test()" classname="Test.model.BookTest" time="0.0"/>
   <testcase name="getBookTimeWithNullValue()" classname="Test.model.BookTest" time="0.0"/>
   <testcase name="getBookDescWithEmptyValue()" classname="Test.model.BookTest" time="0.0"/>
   <testcase name="getBookNameWithNullValue()" classname="Test.model.BookTest" time="0.0"/>
   <testcase name="getBookIdWithZeroValue()" classname="Test.model.BookTest" time="0.0"/>
-  <testcase name="getBookTypeWithNullValue()" classname="Test.model.BookTest" time="0.0"/>
+  <testcase name="getBookTypeWithNullValue()" classname="Test.model.BookTest" time="0.001"/>
   <testcase name="getAuthorNameWithNullValue()" classname="Test.model.BookTest" time="0.0"/>
-  <testcase name="NewBookTest()" classname="Test.model.BookTest" time="0.001"/>
-  <testcase name="getBookLanguageWithNullValue()" classname="Test.model.BookTest" time="0.0"/>
+  <testcase name="NewBookTest()" classname="Test.model.BookTest" time="0.0"/>
+  <testcase name="getBookLanguageWithNullValue()" classname="Test.model.BookTest" time="0.001"/>
   <testcase name="getAuthorNameWithEmptyValue()" classname="Test.model.BookTest" time="0.0"/>
   <testcase name="getBookNameWithEmptyValue()" classname="Test.model.BookTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>

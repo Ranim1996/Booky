@@ -17,16 +17,32 @@ public class DataChatController {
      * Add/create a new message.
      * @param text should be inserted into the DB.
      */
-    public boolean addMessage(String text) throws BookyDatabaseException, SQLException, URISyntaxException {
+    public boolean addMessage(String text) {
 
-        chatRepository.addMessage(text);
-        return true;
+        try {
+            if(chatRepository.addMessage(text)) {
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        } catch (SQLException | BookyDatabaseException | URISyntaxException e) {
+            return false;
+        }
     }
 
-    public List<Chat> getMessages() throws BookyDatabaseException, SQLException, URISyntaxException {
+    public List<Chat> getMessages(){
 
-        List<Chat> chats = chatRepository.getMessages();
-        return chats;
+        try {
+            List<Chat> chats = chatRepository.getMessages();
+            return chats;
+        }
+        catch (BookyDatabaseException | SQLException | URISyntaxException e) {
+            return Collections.emptyList();
+        }
     }
+
 
 }

@@ -106,39 +106,6 @@ public class JDBCUserRepository extends JDBCRepository {
         }
     }
 
-    //get user by type
-    public Users getUsersByType(UserType userType) throws BookyDatabaseException, SQLException, URISyntaxException {
-
-        Connection connection = this.getDataBaseConneection();
-
-        String sql = "SELECT * FROM users WHERE userType = ?";
-
-        try (PreparedStatement statement = connection.prepareStatement(sql)){
-            statement.setString(1, userType.name()); // set usertype parameter
-            ResultSet resultSet = statement.executeQuery();
-            if (!resultSet.next()){
-                connection.close();
-                throw new BookyDatabaseException("User with type " + userType + " cannot be found");
-            } else {
-                int UId = resultSet.getInt("id");
-                String firstName = resultSet.getString("firstName");
-                String lastName = resultSet.getString("lastName");
-                UserType type = UserType.valueOf(resultSet.getString("userType"));
-                String email = resultSet.getString("email");
-                String password = resultSet.getString("password");
-                String dateOfBirth = resultSet.getString("dateOfBirth");
-
-                connection.close();
-
-                return new Users(UId,firstName, lastName, dateOfBirth, type,email,password);
-            }
-        } catch (SQLException throwable) {
-            throw new BookyDatabaseException("Cannot read users from the database.",throwable);
-        }finally {
-            connection.close();
-        }
-    }
-
     public boolean addUser(Users user) throws BookyDatabaseException, SQLException, URISyntaxException {
 
         String type = UserType.Reader.name();

@@ -37,7 +37,7 @@ public class UserDataTest {
 
     @Test
      void getUserByID() throws BookyDatabaseException, SQLException, URISyntaxException {
-        Users user = new Users(1,"Ranim", "Alayoubi","1/1/1",UserType.Reader,"email","12");
+        Users user = new Users(1,"Jojo", "Alayoubi","1/1/1",UserType.Reader,"email","12");
 
         lenient().when(userRepository.getUserById(1)).thenReturn(user);
 
@@ -48,18 +48,18 @@ public class UserDataTest {
 
     @Test
      void addUser() throws BookyDatabaseException, SQLException, URISyntaxException {
-        Users user = new Users(1,"Ranim", "Alayoubi","1/1/1",UserType.Reader,"email","12");
+        Users user = new Users(4,"Jojo", "Alayoubi","1/1/1",UserType.Reader,"email","12");
 
         lenient().when(userRepository.addUser(user)).thenReturn(true);
 
         boolean addedUser = userController.addUser(user);
 
-        Assert.assertEquals(false, addedUser);
+        Assert.assertEquals(addedUser,false);
     }
 
     @Test
     public void getUserByEmail() throws BookyDatabaseException, SQLException, URISyntaxException {
-        Users user = new Users(1,"Ranim", "Alayoubi","1/1/1",UserType.Reader,"email","12");
+        Users user = new Users(1,"Jojo", "Alayoubi","1/1/1",UserType.Reader,"email","12");
 
         lenient().when(userRepository.getUsers()).thenReturn(Arrays.asList(user));
 
@@ -74,7 +74,7 @@ public class UserDataTest {
         MD5Hash md = new MD5Hash();
         String password = md.oneWayHashing("1234");
 
-        Users user = new Users(1,"Ranim", "Alayoubi","1/1/1",UserType.Reader,"email",password);
+        Users user = new Users(1,"Jojo", "Alayoubi","1/1/1",UserType.Reader,"email",password);
 
         lenient().when(userRepository.getUsers()).thenReturn(Arrays.asList(user));
 
@@ -87,7 +87,7 @@ public class UserDataTest {
     @Test
     public void getUserFromToken() throws BookyDatabaseException, SQLException, URISyntaxException {
 
-        Users user = new Users(1,"Ranim", "Alayoubi","1/1/1",UserType.Reader,"email","12");
+        Users user = new Users(1,"Jojo", "Alayoubi","1/1/1",UserType.Reader,"email","12");
 
         lenient().when(userRepository.getUserById(1)).thenReturn(user);
 
@@ -102,7 +102,7 @@ public class UserDataTest {
 
     @Test
     public void updateUser() throws BookyDatabaseException, SQLException, URISyntaxException {
-        Users user = new Users(1,"Ranim", "Alayoubi","1/1/1",UserType.Reader,"email","12");
+        Users user = new Users(1,"Jojo", "Alayoubi","1/1/1",UserType.Reader,"email","12");
 
         lenient().when(userRepository.updateUser(1,user)).thenReturn(true);
 

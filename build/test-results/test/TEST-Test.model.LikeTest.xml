@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Test.model.LikeTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2021-01-13T09:15:17" hostname="LAPTOP-HQSL2QTD" time="0.003">
+<testsuite name="Test.model.LikeTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2021-01-13T20:41:57" hostname="LAPTOP-HQSL2QTD" time="0.003">
   <properties/>
   <testcase name="getLikeIdWithZeroValue()" classname="Test.model.LikeTest" time="0.0"/>
   <testcase name="getBookIdWithZeroValue()" classname="Test.model.LikeTest" time="0.0"/>
   <testcase name="NewLikeTest()" classname="Test.model.LikeTest" time="0.0"/>
-  <testcase name="getUserIdWithZeroValue()" classname="Test.model.LikeTest" time="0.0"/>
+  <testcase name="getUserIdWithZeroValue()" classname="Test.model.LikeTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
