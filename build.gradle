@@ -76,7 +76,7 @@ shadowJar {
     }
 }
 
-
+//to show coverage on sonar qube run them then push
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
 }
