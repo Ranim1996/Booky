@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Test.controller.LanguageDataTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-01-13T20:41:57" hostname="LAPTOP-HQSL2QTD" time="0.037">
+<testsuite name="Test.controller.LanguageDataTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2021-01-14T13:12:20" hostname="LAPTOP-HQSL2QTD" time="0.058">
   <properties/>
-  <testcase name="getLanguageByCode()" classname="Test.controller.LanguageDataTest" time="0.035"/>
-  <testcase name="showAllLanguages()" classname="Test.controller.LanguageDataTest" time="0.001"/>
+  <testcase name="getLanguageByCode()" classname="Test.controller.LanguageDataTest" time="0.051"/>
+  <testcase name="showAllLanguages()" classname="Test.controller.LanguageDataTest" time="0.004"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

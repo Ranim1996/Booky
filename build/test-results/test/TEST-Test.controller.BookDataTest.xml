@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Test.controller.BookDataTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2021-01-13T20:41:57" hostname="LAPTOP-HQSL2QTD" time="0.164">
+<testsuite name="Test.controller.BookDataTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2021-01-14T13:12:18" hostname="LAPTOP-HQSL2QTD" time="2.579">
   <properties/>
-  <testcase name="GetBooksByID()" classname="Test.controller.BookDataTest" time="0.138"/>
-  <testcase name="addBook()" classname="Test.controller.BookDataTest" time="0.003"/>
-  <testcase name="GetBooksByLanguage()" classname="Test.controller.BookDataTest" time="0.002"/>
-  <testcase name="GetBooksByTypeAndLanguage()" classname="Test.controller.BookDataTest" time="0.002"/>
-  <testcase name="updateBook()" classname="Test.controller.BookDataTest" time="0.002"/>
-  <testcase name="ShowAllBooks()" classname="Test.controller.BookDataTest" time="0.002"/>
-  <testcase name="deleteBook()" classname="Test.controller.BookDataTest" time="0.003"/>
-  <testcase name="GetBooksByName()" classname="Test.controller.BookDataTest" time="0.003"/>
-  <testcase name="GetBooksByType()" classname="Test.controller.BookDataTest" time="0.002"/>
+  <testcase name="GetBooksByID()" classname="Test.controller.BookDataTest" time="2.472"/>
+  <testcase name="addBook()" classname="Test.controller.BookDataTest" time="0.018"/>
+  <testcase name="GetBooksByLanguage()" classname="Test.controller.BookDataTest" time="0.004"/>
+  <testcase name="GetBooksByTypeAndLanguage()" classname="Test.controller.BookDataTest" time="0.005"/>
+  <testcase name="updateBook()" classname="Test.controller.BookDataTest" time="0.005"/>
+  <testcase name="ShowAllBooks()" classname="Test.controller.BookDataTest" time="0.011"/>
+  <testcase name="deleteBook()" classname="Test.controller.BookDataTest" time="0.044"/>
+  <testcase name="GetBooksByName()" classname="Test.controller.BookDataTest" time="0.004"/>
+  <testcase name="GetBooksByType()" classname="Test.controller.BookDataTest" time="0.005"/>
   <system-out><![CDATA[in book controller
 isdeleted
 ]]></system-out>
